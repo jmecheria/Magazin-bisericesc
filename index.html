@@ -59,7 +59,7 @@
     /* Secțiunile de "pagină" */
     #pages section {
       max-width: 1200px;
-      margin: 20px auto;
+      margin: 40px auto; /* spațiu mai generos între secțiuni */
       padding: 0 20px;
       display: none;
       opacity: 0;
@@ -158,18 +158,29 @@
     }
     .product-card button:hover { background: #d35400; }
 
-    /* Secțiuni Despre Noi și Termeni & Condiții */
+    /* Secțiuni Despre Noi și Termeni & Condiții - stil nou */
     .content-text {
       font-size: 18px;
       line-height: 1.8;
-      margin-bottom: 20px;
-      text-align: center;
-      padding: 15px;
-      background: #f9f9f9;
-      border-left: 6px solid #e67e22;
-      border-radius: 4px;
+      margin: 20px auto;
+      padding: 25px;
+      max-width: 800px;
+      background: #fff7f7;  /* background ușor roșiatic */
+      border: 2px solid #e74c3c;
+      border-radius: 8px;
+      text-align: left;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
+    .content-text ul {
+      margin: 10px 0 0 20px;
+    }
+    .content-text li {
+      margin-bottom: 8px;
+    }
+    .content-text strong {
+      color: #d35400;
+    }
+    
     /* Coș și Finalizare Comandă */
     .cart-item {
       display: flex;
@@ -229,11 +240,11 @@
     }
     .order-form button:hover { background: #2471a3; }
 
-    /* Footer */
+    /* Footer cu temă roșie, complement headerului */
     footer {
-      background: #f8f8f8;
-      border-top: 1px solid #ddd;
-      padding: 15px 20px;
+      background: #fff0f0;
+      border-top: 2px solid #e74c3c;
+      padding: 20px;
       text-align: center;
       font-size: 16px;
       color: #555;
@@ -247,8 +258,8 @@
       vertical-align: middle;
       margin: 0 5px;
     }
-    footer a { text-decoration: none; color: #333; }
-
+    footer a { text-decoration: none; color: #e74c3c; }
+    
     /* Buton "Back to Top" */
     .back-to-top {
       position: fixed;
@@ -331,7 +342,7 @@
     <section id="produse" class="fade-in">
       <h2>Produsele Noastre</h2>
       <div class="product-grid">
-        <!-- Fiecare card de produs -->
+        <!-- Carduri de produs -->
         <div class="product-card">
           <img src="candela-mare.jpg" alt="Candelă Mare">
           <h3>Candelă Mare</h3>
@@ -405,37 +416,39 @@
       </div>
     </section>
     
-      <section id="despre-noi" class="fade-in">
-      <h2>Despre Noi</h2>
-     <p>Bine ați venit în magazinul nostru de <strong>obiecte de cult</strong>!</p>
-
-<p>Suntem o echipă care pune suflet în tot ceea ce face, oferind produse autentice, de calitate, pentru cei care doresc să trăiască și să exprime credința prin lucruri sfinte.</p>
-
-<p>În magazin veți găsi:</p>
-<ul>
-  <li><strong>Candele</strong> din sticlă și metal, simple sau cu modele tradiționale</li>
-  <li><strong>Tămâie naturală</strong>, cu miros blând, potrivită pentru rugăciune</li>
-  <li><strong>Lumânări</strong> din ceară curată, pentru slujbe și acatiste</li>
-  <li><strong>Ceaslov</strong> și <strong>Psaltire</strong>, tipărite clar, cu respect față de textul sfânt</li>
-  <li><strong>Mir</strong> cu aromă discretă, folosit în ritualuri și în viața de zi cu zi</li>
-  <li><strong>Icoane</strong> pictate sau imprimate, cu rame lucrate manual</li>
-</ul>
-
-<p>Ne dorim ca fiecare produs să aducă lumină, liniște și binecuvântare în casa dumneavoastră.</p>
- </section>     
- <section id="termeni-si-conditii" class="fade-in">
-<h2>Termeni și Condiții</h2>
-<ul>
-  <li>Produsele afișate sunt disponibile în limita stocului.</li>
-  <li>Imaginile sunt cu titlu de prezentare, pot exista mici diferențe.</li>
-  <li>Comenzile se procesează în 1-2 zile lucrătoare.</li>
-  <li>Livrarea se face prin curier rapid, în toată țara.</li>
-  <li>Returul este posibil în 14 zile, conform legii.</li>
-  <li>Datele personale sunt protejate conform GDPR.</li>
-</ul>
-
-<p>Vă mulțumim că ne vizitați și că susțineți tradiția ortodoxă!</p>
-
+    <!-- Pagina Despre Noi -->
+    <section id="despre-noi" class="fade-in">
+      <h2 style="text-align:center; color: #d35400; margin-bottom: 20px;">Despre Noi</h2>
+      <div class="content-text">
+        <p>Bine ați venit în magazinul nostru de <strong>obiecte de cult</strong>!</p>
+        <p>Suntem o echipă pasionată care pune suflet în tot ceea ce face, oferind produse autentice și de calitate pentru cei care doresc să își exprime credința prin obiecte sacre.</p>
+        <p>În magazin veți găsi:</p>
+        <ul>
+          <li><strong>Candele</strong> – din sticlă sau metal, cu modele tradiționale.</li>
+          <li><strong>Tămâie naturală</strong> – miros blând și potrivită pentru ritualuri.</li>
+          <li><strong>Lumânări</strong> – create din ceară pură, ideale pentru slujbe.</li>
+          <li><strong>Ceaslov și Psaltire</strong> – produse cu respectarea textelor sfinte.</li>
+          <li><strong>Mir</strong> – cu aromă subtilă, folosit în ritualuri religioase.</li>
+          <li><strong>Icoane</strong> – pictate sau imprimate, într-un design autentic.</li>
+        </ul>
+        <p>Fiecare produs este ales cu grijă pentru a aduce lumină, pace și binecuvântare în viața dumneavoastră.</p>
+      </div>
+    </section>
+    
+    <!-- Pagina Termeni & Condiții -->
+    <section id="termeni-si-conditii" class="fade-in">
+      <h2 style="text-align:center; color: #d35400; margin-bottom: 20px;">Termeni & Condiții</h2>
+      <div class="content-text">
+        <ul>
+          <li>Produsele afișate sunt disponibile în limita stocului.</li>
+          <li>Imaginile sunt prezentative și pot suferi modificări minore.</li>
+          <li>Comenzile sunt procesate în 1-2 zile lucrătoare.</li>
+          <li>Livrarea se face prin curier rapid în toată țara.</li>
+          <li>Returul se poate efectua în termen de 14 zile, conform legislației.</li>
+          <li>Datele dumneavoastră personale sunt protejate conform GDPR.</li>
+        </ul>
+        <p>Vă mulțumim că ne vizitați și susțineți tradiția! Prin utilizarea site-ului, acceptați acești termeni.</p>
+      </div>
     </section>
     
     <!-- Pagina Coș & Finalizare Comandă -->
@@ -447,9 +460,9 @@
       <h3>Total: <span id="total-amount">0</span> RON</h3>
       <h2>Finalizare Comandă</h2>
       <!-- Formularul folosește FormSubmit pentru trimitere (actualizează email-ul) -->
-      <form id="order-form" class="order-form" action="https://formsubmit.co/your-email@example.com" method="POST" target="_blank">
+      <form id="order-form" class="order-form" action="https://formsubmit.co/irimia.teodor.17@gmail.com" method="POST" target="_blank">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://yoursite.com/thanks.html">
+        <input type="hidden" name="_next" value="https://jmecheria.github.io/Magazin-bisericesc/">
         <label for="customer-name">Nume:</label>
         <input type="text" id="customer-name" name="customer_name" required>
 
@@ -475,7 +488,7 @@
     <div class="footer-container">
       <p>Telefon: 0123 456 789 | Email: contact@magazinuldecandele.ro</p>
       <div class="footer-logos">
-        <img src="images/anpc.jpg" alt="ANPC Logo">
+        <img src="anpc.jpg" alt="ANPC Logo">
       </div>
       <p>&copy; 2025 Magazinul de Candele. Toate drepturile rezervate. <a onclick="showPage('termeni-si-conditii')">Termeni & Condiții</a></p>
     </div>
@@ -486,7 +499,7 @@
     // Variabilă globală pentru coș
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Navigare între pagini (activează secțiunea selectată)
+    // Navigare între pagini
     function showPage(pageId) {
       const sections = document.querySelectorAll('#pages section');
       sections.forEach(sec => sec.classList.remove('active'));
@@ -506,7 +519,7 @@
     }
     if (document.getElementById('home')) { sliderShow(); }
 
-    // Actualizează numărul de articole din coș (din header)
+    // Actualizează numărul de articole din coș
     function updateCartCount() {
       const countElement = document.getElementById('cart-count');
       const count = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -545,7 +558,7 @@
       updateTotal();
     }
 
-    // Actualizează cantitatea unui produs din coș
+    // Actualizează cantitatea unui produs
     function updateQuantity(index, newQty) {
       newQty = parseInt(newQty);
       if (newQty <= 0) { removeItem(index); }
@@ -563,19 +576,19 @@
       displayCart();
     }
 
-    // Actualizează totalul de plată în coș
+    // Actualizează totalul de plată
     function updateTotal() {
       const totalElement = document.getElementById('total-amount');
       const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
       totalElement.textContent = total;
     }
 
-    // Funcție pentru scroll la top
+    // Scroll la top
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Afișează butonul "Back to Top" la scroll
+    // Buton "Back to Top"
     window.onscroll = function() {
       const btn = document.querySelector('.back-to-top');
       if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
@@ -592,3 +605,4 @@
   </script>
 </body>
 </html>
+
