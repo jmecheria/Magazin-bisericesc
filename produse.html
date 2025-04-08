@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magazinul de Candele - Produse</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <img src="images/logo.png" alt="Logo Magazinul de Candele" class="logo">
+      <h1>Magazinul de Candele</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Acasă</a></li>
+          <li><a href="produse.html">Produse</a></li>
+          <li><a href="despre_noi.html">Despre Noi</a></li>
+          <li><a href="termeni_si_conditii.html">Termeni și Condiții</a></li>
+          <li><a href="cos.html"><img src="images/cart.png" alt="Coș" class="cart-icon"><span id="cart-count">0</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <h2>Produsele Noastre</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="images/candela_mare.jpg" alt="Candelă Mare">
+        <h3>Candelă Mare</h3>
+        <p>Preț: 50 RON</p>
+        <input type="number" min="1" value="1" id="qty-candela_mare">
+        <button onclick="addToCart('Candelă Mare', 50, document.getElementById('qty-candela_mare').value)">Adaugă în Coș</button>
+      </div>
+      <div class="product-card">
+        <img src="images/candela_mica.jpg" alt="Candelă Mică">
+        <h3>Candelă Mică</h3>
+        <p>Preț: 30 RON</p>
+        <input type="number" min="1" value="1" id="qty-candela_mica">
+        <button onclick="addToCart('Candelă Mică', 30, document.getElementById('qty-candela_mica').value)">Adaugă în Coș</button>
+      </div>
+      <div class="product-card">
+        <img src="images/lumanare_inviere.jpg" alt="Lumanare Înviere">
+        <h3>Lumanare Înviere</h3>
+        <p>Preț: 40 RON</p>
+        <input type="number" min="1" value="1" id="qty-lumanare_inviere">
+        <button onclick="addToCart('Lumanare Înviere', 40, document.getElementById('qty-lumanare_inviere').value)">Adaugă în Coș</button>
+      </div>
+      <div class="product-card">
+        <img src="images/tamai_naturala.jpg" alt="Tămâie Naturală">
+        <h3>Tămâie Naturală</h3>
+        <p>Preț: 20 RON</p>
+        <input type="number" min="1" value="1" id="qty-tamai_naturala">
+        <button onclick="addToCart('Tămâie Naturală', 20, document.getElementById('qty-tamai_naturala').value)">Adaugă în Coș</button>
+      </div>
+      <div class="product-card">
+        <img src="images/pomelnice_anuale.jpg" alt="Pomelnice Anuale">
+        <h3>Pomelnice Anuale</h3>
+        <p>Preț: 35 RON</p>
+        <input type="number" min="1" value="1" id="qty-pomelnice_anuale">
+        <button onclick="addToCart('Pomelnice Anuale', 35, document.getElementById('qty-pomelnice_anuale').value)">Adaugă în Coș</button>
+      </div>
+      <div class="product-card">
+        <img src="images/ceaslov.jpg" alt="Ceaslov">
+        <h3>Ceaslov</h3>
+        <p>Preț: 45 RON</p>
+        <input type="number" min="1" value="1" id="qty-ceaslov">
+        <button onclick="addToCart('Ceaslov', 45, document.getElementById('qty-ceaslov').value)">Adaugă în Coș</button>
+      </div>
+      <div class="product-card">
+        <img src="images/psaltire.jpg" alt="Psaltire">
+        <h3>Psaltire</h3>
+        <p>Preț: 55 RON</p>
+        <input type="number" min="1" value="1" id="qty-psaltire">
+        <button onclick="addToCart('Psaltire', 55, document.getElementById('qty-psaltire').value)">Adaugă în Coș</button>
+      </div>
+      <div class="product-card">
+        <img src="images/mir.jpg" alt="Mir">
+        <h3>Mir</h3>
+        <p>Preț: 25 RON</p>
+        <input type="number" min="1" value="1" id="qty-mir">
+        <button onclick="addToCart('Mir', 25, document.getElementById('qty-mir').value)">Adaugă în Coș</button>
+      </div>
+      <div class="product-card">
+        <img src="images/icoana_mica.jpg" alt="Icoană Mică">
+        <h3>Icoană Mică</h3>
+        <p>Preț: 60 RON</p>
+        <input type="number" min="1" value="1" id="qty-icoana_mica">
+        <button onclick="addToCart('Icoană Mică', 60, document.getElementById('qty-icoana_mica').value)">Adaugă în Coș</button>
+      </div>
+      <div class="product-card">
+        <img src="images/icoana_mare.jpg" alt="Icoană Mare">
+        <h3>Icoană Mare</h3>
+        <p>Preț: 80 RON</p>
+        <input type="number" min="1" value="1" id="qty-icoana_mare">
+        <button onclick="addToCart('Icoană Mare', 80, document.getElementById('qty-icoana_mare').value)">Adaugă în Coș</button>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <p>Telefon: 0123 456 789 | Email: contact@magazinuldecandele.ro</p>
+      <div class="footer-logos">
+        <img src="images/anpc.png" alt="ANPC Logo" class="anpc-logo">
+      </div>
+      <p>&copy; 2025 Magazinul de Candele. Toate drepturile rezervate. <a href="termeni_si_conditii.html">Termeni și Condiții</a></p>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
 
