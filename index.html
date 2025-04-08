@@ -233,17 +233,11 @@ export const Cart = ({ cart, setCart }) => {
 };
 
 export const Checkout = ({ cart }) => {
-  const [form, setForm] = useState({ nume: "", telefon: "", adresa: "", cod: "" });
   const total = cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
 
-  const handleInputChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Comanda a fost trimisă cu succes! (Simulare email)");
-  };
+  const produse = cart.map(
+    item => `${item.name} x${item.quantity} = ${item.quantity * item.price} RON`
+  ).join(", ");
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -255,6 +249,31 @@ export const Checkout = ({ cart }) => {
             <span>{item.quantity * item.price} RON</span>
           </div>
         ))}
+        <div className="font-bold text-right text-lg">Total: {total} RON</div>
+
+        {/* Formular real care trimite email */}
+        <form action="https://formsubmit.co/EMAIL_TAU" method="POST" className="space-y-4 mt-6">
+          {/* ascundem produsele și totalul în câmpuri hidden */}
+          <input type="hidden" name="produse" value={produse} />
+          <input type="hidden" name="total" value={total} />
+
+          <input type="text" name="nume" placeholder="Nume" required className="w-full border px-4 py-2 rounded" />
+          <input type="tel" name="telefon" placeholder="Telefon" required className="w-full border px-4 py-2 rounded" />
+          <input type="text" name="adresa" placeholder="Adresă de livrare" required className="w-full border px-4 py-2 rounded" />
+          <input type="text" name="cod" placeholder="Cod promoțional (opțional)" className="w-full border px-4 py-2 rounded" />
+
+          {/* prevenim spamul */}
+          <input type="hidden" name="_captcha" value="false" />
+          {/* redirect după trimitere */}
+          <input type="hidden" name="_next" value="https://magazinuldecandele.ro/multumim" />
+
+          <Button type="submit">Trimite Comanda</Button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
         <div className="font-bold text-right text-lg">Total: {total} RON</div>
         <form onSubmit={handleSubmit} className="space-y-4 mt-6">
           <input type="text" name="nume" placeholder="Nume" required onChange={handleInputChange} className="w-full border px-4 py-2 rounded" />
