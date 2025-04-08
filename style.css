@@ -1,1 +1,179 @@
+/* css/style.css */
+
+/* Resetarea stilurilor */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Stilizare pentru body */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+}
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  width: 50px;
+  height: auto;
+}
+header h1 {
+  font-size: 24px;
+  margin-left: 10px;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+nav ul li {
+  margin-left: 20px;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Slider */
+.slider {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.slides img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 1s ease-in-out;
+}
+.slides img.active {
+  opacity: 1;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-shop {
+  padding: 10px 20px;
+  background: #e67e22;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Conținut principal */
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+/* Grilă pentru produse */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Footer */
+footer {
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+  padding: 10px 20px;
+  text-align: center;
+}
+.footer-container p {
+  margin: 5px 0;
+}
+.anpc-logo {
+  width: 40px;
+  height: auto;
+}
+
+/* Icon-ul coșului */
+.cart-icon {
+  width: 30px;
+  height: auto;
+}
+
+/* Formular pentru finalizarea comenzii */
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+form label {
+  margin-top: 10px;
+}
+form input {
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Stilizare pentru elementele din coș */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+.cart-item input[type="number"] {
+  width: 50px;
+  padding: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  nav ul {
+    flex-direction: column;
+  }
+  nav ul li {
+    margin: 10px 0;
+  }
+}
 
