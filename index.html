@@ -13,7 +13,7 @@
       background: #fdfdfd; 
       color: #333; 
       scroll-behavior: smooth;
-      padding-bottom: 60px; /* spațiu pentru butonul "Back to Top" */
+      padding-bottom: 60px;
     }
 
     /* Countdown Timer Banner */
@@ -67,7 +67,7 @@
       margin-left: 2px;
     }
 
-    /* Secțiunile de "pagină" */
+    /* Secțiuni principale */
     #pages section {
       max-width: 1200px;
       margin: 40px auto;
@@ -81,7 +81,7 @@
       opacity: 1;
     }
 
-    /* Slider pe pagina Acasă */
+    /* Slider pentru pagina Acasă */
     .slider {
       position: relative;
       width: 100%;
@@ -123,7 +123,7 @@
     }
     .btn-shop:hover { background: #1e8449; }
 
-    /* Bară de filtre pe pagina Produse */
+    /* Bară de filtrare */
     #filter-bar {
       text-align: center;
       margin-bottom: 20px;
@@ -138,9 +138,7 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-    #filter-bar button:hover {
-      background: #2471a3;
-    }
+    #filter-bar button:hover { background: #2471a3; }
 
     /* Grilă Produse */
     .product-grid {
@@ -307,7 +305,7 @@
     }
     .back-to-top:hover { background: #a93226; }
 
-    /* Responsive - Mobile friendly */
+    /* Media queries - Mobile friendly */
     @media (max-width: 768px) {
       .header-container { flex-direction: column; text-align: center; }
       nav ul { flex-direction: column; }
@@ -344,7 +342,7 @@
     </div>
   </header>
 
-  <!-- Countdown Timer Banner -->
+  <!-- Countdown Timer -->
   <div id="countdown-timer">
     Timp până la Paști: <span id="timer"></span>
   </div>
@@ -365,7 +363,7 @@
       </div>
       <h2>Bine ai venit la Magazinul de Candele</h2>
       <p class="content-text">
-        Descoperă colecția noastră de lumânări și accesorii, create cu pasiune și meticulozitate, pentru a aduce valoare spirituală și estetică spațiului tău.
+        Descoperă colecția noastră de lumânări și accesorii, oferite cu pasiune și iubire, pentru a aduce lumină și frumusețe spațiului tău.
       </p>
     </section>
 
@@ -460,9 +458,18 @@
     <section id="despre-noi" class="fade-in">
       <h2 style="text-align:center; color:#d35400; margin-bottom:20px;">Despre Noi</h2>
       <div class="content-text">
-        <p>Bine ați venit în magazinul nostru de obiecte de cult, un loc în care tradiția și spiritualitatea se împletesc armonios.</p>
-        <p>Echipa noastră de profesioniști este dedicată selecției de produse autentice, ce reflectă valorile și istoria noastră culturală.</p>
-        <p>Oferta include candele, lumânări, tămâie, accesorii de cult și icoane, fiecare produs fiind ales cu grijă pentru a aduce lumină și pace în viața dumneavoastră.</p>
+        <p>Bine ați venit în magazinul nostru de obiecte de cult, un loc unde tradiția și spiritualitatea se împletesc armonios.</p>
+        <p>Echipa noastră de profesioniști este dedicată selecției atente de produse autentice, menite să inspire și să aducă un plus de lumină în viața dumneavoastră.</p>
+        <p>Oferta noastră include:</p>
+        <ul>
+          <li><strong>Candele</strong> – realizate din materiale calitative, într-o varietate de modele moderne și tradiționale.</li>
+          <li><strong>Tămâie naturală</strong> – cu arome delicate, perfecte pentru momente de reculegere.</li>
+          <li><strong>Lumânări</strong> – confecționate din ceară pură, ideale pentru slujbe și alte momente importante.</li>
+          <li><strong>Ceaslov și Psaltire</strong> – produse respectând cu strictețe textele sfinte.</li>
+          <li><strong>Mir</strong> – de cea mai înaltă calitate, folosit în slujbele casei sau a bisericii.</li>
+          <li><strong>Icoane</strong> – pictate manual sau imprimate, ce reflectă un design autentic și rafinat.</li>
+        </ul>
+        <p>Domnul este luminarea mea şi mântuirea mea; de cine mă voi teme?(psalmul 26 1)</p>
       </div>
     </section>
 
@@ -472,13 +479,13 @@
       <div class="content-text">
         <ul>
           <li>Produsele afișate sunt disponibile în limita stocului.</li>
-          <li>Imaginile utilizate sunt de prezentare și pot suferi ajustări minore.</li>
+          <li>Imaginile sunt de prezentare și pot suferi ajustări minore.</li>
           <li>Comenzile sunt procesate în 1-2 zile lucrătoare.</li>
           <li>Livrarea se efectuează prin curier rapid pe teritoriul țării.</li>
           <li>Returul este posibil în termen de 14 zile, conform legislației în vigoare.</li>
-          <li>Datele personale sunt gestionate conform GDPR.</li>
+          <li>Datele personale sunt gestionate cu maximă confidențialitate, conform GDPR.</li>
         </ul>
-        <p>Prin accesarea și utilizarea site-ului, sunteți de acord cu acești termeni. Vă mulțumim pentru încredere și sprijin!</p>
+        <p>Prin accesarea și utilizarea site-ului, sunteți de acord cu acești termeni. Vă mulțumim pentru încredere și vă invităm să ne contactați pentru orice întrebări suplimentare.</p>
       </div>
     </section>
 
@@ -490,7 +497,7 @@
       </div>
       <h3>Total: <span id="total-amount">0</span> RON</h3>
       <h2>Finalizare Comandă</h2>
-      <!-- Formularul folosește FormSubmit. Actualizează adresa de email și URL-ul de redirect dacă este necesar -->
+      <!-- Formularul trimite comanda la FormSubmit, fără a reseta automat coșul -->
       <form id="order-form" class="order-form" action="https://formsubmit.co/irimia.teodor.17@gmail.com" method="POST" target="_blank">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="https://jmecheria.github.io/Magazin-bisericesc/">
@@ -528,7 +535,7 @@
 
   <!-- Scripturi JavaScript -->
   <script>
-    /* Countdown Timer pentru Paști */
+    // Countdown Timer pentru Paști
     function startCountdown() {
       // Data țintă: Paști 2025 (20 aprilie 2025). Ajustează dacă este necesar.
       const targetDate = new Date("2025-04-20T00:00:00").getTime();
@@ -539,7 +546,7 @@
         const distance = targetDate - now;
 
         if (distance < 0) {
-          timerEl.innerHTML = "Paști a sosit!";
+          timerEl.innerHTML = "Hristos a înviat!";
           return;
         }
 
@@ -588,8 +595,11 @@
     function addToCart(name, price, qty) {
       qty = parseInt(qty);
       const existing = cart.find(item => item.name === name);
-      if (existing) { existing.quantity += qty; }
-      else { cart.push({ name, price, quantity: qty }); }
+      if (existing) {
+        existing.quantity += qty;
+      } else {
+        cart.push({ name, price, quantity: qty });
+      }
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartCount();
       alert(name + " a fost adăugat în coș.");
@@ -644,7 +654,7 @@
       totalElement.textContent = total;
     }
 
-    // Resetează complet coșul
+    // Resetează complet coșul (buton separat)
     function resetCart() {
       if (confirm("Sigur doriți să goliți coșul?")) {
         cart = [];
@@ -680,11 +690,6 @@
         btn.style.display = "none";
       }
     };
-
-    // Resetare coș după finalizarea comenzii
-    document.getElementById('order-form').addEventListener('submit', function() {
-      resetCart();
-    });
 
     // Inițializare la încărcare
     document.addEventListener('DOMContentLoaded', function() {
