@@ -13,6 +13,7 @@
       background: #fdfdfd; 
       color: #333; 
       scroll-behavior: smooth;
+      padding-bottom: 60px; /* spațiu pentru butonul back-to-top */
     }
 
     /* Header și navigație */
@@ -59,7 +60,7 @@
     /* Secțiunile de "pagină" */
     #pages section {
       max-width: 1200px;
-      margin: 40px auto; /* spațiu mai generos între secțiuni */
+      margin: 40px auto; /* spațiu generos între secțiuni */
       padding: 0 20px;
       display: none;
       opacity: 0;
@@ -158,14 +159,14 @@
     }
     .product-card button:hover { background: #d35400; }
 
-    /* Secțiuni Despre Noi și Termeni & Condiții - stil nou */
+    /* Secțiuni Despre Noi și Termeni & Condiții - stil îmbunătățit */
     .content-text {
       font-size: 18px;
       line-height: 1.8;
       margin: 20px auto;
       padding: 25px;
       max-width: 800px;
-      background: #fff7f7;  /* background ușor roșiatic */
+      background: #fff7f7;  /* nuanță ușor roșiatică */
       border: 2px solid #e74c3c;
       border-radius: 8px;
       text-align: left;
@@ -173,6 +174,7 @@
     }
     .content-text ul {
       margin: 10px 0 0 20px;
+      list-style-type: disc;
     }
     .content-text li {
       margin-bottom: 8px;
@@ -180,7 +182,7 @@
     .content-text strong {
       color: #d35400;
     }
-    
+
     /* Coș și Finalizare Comandă */
     .cart-item {
       display: flex;
@@ -239,6 +241,10 @@
       transition: background 0.3s;
     }
     .order-form button:hover { background: #2471a3; }
+    .order-form .reset-btn {
+      background: #c0392b;
+    }
+    .order-form .reset-btn:hover { background: #a93226; }
 
     /* Footer cu temă roșie, complement headerului */
     footer {
@@ -334,7 +340,7 @@
       </div>
       <h2>Bine ai venit la Magazinul de Candele</h2>
       <p class="content-text">
-        Descoperă colecția noastră de lumânări și accesorii, create cu pasiune și atenție la detalii!
+        Descoperă colecția noastră de lumânări și accesorii, create cu pasiune și meticulozitate, pentru a aduce valoare spirituală și estetică spațiului tău.
       </p>
     </section>
     
@@ -420,18 +426,18 @@
     <section id="despre-noi" class="fade-in">
       <h2 style="text-align:center; color: #d35400; margin-bottom: 20px;">Despre Noi</h2>
       <div class="content-text">
-        <p>Bine ați venit în magazinul nostru de <strong>obiecte de cult</strong>!</p>
-        <p>Suntem o echipă pasionată care pune suflet în tot ceea ce face, oferind produse autentice și de calitate pentru cei care doresc să își exprime credința prin obiecte sacre.</p>
-        <p>În magazin veți găsi:</p>
+        <p>Bine ați venit în magazinul nostru de obiecte de cult.</p>
+        <p>Suntem o echipă de profesioniști dedicați cu pasiune, care acordă o atenție deosebită selecției produselor autentice și de calitate, pentru a reflecta valorile tradiționale și spirituale.</p>
+        <p>În oferta noastră veți găsi:</p>
         <ul>
-          <li><strong>Candele</strong> – din sticlă sau metal, cu modele tradiționale.</li>
-          <li><strong>Tămâie naturală</strong> – miros blând și potrivită pentru ritualuri.</li>
-          <li><strong>Lumânări</strong> – create din ceară pură, ideale pentru slujbe.</li>
-          <li><strong>Ceaslov și Psaltire</strong> – produse cu respectarea textelor sfinte.</li>
-          <li><strong>Mir</strong> – cu aromă subtilă, folosit în ritualuri religioase.</li>
-          <li><strong>Icoane</strong> – pictate sau imprimate, într-un design autentic.</li>
+          <li><strong>Candele</strong> – din sticlă sau metal, cu detalii tradiționale și moderne.</li>
+          <li><strong>Tămâie naturală</strong> – de o aromă subtilă, ideală pentru ritualuri și momente de reculegere.</li>
+          <li><strong>Lumânări</strong> – realizate din ceară pură, menite să lumineze slujbele și acatistele.</li>
+          <li><strong>Ceaslov și Psaltire</strong> – ediții cu respectarea textelor sacre, pentru o utilizare autentică.</li>
+          <li><strong>Mir</strong> – de calitate superioară, folosit în ritualuri religioase.</li>
+          <li><strong>Icoane</strong> – pictate manual sau imprimate, ce exprimă un design autentic și rafinat.</li>
         </ul>
-        <p>Fiecare produs este ales cu grijă pentru a aduce lumină, pace și binecuvântare în viața dumneavoastră.</p>
+        <p>Prin fiecare produs dorim să aducem lumină, pace și un strop de sacralitate în viața dumneavoastră.</p>
       </div>
     </section>
     
@@ -441,13 +447,13 @@
       <div class="content-text">
         <ul>
           <li>Produsele afișate sunt disponibile în limita stocului.</li>
-          <li>Imaginile sunt prezentative și pot suferi modificări minore.</li>
+          <li>Imaginile utilizate sunt de prezentare și pot suferi ajustări minore.</li>
           <li>Comenzile sunt procesate în 1-2 zile lucrătoare.</li>
-          <li>Livrarea se face prin curier rapid în toată țara.</li>
-          <li>Returul se poate efectua în termen de 14 zile, conform legislației.</li>
-          <li>Datele dumneavoastră personale sunt protejate conform GDPR.</li>
+          <li>Livrarea se efectuează prin curier rapid pe teritoriul țării.</li>
+          <li>Returul este posibil în termen de 14 zile, conform legislației în vigoare.</li>
+          <li>Datele dumneavoastră sunt gestionate cu maximă confidențialitate, conform GDPR.</li>
         </ul>
-        <p>Vă mulțumim că ne vizitați și susțineți tradiția! Prin utilizarea site-ului, acceptați acești termeni.</p>
+        <p>Prin accesarea și utilizarea site-ului, acceptați acești termeni. Vă mulțumim pentru încredere și pentru sprijinul acordat în promovarea valorilor tradiționale.</p>
       </div>
     </section>
     
@@ -476,6 +482,7 @@
         <input type="text" id="promo-code" name="promo_code">
 
         <button type="submit">Finalizează Comandă</button>
+        <button type="button" class="reset-btn" onclick="resetCart()">Resetare Coș</button>
       </form>
     </section>
   </div>
@@ -583,6 +590,16 @@
       totalElement.textContent = total;
     }
 
+    // Golire completă a coșului (funcție de resetare)
+    function resetCart() {
+      if (confirm("Sigur doriți să goliți coșul?")) {
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        displayCart();
+      }
+    }
+
     // Scroll la top
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -598,6 +615,12 @@
       }
     };
 
+    // La finalizarea comenzii, golim coșul (poate fi apelat de un eveniment onsubmit, după ce se procesează comanda)
+    document.getElementById('order-form').addEventListener('submit', function() {
+      // Resetăm coșul după finalizarea comenzii
+      resetCart();
+    });
+
     // Inițializare la încărcare
     document.addEventListener('DOMContentLoaded', function() {
       updateCartCount();
@@ -605,4 +628,3 @@
   </script>
 </body>
 </html>
-
