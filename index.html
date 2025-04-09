@@ -6,6 +6,8 @@
   <title>Magazinul de Candele & Tradiții</title>
   <!-- jsPDF pentru generarea facturii PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Poți integra Google Fonts pentru un aspect tradițional (exemplu Merriweather) -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     /* Reset și stiluri globale */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -134,18 +136,30 @@
       transition: background 0.3s;
     }
     .btn-shop:hover { background: #1e8449; }
-    /* Câmp de căutare pentru produse */
+    /* Câmp de căutare pentru produse - stil îmbunătățit */
     #search-container {
       text-align: center;
       margin-bottom: 20px;
     }
     #search-container input {
-      padding: 8px 12px;
+      padding: 10px 15px;
       width: 80%;
       max-width: 400px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      border: 2px solid #ccc;
+      border-radius: 30px;
       font-size: 16px;
+      outline: none;
+      transition: all 0.3s;
+      background: #fff;
+      background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23ccc" viewBox="0 0 16 16"><path d="M11.742 10.344l3.85 3.85-1.397 1.397-3.85-3.85a6.5 6.5 0 1 1 1.397-1.397zm-5.242 1.656a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/></svg>');
+      background-repeat: no-repeat;
+      background-size: 20px;
+      background-position: 10px 50%;
+      padding-left: 40px;
+    }
+    #search-container input:focus {
+      border-color: #2980b9;
+      box-shadow: 0 0 8px rgba(41, 128, 185, 0.5);
     }
     /* Filtrare suplimentară */
     #filter-toggle {
@@ -385,10 +399,12 @@
           <li><a onclick="showPage('produse')">Produse</a></li>
           <li><a onclick="showPage('despre-noi')">Despre Noi</a></li>
           <li><a onclick="showPage('termeni-si-conditii')">Termeni & Condiții</a></li>
-          <li><a onclick="showPage('cos')">
-            <img src="cos.jpg" alt="Coș" class="cart-icon">
-            <span class="cart-count" id="cart-count">0</span>
-          </a></li>
+          <li>
+            <a onclick="showPage('cos')">
+              <img src="cos.jpg" alt="Coș" class="cart-icon">
+              <span class="cart-count" id="cart-count">0</span>
+            </a>
+          </li>
           <li><a onclick="showPage('evenimente')">Evenimente</a></li>
         </ul>
       </nav>
@@ -551,9 +567,10 @@
       <!-- Buton pentru generarea facturii PDF -->
       <button onclick="generatePDFInvoice()" style="padding:10px 20px; background:#2980b9; border:none; color:#fff; border-radius:6px; cursor:pointer;">Generează Factura PDF</button>
       <h2>Finalizare Comandă</h2>
-      <!-- Formularul ce trimite comanda prin email -->
-      <form id="order-form" class="order-form" action="https://formsubmit.co/irimia.teodor.17@gmail.com" method="POST" target="_blank">
+      <!-- Formularul de comandă (rămâne în același tab după submit, redirecționează către pagina Acasă) -->
+      <form id="order-form" class="order-form" action="https://formsubmit.co/irimia.teodor.17@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
+        <!-- Parametrul _next redirecționează către pagina principală -->
         <input type="hidden" name="_next" value="https://jmecheria.github.io/Magazin-bisericesc/">
         <!-- Datele clientului -->
         <label for="customer-name">Nume:</label>
@@ -576,8 +593,8 @@
         <ul>
           <li><strong>Paști:</strong> Data variază anual – consultați calendarul bisericesc.</li>
           <li><strong>Cine Pomenești:</strong> Tradiție dedicată pomenirii sfinților.</li>
-          <li><strong>Sfântul Andrei:</strong> Ziua de sărbătoare pentru credincioși (30 noiembrie).</li>
-          <li><strong>Posturile mari:</strong> Perioade de post, cu recomandări spirituale și culinare.</li>
+          <li><strong>Sfântul Andrei:</strong> Zi de sărbătoare (30 noiembrie).</li>
+          <li><strong>Posturile mari:</strong> Perioade de post cu recomandări spirituale și culinare.</li>
         </ul>
       </div>
     </section>
@@ -587,7 +604,7 @@
     <div class="footer-container">
       <p>&copy; 2025 Magazinul de Candele & Tradiții. Toate drepturile rezervate.</p>
       <div class="footer-logos">
-        <img src="anpc.jpg" alt="Logo">
+        <img src="logo_small.jpg" alt="Logo">
       </div>
     </div>
   </footer>
@@ -625,7 +642,7 @@
       });
     }
 
-    // Căutare avansată a produselor după nume
+    // Căutare avansată a produselor după nume (filtrează și după textul introdus)
     function searchProducts() {
       const query = document.getElementById('product-search').value.toLowerCase();
       document.querySelectorAll('.product-card').forEach(card => {
@@ -651,7 +668,7 @@
       updateCartUI();
     }
 
-    // Actualizează afișarea coșului
+    // Actualizează afișarea coșului și numărul de produse
     function updateCartUI() {
       const container = document.getElementById('cart-container');
       container.innerHTML = '';
@@ -669,6 +686,9 @@
         `;
       });
       document.getElementById('total-amount').innerText = total;
+      // Actualizează și numărul total al produselor în coș
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cart-count').innerText = totalItems;
       // Stocăm detaliile comenzii pentru facturare
       document.getElementById('order-details').value = JSON.stringify(cart);
     }
