@@ -316,7 +316,7 @@
       text-align: left;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    /* Stil atrăgător pentru Despre Noi și Termeni & Condiții */
+    /* Stil pentru Despre Noi și Termeni & Condiții */
     #despre-noi {
       background: url('despre-noi-bg.jpg') no-repeat center center/cover;
       padding: 40px 20px;
@@ -481,6 +481,57 @@
       border-radius: 4px;
       background: #fff;
     }
+    /* Formularul de finalizare comandă - design îmbunătățit */
+    .order-form {
+      margin: 30px auto;
+      max-width: 500px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      border: 1px solid #ddd;
+    }
+    .order-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+    .order-form label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+    .order-form input[type="text"],
+    .order-form input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+    .order-form button {
+      width: 48%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .order-form button[type="submit"] {
+      background: var(--button-bg);
+      color: #fff;
+    }
+    .order-form button[type="submit"]:hover {
+      background: var(--button-hover);
+    }
+    .order-form .reset-btn {
+      background: #c0392b;
+      color: #fff;
+    }
+    .order-form .reset-btn:hover {
+      background: #a93226;
+    }
   </style>
 </head>
 <body>
@@ -515,7 +566,7 @@
     <section id="home" class="active fade-in">
       <div class="slider">
         <div class="slides">
-          <img src="icoană1.jpg" alt="Slider 1" class="active">
+          <img src="icoana1.jpg" alt="Slider 1" class="active">
           <img src="lumânare.jpg" alt="Slider 2">
           <img src="candela-mare.jpg" alt="Slider 3">
         </div>
@@ -602,6 +653,7 @@
       </button>
       <h2>Finalizare Comandă</h2>
       <form id="order-form" class="order-form" onsubmit="return saveOrder();">
+        <h2>Completează Datele pentru Comandă</h2>
         <label for="customer-name">Nume:</label>
         <input type="text" id="customer-name" name="customer_name" required>
         <label for="customer-email">Email:</label>
@@ -611,8 +663,10 @@
         <label for="customer-address">Adresă:</label>
         <input type="text" id="customer-address" name="customer_address" required>
         <input type="hidden" id="order-details" name="order_details" value="">
-        <button type="submit">Plasează Comanda</button>
-        <button type="reset" class="reset-btn">Resetare</button>
+        <div style="display: flex; justify-content: space-between;">
+          <button type="submit">Plasează Comanda</button>
+          <button type="reset" class="reset-btn">Resetare</button>
+        </div>
       </form>
     </section>
     
@@ -700,13 +754,13 @@
       { id: "candela_mare", name: "Candelă Mare", price: 20, stock: 10, category:"candele", description:"Candelă mare din ceară naturală", image:"candela-mare.jpg" },
       { id: "candela_mica", name: "Candelă Mică", price: 10, stock: 15, category:"candele", description:"Candelă mică cu design tradițional", image:"candela-mica.jpg" },
       { id: "lumanare_inviere", name: "Lumânare Înviere", price: 50, stock: 8, category:"lumânări", description:"Lumânare specială pentru slujbe", image:"lumânare.jpg" },
-      { id: "tamai_naturala", name: "Tămâie Naturală", price: 20, stock: 12, category:"tămâie", description:"Tămâie de calitate superioară", image:"tămâie.jpg" },
+      { id: "tamai_naturala", name: "Tămâie Naturală", price: 20, stock: 12, category:"tămâie", description:"Tămâie de calitate superioară", image:"tamai.jpg" },
       { id: "pomelnice_anuale", name: "Pomelnice Anuale", price: 100, stock: 5, category:"accesorii", description:"Pomelnice pentru comemorare", image:"pomelnic.jpg" },
-      { id: "ceaslov", name: "Ceaslov", price: 70, stock: 7, category:"accesorii", description:"Accesoriu tradițional pentru biserică", image:"ceaslov.jpg" },
+      { id: "ceaslov", name: "Ceaslov", price: 70, stock: 7, category:"accesorii", description:"Accesoriu tradițional pentru biserică", image:"Ceaslov.jpg" },
       { id: "psaltire", name: "Psaltire", price: 55, stock: 6, category:"accesorii", description:"Psaltire cu fragmente sacre", image:"psaltire.jpg" },
       { id: "mir", name: "Mir", price: 20, stock: 20, category:"accesorii", description:"Mir de cea mai înaltă calitate", image:"mir.jpg" },
-      { id: "icoana_mica", name: "Icoană Mică", price: 40, stock: 9, category:"icoane", description:"Icoană mică pictată manual", image:"icoană1.jpg" },
-      { id: "icoana_mare", name: "Icoană Mare", price: 100, stock: 4, category:"icoane", description:"Icoană mare, lucrare impresionantă", image:"icoană2.jpg" }
+      { id: "icoana_mica", name: "Icoană Mică", price: 40, stock: 9, category:"icoane", description:"Icoană mică pictată manual", image:"icoana1.jpg" },
+      { id: "icoana_mare", name: "Icoană Mare", price: 100, stock: 4, category:"icoane", description:"Icoană mare, lucrare impresionantă", image:"icoana2.jpg" }
     ];
     if(!localStorage.getItem("products")){
       localStorage.setItem("products", JSON.stringify(products));
@@ -890,7 +944,6 @@
       document.getElementById("cart-count").innerText = cart.reduce((sum, item) => sum + item.qty, 0);
       document.getElementById("order-details").value = JSON.stringify(cart);
       document.getElementById("fixed-cart-count").innerText = cart.reduce((sum, item) => sum + item.qty, 0);
-      // Activează butonul de factură doar când toate câmpurile formularului sunt completate
       document.getElementById("invoice-btn").disabled = !(document.getElementById("customer-name").value.trim() &&
                                                            document.getElementById("customer-email").value.trim() &&
                                                            document.getElementById("customer-phone").value.trim() &&
@@ -1080,3 +1133,4 @@
   </script>
 </body>
 </html>
+
