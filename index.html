@@ -91,10 +91,7 @@
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
     }
-    #pages section.active {
-      display: block;
-      opacity: 1;
-    }
+    #pages section.active { display: block; opacity: 1; }
     /* Slider pentru pagina Acasă */
     .slider {
       position: relative;
@@ -116,10 +113,8 @@
     .slides img.active { opacity: 1; }
     .slider .overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 300px;
+      top: 0; left: 0;
+      width: 100%; height: 300px;
       background: rgba(0,0,0,0.4);
       display: flex;
       justify-content: center;
@@ -151,7 +146,6 @@
       outline: none;
       transition: all 0.3s;
       background: #fff;
-      /* URL corect pentru iconița de căutare (folosim spațiul de nume SVG corespunzător) */
       background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23ccc" viewBox="0 0 16 16"><path d="M11.742 10.344l3.85 3.85-1.397 1.397-3.85-3.85a6.5 6.5 0 1 1 1.397-1.397zm-5.242 1.656a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/></svg>');
       background-repeat: no-repeat;
       background-size: 20px;
@@ -160,9 +154,9 @@
     }
     #search-container input:focus {
       border-color: #2980b9;
-      box-shadow: 0 0 8px rgba(41, 128, 185, 0.5);
+      box-shadow: 0 0 8px rgba(41,128,185,0.5);
     }
-    /* Toggle pentru filtrare suplimentară (ex. sortare) */
+    /* Toggle pentru filtrare și sortare */
     #filter-toggle, #sort-toggle {
       display: none;
       background: none;
@@ -302,11 +296,7 @@
       border-radius: 6px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .order-form label {
-      display: block;
-      margin-top: 12px;
-      font-weight: bold;
-    }
+    .order-form label { display: block; margin-top: 12px; font-weight: bold; }
     .order-form input[type="text"] {
       width: 100%;
       padding: 10px;
@@ -371,14 +361,8 @@
     .back-to-top:hover { background: #7a5230; }
     /* Media queries – Mobile friendly */
     @media (max-width: 768px) {
-      .header-container {
-        flex-direction: column;
-        text-align: center;
-      }
-      nav ul {
-        flex-direction: column;
-        display: none;
-      }
+      .header-container { flex-direction: column; text-align: center; }
+      nav ul { flex-direction: column; display: none; }
       nav ul.active { display: flex; }
       nav ul li { margin: 10px 0; }
       .hamburger { display: block; }
@@ -392,16 +376,13 @@
     /* Animații */
     .fade-in { animation: fadeIn 1s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    
-    /* Stiluri pentru fereastra modală de detalii produs */
+    /* Stiluri pentru modalul de detalii produs */
     .modal {
       display: none;
       position: fixed;
       z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
       overflow: auto;
       background: rgba(0,0,0,0.5);
     }
@@ -448,9 +429,9 @@
     </div>
   </header>
   
-  <!-- Countdown Timer -->
+  <!-- Countdown Timer (se actualizează dinamic în funcție de evenimente) -->
   <div id="countdown-timer">
-    Timp până la Paști: <span id="timer"></span>
+    <span id="timer"></span>
   </div>
   
   <!-- Conținutul paginilor -->
@@ -473,14 +454,12 @@
       </p>
     </section>
     
-    <!-- Pagina Produse -->
+    <!-- Pagina Produse (toate produsele sunt adăugate) -->
     <section id="produse" class="fade-in">
       <h2 id="prod-title">Produsele Noastre</h2>
-      <!-- Câmp de căutare -->
       <div id="search-container">
         <input type="text" id="product-search" placeholder="Caută produs..." onkeyup="searchProducts()">
       </div>
-      <!-- Toggle pentru filtrare și sortare (pe mobil) -->
       <button id="filter-toggle" onclick="toggleFilter()">Filtre</button>
       <button id="sort-toggle" onclick="toggleSort()">Sortare</button>
       <div id="filter-bar">
@@ -497,7 +476,7 @@
         <button onclick="sortProducts('alpha')">Alfabetic</button>
       </div>
       <div class="product-grid" id="product-grid">
-        <!-- Exemplu produs: Candelă Mare -->
+        <!-- Candele -->
         <div class="product-card" data-category="candele" onclick="openModal(this)">
           <img src="candela-mare.jpg" alt="Candelă Mare">
           <h3>Candelă Mare</h3>
@@ -505,9 +484,74 @@
           <input type="number" id="qty-candela_mare" min="1" value="1">
           <button onclick="event.stopPropagation(); addToCart('Candelă Mare', 20, document.getElementById('qty-candela_mare').value)">Adaugă în Coș</button>
         </div>
-        <!-- Alte produse pot fi adăugate aici urmând aceeași structură -->
+        <div class="product-card" data-category="candele" onclick="openModal(this)">
+          <img src="candela-mica.jpg" alt="Candelă Mică">
+          <h3>Candelă Mică</h3>
+          <p>Preț: 10 RON</p>
+          <input type="number" id="qty-candela_mica" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Candelă Mică', 10, document.getElementById('qty-candela_mica').value)">Adaugă în Coș</button>
+        </div>
+        <!-- Lumânări -->
+        <div class="product-card" data-category="lumânări" onclick="openModal(this)">
+          <img src="lumânare.jpg" alt="Lumânare Înviere">
+          <h3>Lumânare Înviere</h3>
+          <p>Preț: 50 RON</p>
+          <input type="number" id="qty-lumanare_inviere" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Lumânare Înviere', 50, document.getElementById('qty-lumanare_inviere').value)">Adaugă în Coș</button>
+        </div>
+        <!-- Tămâie -->
+        <div class="product-card" data-category="tămâie" onclick="openModal(this)">
+          <img src="tamai.jpg" alt="Tămâie Naturală">
+          <h3>Tămâie Naturală</h3>
+          <p>Preț: 20 RON</p>
+          <input type="number" id="qty-tamai_naturala" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Tămâie Naturală', 20, document.getElementById('qty-tamai_naturala').value)">Adaugă în Coș</button>
+        </div>
+        <!-- Accesorii -->
+        <div class="product-card" data-category="accesorii" onclick="openModal(this)">
+          <img src="pomelnic.jpg" alt="Pomelnice Anuale">
+          <h3>Pomelnice Anuale</h3>
+          <p>Preț: 100 RON</p>
+          <input type="number" id="qty-pomelnice_anuale" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Pomelnice Anuale', 100, document.getElementById('qty-pomelnice_anuale').value)">Adaugă în Coș</button>
+        </div>
+        <div class="product-card" data-category="accesorii" onclick="openModal(this)">
+          <img src="ceaslov.jpg" alt="Ceaslov">
+          <h3>Ceaslov</h3>
+          <p>Preț: 70 RON</p>
+          <input type="number" id="qty-ceaslov" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Ceaslov', 70, document.getElementById('qty-ceaslov').value)">Adaugă în Coș</button>
+        </div>
+        <div class="product-card" data-category="accesorii" onclick="openModal(this)">
+          <img src="psaltire.jpg" alt="Psaltire">
+          <h3>Psaltire</h3>
+          <p>Preț: 55 RON</p>
+          <input type="number" id="qty-psaltire" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Psaltire', 55, document.getElementById('qty-psaltire').value)">Adaugă în Coș</button>
+        </div>
+        <div class="product-card" data-category="accesorii" onclick="openModal(this)">
+          <img src="mir.jpg" alt="Mir">
+          <h3>Mir</h3>
+          <p>Preț: 20 RON</p>
+          <input type="number" id="qty-mir" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Mir', 20, document.getElementById('qty-mir').value)">Adaugă în Coș</button>
+        </div>
+        <!-- Icoane -->
+        <div class="product-card" data-category="icoane" onclick="openModal(this)">
+          <img src="icoana1.jpg" alt="Icoană Mică">
+          <h3>Icoană Mică</h3>
+          <p>Preț: 40 RON</p>
+          <input type="number" id="qty-icoana_mica" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Icoană Mică', 40, document.getElementById('qty-icoana_mica').value)">Adaugă în Coș</button>
+        </div>
+        <div class="product-card" data-category="icoane" onclick="openModal(this)">
+          <img src="icoana2.jpg" alt="Icoană Mare">
+          <h3>Icoană Mare</h3>
+          <p>Preț: 100 RON</p>
+          <input type="number" id="qty-icoana_mare" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Icoană Mare', 100, document.getElementById('qty-icoana_mare').value)">Adaugă în Coș</button>
+        </div>
       </div>
-      <!-- Mesajul "Nu s-au găsit produse" (afișat dinamic) -->
       <div id="no-products" class="no-products" style="display:none;">Nu s-au găsit produse.</div>
     </section>
     
@@ -574,13 +618,13 @@
       <div class="content-text">
         <p>Aici găsiți informații despre principalele sărbători și evenimente creștine:</p>
         <ul>
-          <li><strong>Paști:</strong> Sărbătoarea Învierii Domnului, moment central al credinței creștine.</li>
-          <li><strong>Crăciunul:</strong> Nașterea lui Iisus Hristos, celebrată pe 25 decembrie (sau 7 ianuarie conform calendarului iulian).</li>
-          <li><strong>Bobotează:</strong> Comemorarea botezului lui Iisus, pe 6 ianuarie.</li>
-          <li><strong>Adormirea Maicii Domnului:</strong> Comemorarea trecerii Maicii Domnului în odihna veșnică, pe 15 august.</li>
-          <li><strong>Înălțarea Domnului:</strong> La 40 de zile după Paști, marcată prin înălțarea lui.</li>
-          <li><strong>Rusaliile:</strong> Pogorârea Duhului Sfânt asupra apostolilor.</li>
-          <li><strong>Sfântul Andrei:</strong> Sărbătorirea patronului, pe 30 noiembrie.</li>
+          <li><strong>Paști:</strong> Sărbătoarea Învierii Domnului – perioada de 3 zile în care se afișează mesajul "Hristos a înviat!" după ce timerul ajunge la 0.</li>
+          <li><strong>Crăciunul:</strong> Nașterea lui Iisus Hristos – se afișează mesajul "Sărbătoarea Nașterii" pe durata perioadei de sărbătoare.</li>
+          <li><strong>Bobotează:</strong> Comemorarea botezului lui Iisus – mesajul "Botezul Domnului" se va afișa în perioada corespunzătoare.</li>
+          <li><strong>Adormirea Maicii Domnului:</strong> Sărbătoare pe 15 august – mesajul "Adormirea Maicii Domnului" va fi prezent.</li>
+          <li><strong>Înălțarea Domnului:</strong> La 40 de zile după Paști – mesajul "Înălțarea Domnului" se va afișa.</li>
+          <li><strong>Rusaliile:</strong> Pogorârea Duhului Sfânt – mesajul "Rusalii: Pogorârea Sfântului Duh" va fi afișat.</li>
+          <li><strong>Sfântul Andrei:</strong> Celebrat pe 30 noiembrie – mesajul "Sărbătoare în cinstea Sfântului Andrei" va fi afișat.</li>
         </ul>
       </div>
     </section>
@@ -610,19 +654,66 @@
   <script>
     let cart = [];
 
-    // Schimbă pagina activă
+    // Array de evenimente: setare de dată de start (care poate fi modificată), durata (în milisecunde) și mesajul evenimentului.
+    const events = [
+      { name: "Paști", start: new Date("Apr 20, 2025 00:00:00").getTime(), duration: 3 * 24 * 60 * 60 * 1000, message: "Hristos a înviat!" },
+      { name: "Crăciun", start: new Date("Dec 25, 2025 00:00:00").getTime(), duration: 7 * 24 * 60 * 60 * 1000, message: "Sărbătoarea Nașterii" },
+      { name: "Bobotează", start: new Date("Jan 6, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Botezul Domnului" },
+      { name: "Adormirea Maicii Domnului", start: new Date("Aug 15, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Adormirea Maicii Domnului" },
+      { name: "Înălțarea Domnului", start: new Date("May 29, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Înălțarea Domnului" },
+      { name: "Rusalii", start: new Date("Jun 7, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Rusalii: Pogorârea Sfântului Duh" },
+      { name: "Sfântul Andrei", start: new Date("Nov 30, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Sărbătoare în cinstea Sfântului Andrei" }
+    ];
+
+    // Actualizează timerul în funcție de evenimentele definite
+    function updateEventTimer() {
+      const now = new Date().getTime();
+      let currentEvent = null;
+      let nextEvent = null;
+
+      // Caută evenimentul curent sau următorul
+      for (let event of events) {
+        if (now >= event.start && now < event.start + event.duration) {
+          currentEvent = event;
+          break;
+        } else if (now < event.start) {
+          nextEvent = event;
+          break;
+        }
+      }
+
+      const timerEl = document.getElementById('timer');
+      if (currentEvent) {
+        // Dacă suntem în perioada unui eveniment, afișează mesajul curent
+        timerEl.innerText = currentEvent.message;
+      } else if (nextEvent) {
+        // Afișează timpul rămas până la următorul eveniment
+        const distance = nextEvent.start - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        timerEl.innerText = `Timp până la ${nextEvent.name}: ${days} zile ${hours} ore ${minutes} minute ${seconds} secunde`;
+      } else {
+        // Dacă nu mai sunt evenimente, afișează un mesaj default
+        timerEl.innerText = "Nu mai există evenimente planificate.";
+      }
+    }
+
+    // Initializează intervalul de timer (actualizare la fiecare secundă)
+    setInterval(updateEventTimer, 1000);
+
+    // Funcții pentru navigare și meniuri
     function showPage(pageId) {
       document.querySelectorAll('#pages section').forEach(section => section.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
       document.getElementById('nav-menu').classList.remove('active');
     }
-
-    // Toggle meniul mobil
     function toggleMenu() {
       document.getElementById('nav-menu').classList.toggle('active');
     }
 
-    // Filtrare după categorie
+    // Funcții pentru filtrare și sortare produse
     function filterProducts(category) {
       let cards = document.querySelectorAll('.product-card');
       let visibleCount = 0;
@@ -636,8 +727,6 @@
       });
       document.getElementById('no-products').style.display = (visibleCount === 0 ? 'block' : 'none');
     }
-
-    // Căutare produse după nume
     function searchProducts() {
       const query = document.getElementById('product-search').value.toLowerCase();
       let cards = document.querySelectorAll('.product-card');
@@ -653,8 +742,6 @@
       });
       document.getElementById('no-products').style.display = (visibleCount === 0 ? 'block' : 'none');
     }
-
-    // Sortare produse după criterii
     function sortProducts(criteria) {
       let grid = document.getElementById('product-grid');
       let cards = Array.from(grid.getElementsByClassName('product-card'));
@@ -671,11 +758,8 @@
           return nameA.localeCompare(nameB);
         }
       });
-      // Reatașăm elementele sortate
       cards.forEach(card => grid.appendChild(card));
     }
-
-    // Toggle pentru afișarea barelor de filtrare/sortare (pe mobil)
     function toggleFilter() {
       document.getElementById('filter-bar').classList.toggle('active');
     }
@@ -683,7 +767,7 @@
       document.getElementById('sort-bar').classList.toggle('active');
     }
 
-    // Adaugă produs în coș
+    // Funcții pentru coșul de cumpărături
     function addToCart(name, price, qty) {
       qty = parseInt(qty);
       const existing = cart.find(item => item.name === name);
@@ -694,8 +778,6 @@
       }
       updateCartUI();
     }
-
-    // Actualizează UI-ul coșului
     function updateCartUI() {
       const container = document.getElementById('cart-container');
       container.innerHTML = '';
@@ -716,18 +798,14 @@
       document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
       document.getElementById('order-details').value = JSON.stringify(cart);
     }
-
     function updateItem(index, newQty) {
       cart[index].qty = parseInt(newQty);
       updateCartUI();
     }
-
     function removeItem(index) {
       cart.splice(index, 1);
       updateCartUI();
     }
-
-    // Generează PDF-ul facturii și apelează trimiterea pe email
     function generatePDFInvoice() {
       if(cart.length === 0) {
         alert('Coșul este gol!');
@@ -763,8 +841,6 @@
       const pdfDataUri = doc.output('datauristring');
       sendInvoiceByEmail(pdfDataUri);
     }
-
-    // Funcție pseudo-backend: în implementare reală, înlocuiți URL‑ul cu endpoint valid
     function sendInvoiceByEmail(pdfDataUri) {
       fetch('https://exemplu-api-email.com/send', {
         method: 'POST',
@@ -790,43 +866,13 @@
       });
     }
 
-    // Countdown Timer pentru Paști
-    function startCountdown() {
-      const countDownDate = new Date("Apr 20, 2025 00:00:00").getTime();
-      const timerEl = document.getElementById('timer');
-      const interval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = countDownDate - now;
-        if(distance < 0) {
-          clearInterval(interval);
-          timerEl.innerText = "Hristos a înviat!";
-          return;
-        }
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        timerEl.innerText = `${days} zile ${hours} ore ${minutes} minute ${seconds} secunde`;
-      }, 1000);
-    }
-
-    // Buton "Back to Top"
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    window.addEventListener('scroll', () => {
-      document.querySelector('.back-to-top').style.display = window.pageYOffset > 300 ? 'block' : 'none';
-    });
-
-    // Funcții pentru modalul produsului
+    // Funcții pentru fereastra modală de detalii produs
     function openModal(card) {
       const modal = document.getElementById('product-modal');
       const modalBody = document.getElementById('modal-body');
-      // Se extrag informațiile produsului din card
       const imgSrc = card.querySelector('img').src;
       const title = card.querySelector('h3').innerText;
       const price = card.querySelector('p').innerText;
-      // Exemplu de descriere; pentru un proiect real, se pot adăuga câmpuri suplimentare
       modalBody.innerHTML = `<img src="${imgSrc}" alt="${title}" style="width:100%; height:auto; border-radius:4px;">
                              <h2>${title}</h2>
                              <p>${price}</p>
@@ -839,8 +885,13 @@
       }
     }
 
-    // Inițializări
-    startCountdown();
+    // Buton "Back to Top"
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    window.addEventListener('scroll', () => {
+      document.querySelector('.back-to-top').style.display = window.pageYOffset > 300 ? 'block' : 'none';
+    });
   </script>
 </body>
 </html>
