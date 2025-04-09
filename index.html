@@ -9,15 +9,15 @@
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script type="text/javascript">
-    // Inițializează EmailJS cu cheia publică (înlocuiește 'YOUR_PUBLIC_KEY' cu cheia ta reală)
+    // Inițializează EmailJS cu cheia publică primită (p2O-tLOxlx3BmOLQf)
     (function(){
-      emailjs.init("YOUR_PUBLIC_KEY");
+      emailjs.init("p2O-tLOxlx3BmOLQf");
     })();
   </script>
   <!-- Google Fonts pentru un aspect tradițional -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
-    /* Definim variabile CSS pentru consistența design-ului */
+    /* Variabile pentru schema de culori și gradient */
     :root {
       --primary-gradient: linear-gradient(90deg, #7a5230, #563d25);
       --primary-color: #7a5230;
@@ -27,7 +27,7 @@
       --button-hover: #2471a3;
       --error-color: #b00;
     }
-    /* Reset și stiluri globale */
+    /* Reset global */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Merriweather', serif;
@@ -110,7 +110,7 @@
       transition: opacity 0.5s ease-in-out;
     }
     #pages section.active { display: block; opacity: 1; }
-    /* Slider extins cu auto-rotire */
+    /* Slider auto-rotativ */
     .slider {
       position: relative;
       width: 100%;
@@ -131,8 +131,7 @@
     .slides img.active { opacity: 1; }
     .slider .overlay {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 450px;
       background: rgba(0,0,0,0.4);
@@ -517,7 +516,7 @@
       </p>
     </section>
     
-    <!-- Pagina Produse -->
+    <!-- Pagina Produse cu cele 10 produse -->
     <section id="produse" class="fade-in">
       <h2 id="prod-title">Produsele Noastre</h2>
       <div id="search-container">
@@ -539,15 +538,15 @@
         <button onclick="sortProducts('alpha')">Alfabetic</button>
       </div>
       <div class="product-grid" id="product-grid">
-        <!-- Exemplu produs: Candelă Mare -->
-        <div class="product-card" data-category="candele" data-description="Această candelă mare, realizată din ceară naturală, oferă o lumină caldă și este ideală pentru momente de rugăciune.">
+        <!-- Produs 1: Candelă Mare -->
+        <div class="product-card" data-category="candele" data-description="Această candelă mare, realizată din ceară naturală, oferă o lumină caldă, ideală pentru momente de rugăciune.">
           <img src="candela-mare.jpg" alt="Candelă Mare">
           <h3>Candelă Mare</h3>
           <p>Preț: 20 RON</p>
           <input type="number" id="qty-candela_mare" min="1" value="1">
           <button onclick="event.stopPropagation(); addToCart('Candelă Mare', 20, document.getElementById('qty-candela_mare').value)">Adaugă în Coș</button>
         </div>
-        <!-- Exemplu produs: Candelă Mică -->
+        <!-- Produs 2: Candelă Mică -->
         <div class="product-card" data-category="candele" data-description="Candelă mică cu design tradițional, potrivită pentru slujbe sau decorarea casei.">
           <img src="candela-mica.jpg" alt="Candelă Mică">
           <h3>Candelă Mică</h3>
@@ -555,7 +554,7 @@
           <input type="number" id="qty-candela_mica" min="1" value="1">
           <button onclick="event.stopPropagation(); addToCart('Candelă Mică', 10, document.getElementById('qty-candela_mica').value)">Adaugă în Coș</button>
         </div>
-        <!-- Exemplu produs: Lumânare Înviere -->
+        <!-- Produs 3: Lumânare Înviere -->
         <div class="product-card" data-category="lumânări" data-description="Lumânare Înviere, creată special pentru slujbele pascale, cu arome discrete și durabilitate sporită.">
           <img src="lumânare.jpg" alt="Lumânare Înviere">
           <h3>Lumânare Înviere</h3>
@@ -563,7 +562,7 @@
           <input type="number" id="qty-lumanare_inviere" min="1" value="1">
           <button onclick="event.stopPropagation(); addToCart('Lumânare Înviere', 50, document.getElementById('qty-lumanare_inviere').value)">Adaugă în Coș</button>
         </div>
-        <!-- Exemplu produs: Tămâie Naturală -->
+        <!-- Produs 4: Tămâie Naturală -->
         <div class="product-card" data-category="tămâie" data-description="Tămâie Naturală de cea mai înaltă calitate, perfectă pentru a crea atmosfera sacră în timpul ritualurilor.">
           <img src="tămâie.jpg" alt="Tămâie Naturală">
           <h3>Tămâie Naturală</h3>
@@ -571,7 +570,7 @@
           <input type="number" id="qty-tamai_naturala" min="1" value="1">
           <button onclick="event.stopPropagation(); addToCart('Tămâie Naturală', 20, document.getElementById('qty-tamai_naturala').value)">Adaugă în Coș</button>
         </div>
-        <!-- Exemplu produs: Pomelnice Anuale -->
+        <!-- Produs 5: Pomelnice Anuale -->
         <div class="product-card" data-category="accesorii" data-description="Pomelnice Anuale, realizate cu măiestrie pentru a comemora tradiția.">
           <img src="pomelnic.jpg" alt="Pomelnice Anuale">
           <h3>Pomelnice Anuale</h3>
@@ -579,7 +578,46 @@
           <input type="number" id="qty-pomelnice_anuale" min="1" value="1">
           <button onclick="event.stopPropagation(); addToCart('Pomelnice Anuale', 100, document.getElementById('qty-pomelnice_anuale').value)">Adaugă în Coș</button>
         </div>
-        <!-- Alte produse din Accesorii și Icoane se adaugă similar -->
+        <!-- Produs 6: Ceaslov -->
+        <div class="product-card" data-category="accesorii" data-description="Ceaslov, un accesoriu tradițional perfect pentru decorul bisericesc sau personal.">
+          <img src="ceaslov.jpg" alt="Ceaslov">
+          <h3>Ceaslov</h3>
+          <p>Preț: 70 RON</p>
+          <input type="number" id="qty-ceaslov" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Ceaslov', 70, document.getElementById('qty-ceaslov').value)">Adaugă în Coș</button>
+        </div>
+        <!-- Produs 7: Psaltire -->
+        <div class="product-card" data-category="accesorii" data-description="Psaltire, lucrare atent realizată care conține fragmente din textele sacre.">
+          <img src="psaltire.jpg" alt="Psaltire">
+          <h3>Psaltire</h3>
+          <p>Preț: 55 RON</p>
+          <input type="number" id="qty-psaltire" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Psaltire', 55, document.getElementById('qty-psaltire').value)">Adaugă în Coș</button>
+        </div>
+        <!-- Produs 8: Mir -->
+        <div class="product-card" data-category="accesorii" data-description="Mir, un produs esențial pentru ritualuri, recunoscut pentru puritatea și calitatea sa.">
+          <img src="mir.jpg" alt="Mir">
+          <h3>Mir</h3>
+          <p>Preț: 20 RON</p>
+          <input type="number" id="qty-mir" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Mir', 20, document.getElementById('qty-mir').value)">Adaugă în Coș</button>
+        </div>
+        <!-- Produs 9: Icoană Mică -->
+        <div class="product-card" data-category="icoane" data-description="Icoană Mică, pictată manual, care reflectă tradiția și credința ortodoxă.">
+          <img src="icoană1.jpg" alt="Icoană Mică">
+          <h3>Icoană Mică</h3>
+          <p>Preț: 40 RON</p>
+          <input type="number" id="qty-icoana_mica" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Icoană Mică', 40, document.getElementById('qty-icoana_mica').value)">Adaugă în Coș</button>
+        </div>
+        <!-- Produs 10: Icoană Mare -->
+        <div class="product-card" data-category="icoane" data-description="Icoană Mare, o lucrare impresionantă ce simbolizează măreția credinței, ideală pentru locuințe și biserici.">
+          <img src="icoană2.jpg" alt="Icoană Mare">
+          <h3>Icoană Mare</h3>
+          <p>Preț: 100 RON</p>
+          <input type="number" id="qty-icoana_mare" min="1" value="1">
+          <button onclick="event.stopPropagation(); addToCart('Icoană Mare', 100, document.getElementById('qty-icoana_mare').value)">Adaugă în Coș</button>
+        </div>
       </div>
       <div id="no-products" class="no-products" style="display:none;">Nu s-au găsit produse.</div>
     </section>
@@ -706,7 +744,7 @@
     }
     setInterval(autoRotateSlides, 4000);
     
-    // Timer dinamic pentru evenimente
+    // Timer pentru evenimente
     const events = [
       { name: "Paști", start: new Date("Apr 20, 2025 00:00:00").getTime(), duration: 3 * 24 * 60 * 60 * 1000, message: "Hristos a înviat!" },
       { name: "Crăciun", start: new Date("Dec 25, 2025 00:00:00").getTime(), duration: 7 * 24 * 60 * 60 * 1000, message: "Sărbătoarea Nașterii" },
@@ -806,7 +844,7 @@
     function toggleFilter() { document.getElementById('filter-bar').classList.toggle('active'); }
     function toggleSort() { document.getElementById('sort-bar').classList.toggle('active'); }
     
-    // Coșul de cumpărături și generarea facturii cu detalii complete
+    // Coșul de cumpărături și generarea facturii cu toate detaliile
     function addToCart(name, price, qty) {
       qty = parseInt(qty);
       const existing = cart.find(item => item.name === name);
@@ -846,13 +884,13 @@
       updateCartUI();
     }
     
-    // Generare PDF factură și trimitere pe email folosind EmailJS
+    // Generare PDF factură, declanșează descărcarea și trimiterea prin EmailJS
     function generatePDFInvoice() {
       if(cart.length === 0) {
         alert('Coșul este gol!');
         return;
       }
-      // Verificăm datele clientului (inclusiv email-ul)
+      // Validare: datele clientului trebuie să fie completate
       const customerName = document.getElementById('customer-name').value;
       const customerEmail = document.getElementById('customer-email').value;
       const customerPhone = document.getElementById('customer-phone').value;
@@ -865,14 +903,14 @@
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       
-      // Informații firmei
+      // Informațiile firmei
       doc.setFontSize(12);
       doc.text("Candele & Tradiții SRL", 20, 15);
       doc.text("Str. Exemplu nr.1, București, România", 20, 22);
       doc.text("CUI: RO123456", 20, 29);
       doc.text("Telefon: 0123456789", 20, 36);
       
-      // Titlul facturii și etichete suplimentare
+      // Titlul facturii și etichete suplimentare: număr factură și dată
       doc.setFontSize(18);
       doc.text("Factura Comandă", 20, 50);
       const invoiceNumber = Math.floor(Math.random() * 1000000);
@@ -904,11 +942,14 @@
       
       const pdfDataUri = doc.output('datauristring');
       
-      // Trimitere factura pe email (câtre administrator și către client)
+      // Descarcă factura pentru client
+      doc.save(`Factura_${invoiceNumber}.pdf`);
+      
+      // Trimitere factura pe email (inclusiv către client) folosind EmailJS
       sendInvoiceByEmail(pdfDataUri, customerEmail);
     }
     
-    // Funcția de trimitere folosind EmailJS
+    // Funcția de trimitere prin EmailJS
     function sendInvoiceByEmail(pdfDataUri, customerEmail) {
       const templateParams = {
         admin_email: 'irimia.teodor.17@gmail.com',
@@ -928,7 +969,7 @@
         });
     }
     
-    // Modal pentru detalii produs: afișează o imagine mărită și descrierea completă
+    // Modal pentru detalii produs: afișează imagine mărită și descriere completă
     function openModal(card) {
       const modal = document.getElementById('product-modal');
       const modalBody = document.getElementById('modal-body');
@@ -956,7 +997,7 @@
       document.querySelector('.back-to-top').style.display = window.pageYOffset > 300 ? 'block' : 'none';
     });
     
-    // Activarea butonului de facturare atunci când formularul (inclusiv email-ul) este completat
+    // Activarea butonului de facturare atunci când formularul este completat
     const orderFormFields = ["customer-name", "customer-email", "customer-phone", "customer-address"];
     orderFormFields.forEach(fieldId => {
       document.getElementById(fieldId).addEventListener('input', checkOrderFormCompletion);
