@@ -17,7 +17,7 @@
       background: #f9f8f5;
       color: #333;
       scroll-behavior: smooth;
-      padding-bottom: 60px; /* spațiu pentru butonul Back to Top */
+      padding-bottom: 60px;
     }
     /* Header modern cu accente tradiționale */
     header {
@@ -151,7 +151,8 @@
       outline: none;
       transition: all 0.3s;
       background: #fff;
-      background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="imagine3.jpg" fill="%23ccc" viewBox="0 0 16 16"><path d="M11.742 10.344l3.85 3.85-1.397 1.397-3.85-3.85a6.5 6.5 0 1 1 1.397-1.397zm-5.242 1.656a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/></svg>');
+      /* URL corect pentru iconița de căutare (folosim spațiul de nume SVG corespunzător) */
+      background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23ccc" viewBox="0 0 16 16"><path d="M11.742 10.344l3.85 3.85-1.397 1.397-3.85-3.85a6.5 6.5 0 1 1 1.397-1.397zm-5.242 1.656a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/></svg>');
       background-repeat: no-repeat;
       background-size: 20px;
       background-position: 10px 50%;
@@ -161,20 +162,21 @@
       border-color: #2980b9;
       box-shadow: 0 0 8px rgba(41, 128, 185, 0.5);
     }
-    /* Filtrare suplimentară */
-    #filter-toggle {
+    /* Toggle pentru filtrare suplimentară (ex. sortare) */
+    #filter-toggle, #sort-toggle {
       display: none;
       background: none;
       border: none;
       font-size: 24px;
       cursor: pointer;
       color: #2980b9;
+      margin: 10px auto;
     }
-    #filter-bar {
+    #filter-bar, #sort-bar {
       text-align: center;
       margin-bottom: 20px;
     }
-    #filter-bar button {
+    #filter-bar button, #sort-bar button {
       padding: 8px 14px;
       margin: 5px;
       border: none;
@@ -184,7 +186,7 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-    #filter-bar button:hover { background: #2471a3; }
+    #filter-bar button:hover, #sort-bar button:hover { background: #2471a3; }
     /* Grilă Produse */
     .product-grid {
       display: grid;
@@ -199,6 +201,7 @@
       border-radius: 8px;
       box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
     .product-card:hover {
       transform: scale(1.03);
@@ -230,6 +233,13 @@
       transition: background 0.3s;
     }
     .product-card button:hover { background: #d35400; }
+    /* Mesaj pentru căutare fără rezultate */
+    .no-products {
+      text-align: center;
+      font-size: 20px;
+      color: #b00;
+      margin: 20px;
+    }
     /* Titlu secțiune Produse */
     #produse h2 {
       text-align: center;
@@ -239,7 +249,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    /* Paginile Despre Noi, Termeni & Condiții și Evenimente */
+    /* Secțiuni: Despre Noi, Termeni, Evenimente */
     .content-text {
       font-size: 18px;
       line-height: 1.8;
@@ -326,7 +336,7 @@
       background: #fffaf0;
       border-color: #8b0000;
     }
-    /* Footer cu accente clasice */
+    /* Footer */
     footer {
       background: #fff0f0;
       border-top: 2px solid #e74c3c;
@@ -367,22 +377,50 @@
       }
       nav ul {
         flex-direction: column;
-        display: none; /* se activează cu hamburger */
+        display: none;
       }
       nav ul.active { display: flex; }
       nav ul li { margin: 10px 0; }
       .hamburger { display: block; }
       .slider, .slides img { height: 220px; }
       .overlay { height: 220px; }
-      /* Pe mobil, filtrul se activează cu toggle */
-      #filter-bar { display: none; }
-      #filter-bar.active { display: block; }
-      #filter-toggle { display: inline-block; }
+      #filter-bar, #sort-bar { display: none; }
+      #filter-bar.active, #sort-bar.active { display: block; }
+      #filter-toggle, #sort-toggle { display: inline-block; }
       #search-container input { width: 90%; }
     }
     /* Animații */
     .fade-in { animation: fadeIn 1s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
+    /* Stiluri pentru fereastra modală de detalii produs */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.5);
+    }
+    .modal-content {
+      background: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 600px;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 24px;
+      color: #333;
+    }
   </style>
 </head>
 <body>
@@ -391,7 +429,6 @@
     <div class="header-container">
       <img src="logo.jpg" alt="Logo" class="logo">
       <span class="header-title">Magazinul de Candele & Tradiții</span>
-      <!-- Buton hamburger pentru mobil -->
       <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
       <nav>
         <ul id="nav-menu">
@@ -443,8 +480,9 @@
       <div id="search-container">
         <input type="text" id="product-search" placeholder="Caută produs..." onkeyup="searchProducts()">
       </div>
-      <!-- Toggle pentru filtrare (pe mobil) -->
+      <!-- Toggle pentru filtrare și sortare (pe mobil) -->
       <button id="filter-toggle" onclick="toggleFilter()">Filtre</button>
+      <button id="sort-toggle" onclick="toggleSort()">Sortare</button>
       <div id="filter-bar">
         <button onclick="filterProducts('all')">Toate</button>
         <button onclick="filterProducts('candele')">Candele</button>
@@ -453,17 +491,24 @@
         <button onclick="filterProducts('accesorii')">Accesorii</button>
         <button onclick="filterProducts('icoane')">Icoane</button>
       </div>
+      <div id="sort-bar">
+        <button onclick="sortProducts('asc')">Preț: Crescător</button>
+        <button onclick="sortProducts('desc')">Preț: Descrescător</button>
+        <button onclick="sortProducts('alpha')">Alfabetic</button>
+      </div>
       <div class="product-grid" id="product-grid">
         <!-- Exemplu produs: Candelă Mare -->
-        <div class="product-card" data-category="candele">
+        <div class="product-card" data-category="candele" onclick="openModal(this)">
           <img src="candela-mare.jpg" alt="Candelă Mare">
           <h3>Candelă Mare</h3>
           <p>Preț: 20 RON</p>
           <input type="number" id="qty-candela_mare" min="1" value="1">
-          <button onclick="addToCart('Candelă Mare', 20, document.getElementById('qty-candela_mare').value)">Adaugă în Coș</button>
+          <button onclick="event.stopPropagation(); addToCart('Candelă Mare', 20, document.getElementById('qty-candela_mare').value)">Adaugă în Coș</button>
         </div>
-        <!-- Alte produse (continuă cu structura similară pentru Candelă Mică, Lumânare, Tămâie, Accesorii, Icoane etc.) -->
+        <!-- Alte produse pot fi adăugate aici urmând aceeași structură -->
       </div>
+      <!-- Mesajul "Nu s-au găsit produse" (afișat dinamic) -->
+      <div id="no-products" class="no-products" style="display:none;">Nu s-au găsit produse.</div>
     </section>
     
     <!-- Pagina Despre Noi -->
@@ -504,45 +549,38 @@
     <!-- Pagina Coș & Finalizare Comandă -->
     <section id="cos" class="fade-in">
       <h2>Coșul de Cumpărături</h2>
-      <div id="cart-container">
-        <!-- Produsele vor fi afișate dinamic prin JavaScript -->
-      </div>
+      <div id="cart-container"><!-- Produsele vor fi afișate dinamic --></div>
       <h3>Total: <span id="total-amount">0</span> RON</h3>
-      <!-- Buton pentru generarea facturii PDF și trimiterea prin email -->
       <button onclick="generatePDFInvoice()" style="padding:10px 20px; background:#2980b9; border:none; color:#fff; border-radius:6px; cursor:pointer;">Generează Factura PDF & Trimite pe Email</button>
       <h2>Finalizare Comandă</h2>
-      <!-- Formularul de comandă -->
       <form id="order-form" class="order-form" action="https://formsubmit.co/irimia.teodor.17@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
-        <!-- Redirecționare după submit -->
         <input type="hidden" name="_next" value="https://jmecheria.github.io/Magazin-bisericesc/">
-        <!-- Datele clientului -->
         <label for="customer-name">Nume:</label>
         <input type="text" id="customer-name" name="customer_name" required>
         <label for="customer-phone">Telefon:</label>
         <input type="text" id="customer-phone" name="customer_phone" required>
         <label for="customer-address">Adresă:</label>
         <input type="text" id="customer-address" name="customer_address" required>
-        <!-- Câmp ascuns pentru detaliile comenzii -->
         <input type="hidden" id="order-details" name="order_details" value="">
         <button type="submit">Plasează Comanda</button>
         <button type="reset" class="reset-btn">Resetare</button>
       </form>
     </section>
     
-    <!-- Pagina Evenimente – Calendar Ortodox și Sărbători Creștine -->
+    <!-- Pagina Evenimente – Calendar și Sărbători Creștine -->
     <section id="evenimente" class="fade-in">
       <h2 style="text-align:center; color:#7a5230; margin-bottom:20px;">Evenimente și Calendar Creștin</h2>
       <div class="content-text">
         <p>Aici găsiți informații despre principalele sărbători și evenimente creștine:</p>
         <ul>
-          <li><strong>Paști:</strong> Sărbătoarea Învierii Domnului. Data variază anual conform calendarului pascal; este momentul central al credinței creștine, simbolizând victoria vieții asupra morții.</li>
-          <li><strong>Crăciunul:</strong> Celebrăm nașterea lui Iisus Hristos pe 25 decembrie (în calendarul gregorian) sau 7 ianuarie (în cel iulian). Este o sărbătoare plină de tradiții, colinde și simbolism religios.</li>
-          <li><strong>Bobotează:</strong> Marcată pe 6 ianuarie, sărbătoare ce comemorează botezul lui Iisus și semnifică începutul misiunii religioase.</li>
-          <li><strong>Adormirea Maicii Domnului:</strong> Sărbătorită pe 15 august, comemorează trecerea Maicii Domnului din viață întru odihnă veșnică.</li>
-          <li><strong>Înălțarea Domnului:</strong> Celebrată la 40 de zile după Paști, aducând aminte de momentul în care Domnul S-a înălțat la cer.</li>
-          <li><strong>Rusaliile:</strong> Cinstesc pogorârea Duhului Sfânt asupra apostolilor, marcând începutul misiunii creștine în lume.</li>
-          <li><strong>Sfântul Andrei:</strong> Ziua de sărbătoare dedicată patronului, pe 30 noiembrie, importantă în tradițiile românești.</li>
+          <li><strong>Paști:</strong> Sărbătoarea Învierii Domnului, moment central al credinței creștine.</li>
+          <li><strong>Crăciunul:</strong> Nașterea lui Iisus Hristos, celebrată pe 25 decembrie (sau 7 ianuarie conform calendarului iulian).</li>
+          <li><strong>Bobotează:</strong> Comemorarea botezului lui Iisus, pe 6 ianuarie.</li>
+          <li><strong>Adormirea Maicii Domnului:</strong> Comemorarea trecerii Maicii Domnului în odihna veșnică, pe 15 august.</li>
+          <li><strong>Înălțarea Domnului:</strong> La 40 de zile după Paști, marcată prin înălțarea lui.</li>
+          <li><strong>Rusaliile:</strong> Pogorârea Duhului Sfânt asupra apostolilor.</li>
+          <li><strong>Sfântul Andrei:</strong> Sărbătorirea patronului, pe 30 noiembrie.</li>
         </ul>
       </div>
     </section>
@@ -560,46 +598,96 @@
   
   <!-- Buton "Back to Top" -->
   <button class="back-to-top" onclick="scrollToTop()">&#8679;</button>
-
+  
+  <!-- Modal pentru detalii produs -->
+  <div id="product-modal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal(event)">&times;</span>
+      <div id="modal-body"><!-- Detalii produs vor fi încărcate aici --></div>
+    </div>
+  </div>
+  
   <script>
-    // Variabile globale pentru coș
     let cart = [];
-    
-    // Afișează pagina selectată
+
+    // Schimbă pagina activă
     function showPage(pageId) {
-      document.querySelectorAll('#pages section').forEach(section => {
-        section.classList.remove('active');
-      });
+      document.querySelectorAll('#pages section').forEach(section => section.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
       document.getElementById('nav-menu').classList.remove('active');
     }
 
-    // Toggle pentru meniul mobil
+    // Toggle meniul mobil
     function toggleMenu() {
       document.getElementById('nav-menu').classList.toggle('active');
     }
 
-    // Filtrare produse după categorie
+    // Filtrare după categorie
     function filterProducts(category) {
-      document.querySelectorAll('.product-card').forEach(card => {
-        card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
+      let cards = document.querySelectorAll('.product-card');
+      let visibleCount = 0;
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
       });
+      document.getElementById('no-products').style.display = (visibleCount === 0 ? 'block' : 'none');
     }
 
     // Căutare produse după nume
     function searchProducts() {
       const query = document.getElementById('product-search').value.toLowerCase();
-      document.querySelectorAll('.product-card').forEach(card => {
+      let cards = document.querySelectorAll('.product-card');
+      let visibleCount = 0;
+      cards.forEach(card => {
         const name = card.querySelector('h3').innerText.toLowerCase();
-        card.style.display = name.includes(query) ? 'block' : 'none';
+        if (name.includes(query)) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
       });
+      document.getElementById('no-products').style.display = (visibleCount === 0 ? 'block' : 'none');
+    }
+
+    // Sortare produse după criterii
+    function sortProducts(criteria) {
+      let grid = document.getElementById('product-grid');
+      let cards = Array.from(grid.getElementsByClassName('product-card'));
+      cards.sort((a, b) => {
+        let nameA = a.querySelector('h3').innerText.toLowerCase();
+        let nameB = b.querySelector('h3').innerText.toLowerCase();
+        let priceA = parseFloat(a.querySelector('p').innerText.replace(/[^\d\.]/g, ''));
+        let priceB = parseFloat(b.querySelector('p').innerText.replace(/[^\d\.]/g, ''));
+        if(criteria === 'asc'){
+          return priceA - priceB;
+        } else if(criteria === 'desc'){
+          return priceB - priceA;
+        } else if(criteria === 'alpha'){
+          return nameA.localeCompare(nameB);
+        }
+      });
+      // Reatașăm elementele sortate
+      cards.forEach(card => grid.appendChild(card));
+    }
+
+    // Toggle pentru afișarea barelor de filtrare/sortare (pe mobil)
+    function toggleFilter() {
+      document.getElementById('filter-bar').classList.toggle('active');
+    }
+    function toggleSort() {
+      document.getElementById('sort-bar').classList.toggle('active');
     }
 
     // Adaugă produs în coș
     function addToCart(name, price, qty) {
       qty = parseInt(qty);
       const existing = cart.find(item => item.name === name);
-      if(existing) {
+      if(existing){
         existing.qty += qty;
       } else {
         cart.push({ name, price, qty });
@@ -607,7 +695,7 @@
       updateCartUI();
     }
 
-    // Actualizează afișarea coșului
+    // Actualizează UI-ul coșului
     function updateCartUI() {
       const container = document.getElementById('cart-container');
       container.innerHTML = '';
@@ -629,19 +717,17 @@
       document.getElementById('order-details').value = JSON.stringify(cart);
     }
 
-    // Actualizează cantitatea unui produs
     function updateItem(index, newQty) {
       cart[index].qty = parseInt(newQty);
       updateCartUI();
     }
 
-    // Elimină produsul din coș
     function removeItem(index) {
       cart.splice(index, 1);
       updateCartUI();
     }
 
-    // Generează factura PDF și apelează trimiterea acesteia prin email
+    // Generează PDF-ul facturii și apelează trimiterea pe email
     function generatePDFInvoice() {
       if(cart.length === 0) {
         alert('Coșul este gol!');
@@ -674,20 +760,17 @@
       doc.setFontSize(14);
       doc.text(`Total: ${total} RON`, 20, yPosition);
       
-      // Obține PDF-ul ca Data URI (pentru a-l trimite ca atașament)
       const pdfDataUri = doc.output('datauristring');
-      // Apelează funcția care trimite factura pe email (configurați endpoint-ul sau serviciul de email)
       sendInvoiceByEmail(pdfDataUri);
     }
 
-    // Funcție pseudo-backend pentru trimiterea PDF-ului prin email către administrator
+    // Funcție pseudo-backend: în implementare reală, înlocuiți URL‑ul cu endpoint valid
     function sendInvoiceByEmail(pdfDataUri) {
-      // Notă: Pentru o implementare reală, înlocuiește URL-ul de mai jos cu endpoint‑ul API configurat (ex: EmailJS, serverless function etc.)
-      fetch('irimia.teodor.17@gmail.com/send', {
+      fetch('https://exemplu-api-email.com/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          adminEmail: 'irimia.teodor.17@gmail.com', // Adresa de email la care vrei să primești factura
+          adminEmail: 'irimia.teodor.17@gmail.com',
           pdf: pdfDataUri,
           subject: 'Factura Nouă - Comandă Magazinul de Candele & Tradiții'
         })
@@ -695,7 +778,6 @@
       .then(response => {
         if(response.ok) {
           alert('Factura a fost generată și trimisă pe email!');
-          // Opțional: se poate șterge coșul după trimitere
           cart = [];
           updateCartUI();
         } else {
@@ -708,11 +790,10 @@
       });
     }
 
-    // Countdown Timer pentru Paști (data exemplificativă, a se actualiza conform calendarului)
+    // Countdown Timer pentru Paști
     function startCountdown() {
       const countDownDate = new Date("Apr 20, 2025 00:00:00").getTime();
       const timerEl = document.getElementById('timer');
-
       const interval = setInterval(() => {
         const now = new Date().getTime();
         const distance = countDownDate - now;
@@ -733,15 +814,29 @@
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // Afișare buton "Back to Top" la scroll
     window.addEventListener('scroll', () => {
       document.querySelector('.back-to-top').style.display = window.pageYOffset > 300 ? 'block' : 'none';
     });
 
-    // Toggle pentru filtrul pe mobil
-    function toggleFilter() {
-      document.getElementById('filter-bar').classList.toggle('active');
+    // Funcții pentru modalul produsului
+    function openModal(card) {
+      const modal = document.getElementById('product-modal');
+      const modalBody = document.getElementById('modal-body');
+      // Se extrag informațiile produsului din card
+      const imgSrc = card.querySelector('img').src;
+      const title = card.querySelector('h3').innerText;
+      const price = card.querySelector('p').innerText;
+      // Exemplu de descriere; pentru un proiect real, se pot adăuga câmpuri suplimentare
+      modalBody.innerHTML = `<img src="${imgSrc}" alt="${title}" style="width:100%; height:auto; border-radius:4px;">
+                             <h2>${title}</h2>
+                             <p>${price}</p>
+                             <p>Descriere detaliată a produsului...</p>`;
+      modal.style.display = 'block';
+    }
+    function closeModal(event) {
+      if(event.target.classList.contains('modal') || event.target.classList.contains('modal-close')) {
+        document.getElementById('product-modal').style.display = 'none';
+      }
     }
 
     // Inițializări
