@@ -9,15 +9,15 @@
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script type="text/javascript">
-    // Inițializează EmailJS cu cheia publică primită (p2O-tLOxlx3BmOLQf)
+    // Inițializează EmailJS – cheie publică
     (function(){
       emailjs.init("p2O-tLOxlx3BmOLQf");
     })();
   </script>
-  <!-- Google Fonts pentru un aspect tradițional -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
-    /* Variabile pentru schema de culori și gradient */
+    /* Variabile CSS pentru culori și gradient */
     :root {
       --primary-gradient: linear-gradient(90deg, #7a5230, #563d25);
       --primary-color: #7a5230;
@@ -37,15 +37,17 @@
       scroll-behavior: smooth;
       padding-bottom: 60px;
     }
-    /* Header */
+    /* Header fixat */
     header {
       background: var(--primary-gradient);
       color: #fff;
       padding: 10px 20px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 1000;
+      left: 0;
+      width: 100%;
+      z-index: 1100;
     }
     .header-container {
       max-width: 1200px;
@@ -82,7 +84,6 @@
       vertical-align: top;
       margin-left: 2px;
     }
-    /* Buton hamburger pentru mobil */
     .hamburger {
       display: none;
       font-size: 28px;
@@ -91,16 +92,42 @@
       border: none;
       color: #fff;
     }
-    /* Countdown Timer Banner */
+    /* Timer fixat sub header */
     #countdown-timer {
-      text-align: center;
+      position: fixed;
+      top: 60px; /* Ajustează dacă înălțimea header-ului se schimbă */
+      left: 0;
+      width: 100%;
       background: #fff3e0;
       color: var(--primary-color);
-      padding: 10px;
-      font-size: 18px;
-      font-weight: bold;
+      padding: 8px;
+      text-align: center;
+      font-size: 16px;
+      z-index: 1050;
     }
-    /* Secțiuni principale */
+    /* Buton de cart fixat – vizibil mereu pe mobil */
+    .fixed-cart {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--button-bg);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      z-index: 1100;
+      cursor: pointer;
+    }
+    .fixed-cart:hover { background: var(--button-hover); }
+    /* Conținut (paginile) – pentru a nu fi acoperite de header și timer */
+    #pages {
+      padding-top: 120px; /* Header fixat + timer (60+~60) */
+    }
     #pages section {
       max-width: 1200px;
       margin: 40px auto;
@@ -197,7 +224,7 @@
       border-color: var(--button-bg);
       box-shadow: 0 0 8px rgba(41,128,185,0.5);
     }
-    /* Togglere pentru filtrare și sortare */
+    /* Filtrare și sortare */
     #filter-toggle, #sort-toggle {
       display: none;
       background: none;
@@ -251,7 +278,7 @@
     }
     .product-card h3 { font-size: 22px; margin-bottom: 5px; }
     .product-card p { font-size: 18px; margin-bottom: 10px; }
-    /* Stilizare custom pentru input-ul cantitate */
+    /* Stilizarea input-ului de cantitate */
     .product-card input[type="number"] {
       width: 70px;
       padding: 8px;
@@ -395,7 +422,7 @@
     .back-to-top {
       position: fixed;
       bottom: 30px;
-      right: 30px;
+      left: 30px;
       background: var(--secondary-color);
       color: #fff;
       border: none;
@@ -405,10 +432,30 @@
       box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
       display: none;
       transition: background 0.3s;
-      z-index: 1000;
+      z-index: 1100;
     }
     .back-to-top:hover { background: var(--primary-color); }
-    /* Media queries */
+    /* Buton fix de coș pentru mobil */
+    .fixed-cart {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--button-bg);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      z-index: 1100;
+      cursor: pointer;
+      display: none; /* se afișează doar pe mobil */
+    }
+    .fixed-cart:hover { background: var(--button-hover); }
+    /* Media queries pentru mobil */
     @media (max-width: 768px) {
       .header-container { flex-direction: column; text-align: center; }
       nav ul { flex-direction: column; display: none; }
@@ -421,6 +468,8 @@
       #filter-bar.active, #sort-bar.active { display: block; }
       #filter-toggle, #sort-toggle { display: inline-block; }
       #search-container input { width: 90%; }
+      /* Afișează butonul fix pentru coș */
+      .fixed-cart { display: flex; }
     }
     /* Animații */
     .fade-in { animation: fadeIn 1s ease-in-out; }
@@ -462,7 +511,7 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Header fixat -->
   <header>
     <div class="header-container">
       <img src="logo.jpg" alt="Logo" class="logo">
@@ -486,14 +535,14 @@
     </div>
   </header>
   
-  <!-- Countdown Timer -->
+  <!-- Timer fixat sub header -->
   <div id="countdown-timer">
     <span id="timer"></span>
   </div>
   
   <!-- Conținutul paginilor -->
   <div id="pages">
-    <!-- Pagina Acasă cu slider auto-rotativ -->
+    <!-- Pagina Acasă -->
     <section id="home" class="active fade-in">
       <div class="slider">
         <div class="slides">
@@ -516,7 +565,7 @@
       </p>
     </section>
     
-    <!-- Pagina Produse cu cele 10 produse -->
+    <!-- Pagina Produse: cele 10 produse -->
     <section id="produse" class="fade-in">
       <h2 id="prod-title">Produsele Noastre</h2>
       <div id="search-container">
@@ -662,7 +711,7 @@
       <h2>Coșul de Cumpărături</h2>
       <div id="cart-container"><!-- Produsele vor fi afișate dinamic --></div>
       <h3>Total: <span id="total-amount">0</span> RON</h3>
-      <!-- Butonul de generare factură -->
+      <!-- Buton de generare factură -->
       <button id="invoice-btn" onclick="generatePDFInvoice()" style="padding:10px 20px; background:var(--button-bg); border:none; color:#fff; border-radius:6px; cursor:pointer;" disabled>
         Generează Factura PDF & Trimite pe Email
       </button>
@@ -714,6 +763,12 @@
   
   <!-- Buton "Back to Top" -->
   <button class="back-to-top" onclick="scrollToTop()">&#8679;</button>
+  
+  <!-- Buton fix de coș pentru mobil -->
+  <div class="fixed-cart" onclick="showPage('cos')">
+    <img src="cos.jpg" alt="Coș" style="width:30px;">
+    <span class="cart-count" id="fixed-cart-count" style="position:absolute; top:2px; right:2px; background:#e74c3c; color:#fff; font-size:10px; padding:2px 4px; border-radius:50%;">0</span>
+  </div>
   
   <!-- Modal pentru detalii produs -->
   <div id="product-modal" class="modal" onclick="closeModal(event)">
@@ -844,7 +899,7 @@
     function toggleFilter() { document.getElementById('filter-bar').classList.toggle('active'); }
     function toggleSort() { document.getElementById('sort-bar').classList.toggle('active'); }
     
-    // Coșul de cumpărături și generarea facturii cu toate detaliile
+    // Coșul de cumpărături și actualizarea acestuia
     function addToCart(name, price, qty) {
       qty = parseInt(qty);
       const existing = cart.find(item => item.name === name);
@@ -874,6 +929,8 @@
       document.getElementById('total-amount').innerText = total;
       document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
       document.getElementById('order-details').value = JSON.stringify(cart);
+      // Actualizează și contorul din butonul fix de coș
+      document.getElementById('fixed-cart-count').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
     }
     function updateItem(index, newQty) {
       cart[index].qty = parseInt(newQty);
@@ -884,13 +941,12 @@
       updateCartUI();
     }
     
-    // Generare PDF factură, declanșează descărcarea și trimiterea prin EmailJS
+    // Generare PDF factură: declanșează descărcarea și trimiterea prin EmailJS
     function generatePDFInvoice() {
       if(cart.length === 0) {
         alert('Coșul este gol!');
         return;
       }
-      // Validare: datele clientului trebuie să fie completate
       const customerName = document.getElementById('customer-name').value;
       const customerEmail = document.getElementById('customer-email').value;
       const customerPhone = document.getElementById('customer-phone').value;
@@ -903,14 +959,14 @@
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       
-      // Informațiile firmei
+      // Informații firmei
       doc.setFontSize(12);
       doc.text("Candele & Tradiții SRL", 20, 15);
       doc.text("Str. Exemplu nr.1, București, România", 20, 22);
       doc.text("CUI: RO123456", 20, 29);
       doc.text("Telefon: 0123456789", 20, 36);
       
-      // Titlul facturii și etichete suplimentare: număr factură și dată
+      // Titlu și etichete pentru factură
       doc.setFontSize(18);
       doc.text("Factura Comandă", 20, 50);
       const invoiceNumber = Math.floor(Math.random() * 1000000);
@@ -920,13 +976,10 @@
       doc.text(`Data: ${invoiceDate}`, 100, 60);
       
       let yPosition = 70;
-      
-      // Datele clientului
       doc.text(`Client: ${customerName}`, 20, yPosition); yPosition += 10;
       doc.text(`Telefon: ${customerPhone}`, 20, yPosition); yPosition += 10;
       doc.text(`Adresă: ${customerAddress}`, 20, yPosition); yPosition += 20;
       
-      // Lista produselor comandate
       doc.setFontSize(14);
       doc.text("Produse comandate:", 20, yPosition); yPosition += 10;
       doc.setFontSize(12);
@@ -945,7 +998,7 @@
       // Descarcă factura pentru client
       doc.save(`Factura_${invoiceNumber}.pdf`);
       
-      // Trimitere factura pe email (inclusiv către client) folosind EmailJS
+      // Trimite factura prin EmailJS
       sendInvoiceByEmail(pdfDataUri, customerEmail);
     }
     
@@ -957,7 +1010,6 @@
         subject: 'Factura Nouă - Comandă Magazinul de Candele & Tradiții',
         pdf: pdfDataUri
       };
-      
       emailjs.send("service_88fnw6e", "template_invoice", templateParams)
         .then(function(response) {
           alert('Factura a fost generată și trimisă pe email!');
@@ -969,7 +1021,7 @@
         });
     }
     
-    // Modal pentru detalii produs: afișează imagine mărită și descriere completă
+    // Modal: deschide fereastra cu detalii produs
     function openModal(card) {
       const modal = document.getElementById('product-modal');
       const modalBody = document.getElementById('modal-body');
@@ -997,7 +1049,7 @@
       document.querySelector('.back-to-top').style.display = window.pageYOffset > 300 ? 'block' : 'none';
     });
     
-    // Activarea butonului de facturare atunci când formularul este completat
+    // Activare buton facturare când formularul este completat
     const orderFormFields = ["customer-name", "customer-email", "customer-phone", "customer-address"];
     orderFormFields.forEach(fieldId => {
       document.getElementById(fieldId).addEventListener('input', checkOrderFormCompletion);
