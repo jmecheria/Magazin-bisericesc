@@ -15,7 +15,6 @@
       scroll-behavior: smooth;
       padding-bottom: 60px; /* spațiu pentru butonul Back to Top */
     }
-
     /* Countdown Timer Banner */
     #countdown-timer {
       text-align: center;
@@ -25,7 +24,6 @@
       font-size: 18px;
       font-weight: bold;
     }
-
     /* Header și navigație */
     header {
       background: linear-gradient(90deg, #f39c12, #d35400);
@@ -46,18 +44,14 @@
     }
     .logo { width: 60px; }
     .header-title { font-size: 24px; margin-left: 10px; }
-    nav {
-      position: relative;
-    }
+    nav { position: relative; }
     /* Meniul principal */
     nav ul {
       list-style: none;
       display: flex;
       align-items: center;
     }
-    nav ul li {
-      margin-left: 20px;
-    }
+    nav ul li { margin-left: 20px; }
     nav ul li a {
       text-decoration: none;
       color: #fff;
@@ -85,7 +79,6 @@
       border: none;
       color: #fff;
     }
-    
     /* Secțiuni principale */
     #pages section {
       max-width: 1200px;
@@ -99,7 +92,6 @@
       display: block;
       opacity: 1;
     }
-    
     /* Slider pentru pagina Acasă */
     .slider {
       position: relative;
@@ -141,7 +133,6 @@
       transition: background 0.3s;
     }
     .btn-shop:hover { background: #1e8449; }
-    
     /* Filtrare - ascuns pe mobil, activat prin iconiță */
     #filter-toggle {
       display: none;
@@ -166,7 +157,6 @@
       transition: background 0.3s;
     }
     #filter-bar button:hover { background: #2471a3; }
-    
     /* Grilă Produse */
     .product-grid {
       display: grid;
@@ -212,7 +202,6 @@
       transition: background 0.3s;
     }
     .product-card button:hover { background: #d35400; }
-    
     /* Titlu secțiune Produse */
     #produse h2 {
       text-align: center;
@@ -222,7 +211,6 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    
     /* Secțiuni "Despre Noi" și "Termeni & Condiții" */
     .content-text {
       font-size: 18px;
@@ -242,7 +230,6 @@
     }
     .content-text li { margin-bottom: 8px; }
     .content-text strong { color: #d35400; }
-    
     /* Coș și Finalizare Comandă */
     .cart-item {
       display: flex;
@@ -306,7 +293,6 @@
       margin-left: 10px;
     }
     .order-form .reset-btn:hover { background: #a93226; }
-    
     /* Footer cu temă roșie */
     footer {
       background: #fff0f0;
@@ -323,7 +309,6 @@
       margin: 0 5px;
     }
     footer a { text-decoration: none; color: #e74c3c; }
-    
     /* Buton "Back to Top" */
     .back-to-top {
       position: fixed;
@@ -341,7 +326,6 @@
       z-index: 1000;
     }
     .back-to-top:hover { background: #a93226; }
-    
     /* Media queries - Mobile friendly */
     @media (max-width: 768px) {
       .header-container {
@@ -362,7 +346,6 @@
       #filter-bar.active { display: block; }
       #filter-toggle { display: inline-block; }
     }
-    
     /* Animații */
     .fade-in { animation: fadeIn 1s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -422,7 +405,7 @@
     <section id="produse" class="fade-in">
       <h2 id="prod-title">Produsele Noastre</h2>
       <!-- Buton toggle pentru filtrare (afisat doar pe mobil) -->
-      <button id="filter-toggle" onclick="toggleFilter()">🔍 Filtre</button>
+      <button id="filter-toggle" onclick="toggleFilter()">Filtre</button>
       <div id="filter-bar">
         <button onclick="filterProducts('all')">Toate</button>
         <button onclick="filterProducts('candele')">Candele</button>
@@ -432,7 +415,6 @@
         <button onclick="filterProducts('icoane')">Icoane</button>
       </div>
       <div class="product-grid">
-        <!-- Fiecare card de produs are atributul data-category -->
         <div class="product-card" data-category="candele">
           <img src="candela-mare.jpg" alt="Candelă Mare">
           <h3>Candelă Mare</h3>
@@ -545,7 +527,7 @@
     <section id="cos" class="fade-in">
       <h2>Coșul de Cumpărături</h2>
       <div id="cart-container">
-        <!-- Produsele vor fi afișate prin JavaScript -->
+        <!-- Produsele vor fi afișate dinamic prin JavaScript -->
       </div>
       <h3>Total: <span id="total-amount">0</span> RON</h3>
       <h2>Finalizare Comandă</h2>
@@ -553,6 +535,8 @@
       <form id="order-form" class="order-form" action="https://formsubmit.co/irimia.teodor.17@gmail.com" method="POST" target="_blank">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_next" value="https://jmecheria.github.io/Magazin-bisericesc/">
+        
+        <!-- Datele clientului -->
         <label for="customer-name">Nume:</label>
         <input type="text" id="customer-name" name="customer_name" required>
         
@@ -562,208 +546,156 @@
         <label for="customer-address">Adresă:</label>
         <input type="text" id="customer-address" name="customer_address" required>
         
-        <label for="promo-code">Cod Promoțional:</label>
-        <input type="text" id="promo-code" name="promo_code">
+        <!-- Câmp ascuns pentru detaliile comenzii -->
+        <input type="hidden" id="order-details" name="order_details" value="">
         
-        <button type="submit">Finalizează Comandă</button>
-        <button type="button" class="reset-btn" onclick="resetCart()">Resetare Coș</button>
+        <button type="submit">Plasează Comanda</button>
+        <button type="reset" class="reset-btn">Resetare</button>
       </form>
     </section>
   </div>
   
-  <!-- Buton "Back to Top" -->
-  <button class="back-to-top" onclick="scrollToTop()">&#8679;</button>
-  
   <!-- Footer -->
   <footer>
     <div class="footer-container">
-      <p>Telefon: 0123 456 789 | Email: contact@magazinuldecandele.ro</p>
+      <p>&copy; 2025 Magazinul de Candele. Toate drepturile rezervate.</p>
       <div class="footer-logos">
-        <img src="anpc.jpg" alt="ANPC Logo">
+        <img src="logo.jpg" alt="Logo">
       </div>
-      <p>&copy; 2025 Magazinul de Candele. Toate drepturile rezervate. <a onclick="showPage('termeni-si-conditii')">Termeni & Condiții</a></p>
+      <p><a href="mailto:contact@magazinuldeCandele.ro">Contact</a></p>
     </div>
   </footer>
   
-  <!-- Scripturi JavaScript -->
+  <!-- Buton "Back to Top" -->
+  <button class="back-to-top" onclick="scrollToTop()">&#8679;</button>
+  
+  <!-- JavaScript -->
   <script>
-    // Funcție pentru meniul hamburger (mobile)
-    function toggleMenu() {
-      const navMenu = document.getElementById('nav-menu');
-      navMenu.classList.toggle('active');
-    }
-    
-    // Funcție de toggle pentru filtrul de produse în mobil
-    function toggleFilter() {
-      const filterBar = document.getElementById('filter-bar');
-      filterBar.classList.toggle('active');
-    }
-    
-    // Countdown Timer pentru Paști
-    function startCountdown() {
-      const targetDate = new Date("2025-04-20T00:00:00").getTime();
-      const timerEl = document.getElementById("timer");
+    // Variabila globală pentru coșul de cumpărături
+    var cart = [];
 
-      setInterval(function() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        if (distance < 0) {
-          timerEl.innerHTML = "Hristos a înviat!";
-          return;
-        }
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        timerEl.innerHTML = days + " zile, " + hours + " ore, " + minutes + " minute, " + seconds + " secunde";
-      }, 1000);
-    }
-    startCountdown();
-
-    // Variabilă globală pentru coș
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Navigare între pagini
-    function showPage(pageId) {
-      document.querySelectorAll('#pages section').forEach(sec => {
-        sec.classList.remove('active');
-      });
-      document.getElementById(pageId).classList.add('active');
-      if (pageId === 'cos') { displayCart(); }
-    }
-
-    // Slider automat
-    let slideIndex = 0;
-    function sliderShow() {
-      const slides = document.querySelectorAll('.slides img');
-      slides.forEach(slide => slide.classList.remove('active'));
-      slideIndex++;
-      if (slideIndex > slides.length) { slideIndex = 1; }
-      slides[slideIndex - 1].classList.add('active');
-      setTimeout(sliderShow, 3000);
-    }
-    if (document.getElementById('home')) { sliderShow(); }
-
-    // Actualizează numărul de articole din coș
-    function updateCartCount() {
-      const countElement = document.getElementById('cart-count');
-      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-      countElement.textContent = count;
-    }
-
-    // Adaugă produs în coș
-    function addToCart(name, price, qty) {
-      qty = parseInt(qty);
-      const existing = cart.find(item => item.name === name);
-      if (existing) {
-        existing.quantity += qty;
-      } else {
-        cart.push({ name, price, quantity: qty });
-      }
-      localStorage.setItem('cart', JSON.stringify(cart));
+    // Funcția de adăugare în coș
+    function addToCart(productName, price, qty) {
+      var product = {
+        name: productName,
+        price: Number(price),
+        qty: Number(qty)
+      };
+      cart.push(product);
       updateCartCount();
-      alert(name + " a fost adăugat în coș.");
+      displayCart();
     }
-
+    
+    // Actualizează numărul de produse afișat lângă iconița coșului
+    function updateCartCount() {
+      document.getElementById('cart-count').innerText = cart.length;
+    }
+    
     // Afișează produsele din coș
     function displayCart() {
-      const container = document.getElementById('cart-container');
-      container.innerHTML = "";
-      if (!cart.length) {
-        container.innerHTML = "<p>Coșul este gol.</p>";
-        document.getElementById('total-amount').textContent = 0;
-        return;
-      }
-      cart.forEach((item, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'cart-item';
-        itemDiv.innerHTML = "<span>" + item.name + "</span>" +
-          "<input type='number' min='1' value='" + item.quantity + "' onchange='updateQuantity(" + index + ", this.value)'>" +
-          "<span>" + (item.price * item.quantity) + " RON</span>" +
-          "<button onclick='removeItem(" + index + ")'>Șterge</button>";
-        container.appendChild(itemDiv);
+      var cartContainer = document.getElementById('cart-container');
+      cartContainer.innerHTML = '';
+      var total = 0;
+      cart.forEach(function(item, index) {
+        total += item.price * item.qty;
+        cartContainer.innerHTML += '<div class="cart-item">' +
+          '<span>' + item.name + ' x ' + item.qty + ' - ' + (item.price * item.qty) + ' RON</span>' +
+          '<button onclick="removeFromCart(' + index + ')">Elimină</button>' +
+          '</div>';
       });
-      updateTotal();
+      document.getElementById('total-amount').innerText = total;
     }
-
-    // Actualizează cantitatea unui produs
-    function updateQuantity(index, newQty) {
-      newQty = parseInt(newQty);
-      if (newQty <= 0) {
-        removeItem(index);
-      } else {
-        cart[index].quantity = newQty;
-      }
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartCount();
-      displayCart();
-    }
-
+    
     // Elimină un produs din coș
-    function removeItem(index) {
+    function removeFromCart(index) {
       cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
       updateCartCount();
       displayCart();
     }
-
-    // Actualizează totalul de plată
-    function updateTotal() {
-      const totalElement = document.getElementById('total-amount');
-      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      totalElement.textContent = total;
-    }
-
-    // Resetează complet coșul (butonul Resetare Coș)
-    function resetCart() {
-      if (confirm("Sigur doriți să goliți coșul?")) {
+    
+    // Funcția de finalizare comandă: compilează detaliile și golește coșul după trimitere
+    function finalizeOrder(e) {
+      // Se compilează un sumar al comenzii
+      var summary = 'Detalii Comandă:\n';
+      cart.forEach(function(item) {
+        summary += item.name + ' x ' + item.qty + ' - ' + (item.price * item.qty) + ' RON\n';
+      });
+      document.getElementById('order-details').value = summary;
+      // Golește coșul după o scurtă întârziere (permite trimiterea formularului)
+      setTimeout(function() {
         cart = [];
-        localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
         displayCart();
-      }
+      }, 1000);
     }
-
-    // Funcție de filtrare a produselor pe categorii
+    
+    // Atașează evenimentul de submit al formularului pentru finalizare comandă
+    document.getElementById('order-form').addEventListener('submit', finalizeOrder);
+    
+    // Funcții pentru navigarea între pagini și alte interacțiuni
+    function showPage(pageId) {
+      var pages = document.querySelectorAll('#pages section');
+      pages.forEach(function(page) {
+        page.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+    }
+    
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('active');
+    }
+    
+    function toggleFilter() {
+      document.getElementById('filter-bar').classList.toggle('active');
+    }
+    
     function filterProducts(category) {
-      const products = document.querySelectorAll('.product-card');
-      products.forEach(prod => {
-        if (category === 'all' || prod.dataset.category === category) {
-          prod.style.display = 'block';
+      var products = document.querySelectorAll('.product-card');
+      products.forEach(function(card) {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
         } else {
-          prod.style.display = 'none';
+          card.style.display = 'none';
         }
       });
     }
-
-    // Scroll la top
+    
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // Buton "Back to Top"
-    window.onscroll = function() {
-      const btn = document.querySelector('.back-to-top');
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        btn.style.display = "block";
-      } else {
-        btn.style.display = "none";
-      }
-    };
-
-    // Inițializare la încărcare
-    document.addEventListener('DOMContentLoaded', function() {
-      updateCartCount();
-    });
-
-    /* Sugestii suplimentare:
-       - Implementați un sistem de recenzii și rating-uri pentru produse.
-       - Adăugați un chat live pentru suportul clienților.
-       - Creați o secțiune dedicată promoțiilor și ofertelor speciale.
-    */
+    
+    // Simplu slider pentru pagina de Acasă
+    var slideIndex = 0;
+    function showSlides() {
+      var slides = document.querySelectorAll('.slides img');
+      slides.forEach(function(slide) {
+        slide.classList.remove('active');
+      });
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1; }
+      slides[slideIndex - 1].classList.add('active');
+      setTimeout(showSlides, 5000);
+    }
+    showSlides();
+    
+    // Countdown Timer - exemplu setat până la Paști (20 aprilie 2025)
+    function startCountdown() {
+      var countDownDate = new Date("Apr 20, 2025 00:00:00").getTime();
+      var timerInterval = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById('timer').innerText = days + "z " + hours + "h " + minutes + "m " + seconds + "s ";
+        if (distance < 0) {
+          clearInterval(timerInterval);
+          document.getElementById('timer').innerText = "EXPIRED";
+        }
+      }, 1000);
+    }
+    startCountdown();
   </script>
 </body>
 </html>
