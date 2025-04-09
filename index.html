@@ -17,7 +17,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
-    /* Variabile CSS – culori roșii inspirate din „sângele Mântuitorului” și culori deschise */
+    /* Variabile CSS – culori roșii inspirate de sângele Mântuitorului și fundal deschis */
     :root {
       --primary-gradient: linear-gradient(90deg, #b71c1c, #d32f2f);
       --primary-color: #b71c1c;
@@ -27,20 +27,17 @@
       --button-hover: #c62828;
       --error-color: #b71c1c;
     }
-    
     /* Reset global */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
     body {
       font-family: 'Merriweather', serif;
       line-height: 1.6;
-      background: #fffaf3; /* fundal deschis */
+      background: #fffaf3;
       color: #333;
       scroll-behavior: smooth;
       padding-bottom: 60px;
     }
-    
-    /* Header fixat cu un gradient roșu */
+    /* Header fixat cu gradient roșu */
     header {
       background: var(--primary-gradient);
       color: #fff;
@@ -95,15 +92,14 @@
       border: none;
       color: #fff;
     }
-    
-    /* Timer fixat sub header – font mare, evidențiat, text galben */
+    /* Timer fixat sub header: fundal închis cu text alb */
     #countdown-timer {
       position: fixed;
-      top: 70px; /* Ajustat astfel încât să fie sub header */
+      top: 70px; /* sub header */
       left: 0;
       width: 100%;
-      background: #fff3e0;
-      color: yellow;
+      background: #333;   /* fundal mai închis */
+      color: #fff;        /* text alb */
       padding: 10px;
       text-align: center;
       font-size: 22px;
@@ -111,7 +107,6 @@
       z-index: 1050;
       border-bottom: 2px solid var(--primary-color);
     }
-    
     /* Buton fix de coș pentru mobil */
     .fixed-cart {
       position: fixed;
@@ -129,11 +124,10 @@
       box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
       z-index: 1100;
       cursor: pointer;
-      display: none; /* Va apărea doar pe mobil */
+      display: none; /* se afișează numai pe mobil */
     }
     .fixed-cart:hover { background: var(--button-hover); }
-    
-    /* Conținut: asigurăm spațiu sus pentru header și timer */
+    /* Spațiere pentru pagini */
     #pages {
       padding-top: 140px;
     }
@@ -146,7 +140,6 @@
       transition: opacity 0.5s ease-in-out;
     }
     #pages section.active { display: block; opacity: 1; }
-    
     /* Slider */
     .slider {
       position: relative;
@@ -187,7 +180,6 @@
       transition: background 0.3s;
     }
     .btn-shop:hover { background: var(--button-hover); }
-    
     /* Slider indicatoare */
     .slider-indicators {
       position: absolute;
@@ -210,7 +202,6 @@
     .slider-indicators button.active {
       background-color: rgba(255, 255, 255, 0.9);
     }
-    
     /* Câmp de căutare */
     #search-container {
       text-align: center;
@@ -236,7 +227,6 @@
       border-color: var(--button-bg);
       box-shadow: 0 0 8px rgba(41,128,185,0.5);
     }
-    
     /* Filtrare și sortare */
     #filter-toggle, #sort-toggle {
       display: none;
@@ -262,7 +252,6 @@
       transition: background 0.3s;
     }
     #filter-bar button:hover, #sort-bar button:hover { background: var(--button-hover); }
-    
     /* Grilă Produse */
     .product-grid {
       display: grid;
@@ -292,7 +281,7 @@
     }
     .product-card h3 { font-size: 22px; margin-bottom: 5px; }
     .product-card p { font-size: 18px; margin-bottom: 10px; }
-    /* Stilizare input cantitate */
+    /* Input cantitate */
     .product-card input[type="number"] {
       width: 70px;
       padding: 8px;
@@ -316,16 +305,14 @@
       transition: background 0.3s;
     }
     .product-card button:hover { background: #d35400; }
-    
-    /* Mesaj pentru căutare fără rezultate */
+    /* Mesaj când nu sunt produse */
     .no-products {
       text-align: center;
       font-size: 20px;
       color: var(--error-color);
       margin: 20px;
     }
-    
-    /* Titluri secțiuni Produse */
+    /* Titluri Produse */
     #produse h2 {
       text-align: center;
       font-size: 28px;
@@ -334,7 +321,6 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    
     /* Secțiuni: Despre Noi, Termeni, Evenimente */
     .content-text {
       font-size: 18px;
@@ -354,8 +340,7 @@
     }
     .content-text li { margin-bottom: 8px; }
     .content-text strong { color: var(--primary-color); }
-    
-    /* Coș și Formular Comandă */
+    /* Coș și formular comandă */
     .cart-item {
       display: flex;
       justify-content: space-between;
@@ -458,7 +443,7 @@
     }
     .back-to-top:hover { background: var(--primary-color); }
     
-    /* Media queries */
+    /* Media queries pentru mobil */
     @media (max-width: 768px) {
       .header-container { flex-direction: column; text-align: center; }
       nav ul { flex-direction: column; display: none; }
@@ -471,7 +456,7 @@
       #filter-bar.active, #sort-bar.active { display: block; }
       #filter-toggle, #sort-toggle { display: inline-block; }
       #search-container input { width: 90%; }
-      /* Afișează butonul fix pentru coș */
+      /* Buton fix de coș afișat pe mobil */
       .fixed-cart { display: flex; }
     }
     
@@ -540,7 +525,7 @@
     </div>
   </header>
   
-  <!-- Timer fixat sub header -->
+  <!-- Timer fixat sub header cu fundal mai închis -->
   <div id="countdown-timer">
     <span id="timer"></span>
   </div>
@@ -566,7 +551,7 @@
       </div>
       <h2>Bine ai venit la Magazinul de Candele & Tradiții</h2>
       <p class="content-text">
-        Descoperă colecția noastră de lumânări, accesorii și produse tradiționale care aduc lumină, viață și inspirație spirituală.
+        Descoperă colecția noastră de lumânări, accesorii și produse tradiționale care aduc lumină și inspirație spirituală.
       </p>
     </section>
     
@@ -970,7 +955,7 @@
       doc.text("CUI: RO123456", 20, 29);
       doc.text("Telefon: 0123456789", 20, 36);
       
-      // Titlu și etichete factură
+      // Titlu factură și detalii suplimentare
       doc.setFontSize(18);
       doc.text("Factura Comandă", 20, 50);
       const invoiceNumber = Math.floor(Math.random() * 1000000);
@@ -1002,11 +987,11 @@
       // Descarcă factura pentru client
       doc.save(`Factura_${invoiceNumber}.pdf`);
       
-      // Trimite factura prin EmailJS
+      // Trimite factura prin EmailJS utilizând noul template (template_35mixki)
       sendInvoiceByEmail(pdfDataUri, customerEmail);
     }
     
-    // Trimitere factura prin EmailJS
+    // Trimitere prin EmailJS folosind template_35mixki
     function sendInvoiceByEmail(pdfDataUri, customerEmail) {
       const templateParams = {
         admin_email: 'irimia.teodor.17@gmail.com',
@@ -1014,7 +999,7 @@
         subject: 'Factura Nouă - Comandă Magazinul de Candele & Tradiții',
         pdf: pdfDataUri
       };
-      emailjs.send("service_88fnw6e", "template_invoice", templateParams)
+      emailjs.send("service_88fnw6e", "template_35mixki", templateParams)
         .then(function(response) {
           alert('Factura a fost generată și trimisă pe email!');
           cart = [];
