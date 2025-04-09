@@ -92,17 +92,17 @@
       transition: opacity 0.5s ease-in-out;
     }
     #pages section.active { display: block; opacity: 1; }
-    /* Slider pentru pagina Acasă */
+    /* Slider pentru pagina Acasă - extins */
     .slider {
       position: relative;
       width: 100%;
-      height: 300px;
+      height: 450px; /* Mărit pentru impact vizual */
       overflow: hidden;
       margin-bottom: 20px;
     }
     .slides img {
       width: 100%;
-      height: 300px;
+      height: 450px; /* Ajustat pentru noua înălțime */
       object-fit: cover;
       position: absolute;
       top: 0;
@@ -114,7 +114,7 @@
     .slider .overlay {
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 300px;
+      width: 100%; height: 450px;
       background: rgba(0,0,0,0.4);
       display: flex;
       justify-content: center;
@@ -131,6 +131,28 @@
       transition: background 0.3s;
     }
     .btn-shop:hover { background: #1e8449; }
+    /* Slider indicatoare - butoane mici */
+    .slider-indicators {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 100;
+    }
+    .slider-indicators button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .slider-indicators button.active {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
     /* Câmp de căutare pentru produse */
     #search-container {
       text-align: center;
@@ -436,7 +458,7 @@
   
   <!-- Conținutul paginilor -->
   <div id="pages">
-    <!-- Pagina Acasă -->
+    <!-- Pagina Acasă cu slider extins și auto-rotativ -->
     <section id="home" class="active fade-in">
       <div class="slider">
         <div class="slides">
@@ -447,6 +469,12 @@
         <div class="overlay">
           <button class="btn-shop" onclick="showPage('produse')">Vezi Produsele</button>
         </div>
+        <!-- Slider indicatoare -->
+        <div class="slider-indicators">
+          <button onclick="setSlide(0)" id="indicator-0" class="active"></button>
+          <button onclick="setSlide(1)" id="indicator-1"></button>
+          <button onclick="setSlide(2)" id="indicator-2"></button>
+        </div>
       </div>
       <h2>Bine ai venit la Magazinul de Candele & Tradiții</h2>
       <p class="content-text">
@@ -454,7 +482,7 @@
       </p>
     </section>
     
-    <!-- Pagina Produse (toate produsele sunt adăugate) -->
+    <!-- Pagina Produse -->
     <section id="produse" class="fade-in">
       <h2 id="prod-title">Produsele Noastre</h2>
       <div id="search-container">
@@ -618,13 +646,13 @@
       <div class="content-text">
         <p>Aici găsiți informații despre principalele sărbători și evenimente creștine:</p>
         <ul>
-          <li><strong>Paști:</strong> Sărbătoarea Învierii Domnului </li>
-          <li><strong>Crăciunul:</strong> Nașterea lui Iisus Hristos – </li>
+          <li><strong>Paști:</strong> Sărbătoarea Învierii Domnului</li>
+          <li><strong>Crăciunul:</strong> Nașterea lui Iisus Hristos</li>
           <li><strong>Bobotează:</strong> Comemorarea botezului lui Iisus</li>
-          <li><strong>Adormirea Maicii Domnului:</strong> Sărbătoare pe 15 august .</li>
-          <li><strong>Înălțarea Domnului:</strong> La 40 de zile după Paști .</li>
-          <li><strong>Rusaliile:</strong> Pogorârea Duhului Sfânt .</li>
-          <li><strong>Sfântul Andrei:</strong> Celebrat pe 30 noiembrie </li>
+          <li><strong>Adormirea Maicii Domnului:</strong> Sărbătoare pe 15 august</li>
+          <li><strong>Înălțarea Domnului:</strong> La 40 de zile după Paști</li>
+          <li><strong>Rusalii:</strong> Pogorârea Duhului Sfânt</li>
+          <li><strong>Sfântul Andrei:</strong> Celebrat pe 30 noiembrie</li>
         </ul>
       </div>
     </section>
@@ -653,8 +681,31 @@
   
   <script>
     let cart = [];
-
-    // Array de evenimente: setare de dată de start (care poate fi modificată), durata (în milisecunde) și mesajul evenimentului.
+    
+    // Variabile slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slides img');
+    const indicators = Array.from(document.querySelectorAll('.slider-indicators button'));
+    
+    // Funcție de setare slide
+    function setSlide(index) {
+      slides.forEach((img, idx) => {
+        img.classList.toggle('active', idx === index);
+        indicators[idx].classList.toggle('active', idx === index);
+      });
+      currentSlide = index;
+    }
+    
+    // Funcție de auto-rotire a sliderului
+    function autoRotateSlides() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      setSlide(currentSlide);
+    }
+    
+    // Pornește rotația sliderului la 4 secunde
+    setInterval(autoRotateSlides, 4000);
+    
+    // Evenimente pentru timerul dinamic
     const events = [
       { name: "Paști", start: new Date("Apr 20, 2025 00:00:00").getTime(), duration: 3 * 24 * 60 * 60 * 1000, message: "Hristos a înviat!" },
       { name: "Crăciun", start: new Date("Dec 25, 2025 00:00:00").getTime(), duration: 7 * 24 * 60 * 60 * 1000, message: "Sărbătoarea Nașterii" },
@@ -664,14 +715,12 @@
       { name: "Rusalii", start: new Date("Jun 7, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Rusalii: Pogorârea Sfântului Duh" },
       { name: "Sfântul Andrei", start: new Date("Nov 30, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Sărbătoare în cinstea Sfântului Andrei" }
     ];
-
-    // Actualizează timerul în funcție de evenimentele definite
+    
     function updateEventTimer() {
       const now = new Date().getTime();
       let currentEvent = null;
       let nextEvent = null;
-
-      // Caută evenimentul curent sau următorul
+      
       for (let event of events) {
         if (now >= event.start && now < event.start + event.duration) {
           currentEvent = event;
@@ -681,13 +730,11 @@
           break;
         }
       }
-
+      
       const timerEl = document.getElementById('timer');
       if (currentEvent) {
-        // Dacă suntem în perioada unui eveniment, afișează mesajul curent
         timerEl.innerText = currentEvent.message;
       } else if (nextEvent) {
-        // Afișează timpul rămas până la următorul eveniment
         const distance = nextEvent.start - now;
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -695,14 +742,12 @@
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
         timerEl.innerText = `Timp până la ${nextEvent.name}: ${days} zile ${hours} ore ${minutes} minute ${seconds} secunde`;
       } else {
-        // Dacă nu mai sunt evenimente, afișează un mesaj default
         timerEl.innerText = "Nu mai există evenimente planificate.";
       }
     }
-
-    // Initializează intervalul de timer (actualizare la fiecare secundă)
+    
     setInterval(updateEventTimer, 1000);
-
+    
     // Funcții pentru navigare și meniuri
     function showPage(pageId) {
       document.querySelectorAll('#pages section').forEach(section => section.classList.remove('active'));
@@ -712,8 +757,8 @@
     function toggleMenu() {
       document.getElementById('nav-menu').classList.toggle('active');
     }
-
-    // Funcții pentru filtrare și sortare produse
+    
+    // Funcții pentru filtrare, căutare și sortare produse
     function filterProducts(category) {
       let cards = document.querySelectorAll('.product-card');
       let visibleCount = 0;
@@ -766,7 +811,7 @@
     function toggleSort() {
       document.getElementById('sort-bar').classList.toggle('active');
     }
-
+    
     // Funcții pentru coșul de cumpărături
     function addToCart(name, price, qty) {
       qty = parseInt(qty);
@@ -820,7 +865,6 @@
       const customerName = document.getElementById('customer-name').value || 'N/A';
       const customerPhone = document.getElementById('customer-phone').value || 'N/A';
       const customerAddress = document.getElementById('customer-address').value || 'N/A';
-      
       doc.text(`Nume: ${customerName}`, 20, yPosition);
       yPosition += 10;
       doc.text(`Telefon: ${customerPhone}`, 20, yPosition);
@@ -837,7 +881,6 @@
       let total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
       doc.setFontSize(14);
       doc.text(`Total: ${total} RON`, 20, yPosition);
-      
       const pdfDataUri = doc.output('datauristring');
       sendInvoiceByEmail(pdfDataUri);
     }
@@ -865,7 +908,7 @@
         alert('A apărut o eroare. Vă rugăm să încercați din nou.');
       });
     }
-
+    
     // Funcții pentru fereastra modală de detalii produs
     function openModal(card) {
       const modal = document.getElementById('product-modal');
@@ -884,7 +927,7 @@
         document.getElementById('product-modal').style.display = 'none';
       }
     }
-
+    
     // Buton "Back to Top"
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
