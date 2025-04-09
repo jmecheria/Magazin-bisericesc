@@ -566,7 +566,7 @@
     <section id="home" class="active fade-in">
       <div class="slider">
         <div class="slides">
-          <img src="icoana1.jpg" alt="Slider 1" class="active">
+          <img src="logo.jpg" alt="Slider 1" class="active">
           <img src="lumânare.jpg" alt="Slider 2">
           <img src="candela-mare.jpg" alt="Slider 3">
         </div>
@@ -974,7 +974,7 @@
       const doc = new jsPDF();
       doc.setFontSize(12);
       doc.text("Candele & Tradiții SRL", 20, 15);
-      doc.text("Str. Exemplu nr.1, București", 20, 22);
+      doc.text("Str. Mihai Eminescu nr.1, Poieni,Iași", 20, 22);
       doc.text("CUI: RO123456", 20, 29);
       doc.text("Telefon: 0123456789", 20, 36);
       doc.setFontSize(18);
@@ -1056,7 +1056,7 @@
     function adminLogin() {
       const user = document.getElementById("admin-user").value;
       const pass = document.getElementById("admin-pass").value;
-      if(user === "admin" && pass === "admin123"){
+      if(user === "admin" && pass === "mamaestetare"){
         sessionStorage.setItem("isAdmin", "true");
         showPage("admin-panel");
         loadAdminStock();
