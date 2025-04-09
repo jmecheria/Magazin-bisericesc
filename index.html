@@ -9,7 +9,7 @@
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script type="text/javascript">
-    // Inițializează EmailJS – cheie publică
+    // Inițializează EmailJS cu cheia publică primită (p2O-tLOxlx3BmOLQf)
     (function(){
       emailjs.init("p2O-tLOxlx3BmOLQf");
     })();
@@ -17,27 +17,30 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
-    /* Variabile CSS pentru culori și gradient */
+    /* Variabile CSS – culori roșii inspirate din „sângele Mântuitorului” și culori deschise */
     :root {
-      --primary-gradient: linear-gradient(90deg, #7a5230, #563d25);
-      --primary-color: #7a5230;
-      --secondary-color: #563d25;
-      --highlight-color: #ffdd57;
-      --button-bg: #2980b9;
-      --button-hover: #2471a3;
-      --error-color: #b00;
+      --primary-gradient: linear-gradient(90deg, #b71c1c, #d32f2f);
+      --primary-color: #b71c1c;
+      --secondary-color: #d32f2f;
+      --highlight-color: #ff8a80;
+      --button-bg: #e53935;
+      --button-hover: #c62828;
+      --error-color: #b71c1c;
     }
+    
     /* Reset global */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body {
       font-family: 'Merriweather', serif;
       line-height: 1.6;
-      background: #f9f8f5;
+      background: #fffaf3; /* fundal deschis */
       color: #333;
       scroll-behavior: smooth;
       padding-bottom: 60px;
     }
-    /* Header fixat */
+    
+    /* Header fixat cu un gradient roșu */
     header {
       background: var(--primary-gradient);
       color: #fff;
@@ -92,20 +95,24 @@
       border: none;
       color: #fff;
     }
-    /* Timer fixat sub header */
+    
+    /* Timer fixat sub header – font mare, evidențiat, text galben */
     #countdown-timer {
       position: fixed;
-      top: 60px; /* Ajustează dacă înălțimea header-ului se schimbă */
+      top: 70px; /* Ajustat astfel încât să fie sub header */
       left: 0;
       width: 100%;
       background: #fff3e0;
-      color: var(--primary-color);
-      padding: 8px;
+      color: yellow;
+      padding: 10px;
       text-align: center;
-      font-size: 16px;
+      font-size: 22px;
+      font-weight: bold;
       z-index: 1050;
+      border-bottom: 2px solid var(--primary-color);
     }
-    /* Buton de cart fixat – vizibil mereu pe mobil */
+    
+    /* Buton fix de coș pentru mobil */
     .fixed-cart {
       position: fixed;
       bottom: 20px;
@@ -122,11 +129,13 @@
       box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
       z-index: 1100;
       cursor: pointer;
+      display: none; /* Va apărea doar pe mobil */
     }
     .fixed-cart:hover { background: var(--button-hover); }
-    /* Conținut (paginile) – pentru a nu fi acoperite de header și timer */
+    
+    /* Conținut: asigurăm spațiu sus pentru header și timer */
     #pages {
-      padding-top: 120px; /* Header fixat + timer (60+~60) */
+      padding-top: 140px;
     }
     #pages section {
       max-width: 1200px;
@@ -137,7 +146,8 @@
       transition: opacity 0.5s ease-in-out;
     }
     #pages section.active { display: block; opacity: 1; }
-    /* Slider auto-rotativ */
+    
+    /* Slider */
     .slider {
       position: relative;
       width: 100%;
@@ -177,6 +187,7 @@
       transition: background 0.3s;
     }
     .btn-shop:hover { background: var(--button-hover); }
+    
     /* Slider indicatoare */
     .slider-indicators {
       position: absolute;
@@ -199,6 +210,7 @@
     .slider-indicators button.active {
       background-color: rgba(255, 255, 255, 0.9);
     }
+    
     /* Câmp de căutare */
     #search-container {
       text-align: center;
@@ -224,6 +236,7 @@
       border-color: var(--button-bg);
       box-shadow: 0 0 8px rgba(41,128,185,0.5);
     }
+    
     /* Filtrare și sortare */
     #filter-toggle, #sort-toggle {
       display: none;
@@ -249,6 +262,7 @@
       transition: background 0.3s;
     }
     #filter-bar button:hover, #sort-bar button:hover { background: var(--button-hover); }
+    
     /* Grilă Produse */
     .product-grid {
       display: grid;
@@ -278,7 +292,7 @@
     }
     .product-card h3 { font-size: 22px; margin-bottom: 5px; }
     .product-card p { font-size: 18px; margin-bottom: 10px; }
-    /* Stilizarea input-ului de cantitate */
+    /* Stilizare input cantitate */
     .product-card input[type="number"] {
       width: 70px;
       padding: 8px;
@@ -302,6 +316,7 @@
       transition: background 0.3s;
     }
     .product-card button:hover { background: #d35400; }
+    
     /* Mesaj pentru căutare fără rezultate */
     .no-products {
       text-align: center;
@@ -309,7 +324,8 @@
       color: var(--error-color);
       margin: 20px;
     }
-    /* Titlu secțiune Produse */
+    
+    /* Titluri secțiuni Produse */
     #produse h2 {
       text-align: center;
       font-size: 28px;
@@ -318,6 +334,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+    
     /* Secțiuni: Despre Noi, Termeni, Evenimente */
     .content-text {
       font-size: 18px;
@@ -326,7 +343,7 @@
       padding: 25px;
       max-width: 800px;
       background: #fff7f7;
-      border: 2px solid #e74c3c;
+      border: 2px solid var(--primary-color);
       border-radius: 8px;
       text-align: left;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -337,7 +354,8 @@
     }
     .content-text li { margin-bottom: 8px; }
     .content-text strong { color: var(--primary-color); }
-    /* Coș și Finalizare Comandă */
+    
+    /* Coș și Formular Comandă */
     .cart-item {
       display: flex;
       justify-content: space-between;
@@ -364,6 +382,7 @@
       transition: background 0.3s;
     }
     .cart-item button:hover { background: #a93226; }
+    
     .order-form {
       margin-top: 20px;
       background: #f4f4f4;
@@ -397,15 +416,17 @@
       margin-left: 10px;
     }
     .order-form .reset-btn:hover { background: #a93226; }
+    
     /* Pagina Evenimente */
     #evenimente .content-text {
       background: #fffaf0;
       border-color: #8b0000;
     }
+    
     /* Footer */
     footer {
       background: #fff0f0;
-      border-top: 2px solid #e74c3c;
+      border-top: 2px solid var(--primary-color);
       padding: 20px;
       text-align: center;
       font-size: 16px;
@@ -417,7 +438,8 @@
       vertical-align: middle;
       margin: 0 5px;
     }
-    footer a { text-decoration: none; color: #e74c3c; }
+    footer a { text-decoration: none; color: var(--primary-color); }
+    
     /* Buton "Back to Top" */
     .back-to-top {
       position: fixed;
@@ -435,27 +457,8 @@
       z-index: 1100;
     }
     .back-to-top:hover { background: var(--primary-color); }
-    /* Buton fix de coș pentru mobil */
-    .fixed-cart {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--button-bg);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-      z-index: 1100;
-      cursor: pointer;
-      display: none; /* se afișează doar pe mobil */
-    }
-    .fixed-cart:hover { background: var(--button-hover); }
-    /* Media queries pentru mobil */
+    
+    /* Media queries */
     @media (max-width: 768px) {
       .header-container { flex-direction: column; text-align: center; }
       nav ul { flex-direction: column; display: none; }
@@ -471,9 +474,11 @@
       /* Afișează butonul fix pentru coș */
       .fixed-cart { display: flex; }
     }
+    
     /* Animații */
     .fade-in { animation: fadeIn 1s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
     /* Modal pentru detalii produs */
     .modal {
       display: none;
@@ -561,7 +566,7 @@
       </div>
       <h2>Bine ai venit la Magazinul de Candele & Tradiții</h2>
       <p class="content-text">
-        Descoperă colecția noastră de lumânări, accesorii și produse tradiționale menite să aducă lumină și spiritualitate în viața ta.
+        Descoperă colecția noastră de lumânări, accesorii și produse tradiționale care aduc lumină, viață și inspirație spirituală.
       </p>
     </section>
     
@@ -899,7 +904,7 @@
     function toggleFilter() { document.getElementById('filter-bar').classList.toggle('active'); }
     function toggleSort() { document.getElementById('sort-bar').classList.toggle('active'); }
     
-    // Coșul de cumpărături și actualizarea acestuia
+    // Coșul de cumpărături
     function addToCart(name, price, qty) {
       qty = parseInt(qty);
       const existing = cart.find(item => item.name === name);
@@ -929,7 +934,6 @@
       document.getElementById('total-amount').innerText = total;
       document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
       document.getElementById('order-details').value = JSON.stringify(cart);
-      // Actualizează și contorul din butonul fix de coș
       document.getElementById('fixed-cart-count').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
     }
     function updateItem(index, newQty) {
@@ -941,7 +945,7 @@
       updateCartUI();
     }
     
-    // Generare PDF factură: declanșează descărcarea și trimiterea prin EmailJS
+    // Generare și descărcare PDF factură, apoi trimitere prin EmailJS
     function generatePDFInvoice() {
       if(cart.length === 0) {
         alert('Coșul este gol!');
@@ -966,7 +970,7 @@
       doc.text("CUI: RO123456", 20, 29);
       doc.text("Telefon: 0123456789", 20, 36);
       
-      // Titlu și etichete pentru factură
+      // Titlu și etichete factură
       doc.setFontSize(18);
       doc.text("Factura Comandă", 20, 50);
       const invoiceNumber = Math.floor(Math.random() * 1000000);
@@ -1002,7 +1006,7 @@
       sendInvoiceByEmail(pdfDataUri, customerEmail);
     }
     
-    // Funcția de trimitere prin EmailJS
+    // Trimitere factura prin EmailJS
     function sendInvoiceByEmail(pdfDataUri, customerEmail) {
       const templateParams = {
         admin_email: 'irimia.teodor.17@gmail.com',
@@ -1017,11 +1021,11 @@
           updateCartUI();
         }, function(error) {
           console.error('Eroare la trimiterea emailului:', error);
-          alert('A apărut o eroare la trimiterea facturii prin email. Încearcă din nou.');
+          alert('A apărut o eroare la trimiterea facturii. Încearcă din nou.');
         });
     }
     
-    // Modal: deschide fereastra cu detalii produs
+    // Modal pentru detalii produs
     function openModal(card) {
       const modal = document.getElementById('product-modal');
       const modalBody = document.getElementById('modal-body');
