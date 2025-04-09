@@ -602,7 +602,7 @@
           <button onclick="event.stopPropagation(); addToCart('Lumânare Înviere', 50, document.getElementById('qty-lumanare_inviere').value)">Adaugă în Coș</button>
         </div>
         <!-- Produs 4: Tămâie Naturală -->
-        <div class="product-card" data-category="tămâie" data-description="Tămâie Naturală de cea mai înaltă calitate, perfectă pentru a crea atmosfera sacră în timpul ritualurilor.">
+        <div class="product-card" data-category="tămâie" data-description="Tămâie Naturală de cea mai înaltă calitate, perfectă pentru a crea atmosfera liniștitoare în timpul rugăciunii.">
           <img src="tămâie.jpg" alt="Tămâie Naturală">
           <h3>Tămâie Naturală</h3>
           <p>Preț: 20 RON</p>
@@ -610,7 +610,7 @@
           <button onclick="event.stopPropagation(); addToCart('Tămâie Naturală', 20, document.getElementById('qty-tamai_naturala').value)">Adaugă în Coș</button>
         </div>
         <!-- Produs 5: Pomelnice Anuale -->
-        <div class="product-card" data-category="accesorii" data-description="Pomelnice Anuale, realizate cu măiestrie pentru a comemora tradiția.">
+        <div class="product-card" data-category="accesorii" data-description="Pomelnice Anuale, realizate pentru pomenirea celor dragi.">
           <img src="pomelnic.jpg" alt="Pomelnice Anuale">
           <h3>Pomelnice Anuale</h3>
           <p>Preț: 100 RON</p>
@@ -626,7 +626,7 @@
           <button onclick="event.stopPropagation(); addToCart('Ceaslov', 70, document.getElementById('qty-ceaslov').value)">Adaugă în Coș</button>
         </div>
         <!-- Produs 7: Psaltire -->
-        <div class="product-card" data-category="accesorii" data-description="Psaltire, lucrare atent realizată care conține fragmente din textele sacre.">
+        <div class="product-card" data-category="accesorii" data-description="Psaltire, lucrare atent realizată care conține fragmente din textele sfinte.">
           <img src="psaltire.jpg" alt="Psaltire">
           <h3>Psaltire</h3>
           <p>Preț: 55 RON</p>
@@ -634,7 +634,7 @@
           <button onclick="event.stopPropagation(); addToCart('Psaltire', 55, document.getElementById('qty-psaltire').value)">Adaugă în Coș</button>
         </div>
         <!-- Produs 8: Mir -->
-        <div class="product-card" data-category="accesorii" data-description="Mir, un produs esențial pentru ritualuri, recunoscut pentru puritatea și calitatea sa.">
+        <div class="product-card" data-category="accesorii" data-description="Mir, un produs esențial pentru slujbe, recunoscut pentru puritatea și calitatea sa.">
           <img src="mir.jpg" alt="Mir">
           <h3>Mir</h3>
           <p>Preț: 20 RON</p>
@@ -669,11 +669,11 @@
         <p>Echipa noastră se dedică aducerii celor mai autentice produse, fiecare cu semnificație unică.</p>
         <p>Oferim:</p>
         <ul>
-          <li><strong>Candele</strong> – modele moderne și tradiționale, lucrate cu măiestrie.</li>
-          <li><strong>Tămâie naturală</strong> – arome care inspiră reculegere.</li>
-          <li><strong>Lumânări</strong> – perfecte pentru slujbe și momente de meditație.</li>
-          <li><strong>Ceaslov și Psaltire</strong> – reproduceri autentice ale textelor sacre.</li>
-          <li><strong>Mir</strong> – de cea mai înaltă calitate, esențial în ritualuri.</li>
+          <li><strong>Candele</strong> – simple și bune pentru a ține lumina învierii mult timp.</li>
+          <li><strong>Tămâie naturală</strong> – arome care inspiră liniștea.</li>
+          <li><strong>Lumânări</strong> – perfecte pentru slujbe .</li>
+          <li><strong>Ceaslov și Psaltire</strong> – reproduceri autentice ale textelor scripturistice.</li>
+          <li><strong>Mir</strong> – de cea mai înaltă calitate, cel mai bun medicament pentru suflet.</li>
           <li><strong>Icoane</strong> – lucrate manual sau imprimate, reflectând tradiția ortodoxă.</li>
         </ul>
         <p><em>"Domnul este lumina mea și mântuirea mea; de cine mă voi teme?" (Psalmul 27:1)</em></p>
@@ -687,8 +687,8 @@
         <ul>
           <li>Produsele sunt disponibile în limita stocului.</li>
           <li>Imaginile sunt orientative și pot suferi ajustări minore.</li>
-          <li>Comenzile se procesează în 1-2 zile lucrătoare.</li>
-          <li>Livrarea se face prin curier rapid pe teritoriul țării.</li>
+          <li>Comenzile se procesează în 2-4 zile lucrătoare.</li>
+          <li>Livrarea momentan doar în Iași.</li>
           <li>Returul este posibil în termen de 14 zile, conform legislației.</li>
           <li>Datele personale sunt protejate conform GDPR.</li>
         </ul>
@@ -719,7 +719,7 @@
         <input type="text" id="customer-address" name="customer_address" required>
         <input type="hidden" id="order-details" name="order_details" value="">
         <button type="submit">Plasează Comanda</button>
-        <button type="reset" class="reset-btn">Resetare</button>
+        <button type="reset" class="reset-btn">Resetare date</button>
       </form>
     </section>
     
@@ -747,6 +747,7 @@
       <p>&copy; 2025 Magazinul de Candele & Tradiții. Toate drepturile rezervate.</p>
       <div class="footer-logos">
         <img src="anpc.jpg" alt="Logo">
+         <p>Vă stăm la dispoziție la Telefon:<strong>0123456789</strong> și Email:<strong>magazinuldecandele@gmail.com</strong>.</p>
       </div>
     </div>
   </footer>
@@ -792,12 +793,12 @@
     // Timer pentru evenimente
     const events = [
       { name: "Paști", start: new Date("Apr 20, 2025 00:00:00").getTime(), duration: 3 * 24 * 60 * 60 * 1000, message: "Hristos a înviat!" },
+      { name: "Înălțarea Domnului", start: new Date("May 29, 2025 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Înălțarea Domnului" },
+      { name: "Rusalii", start: new Date("Jun 8, 2025 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Rusalii: Pogorârea Sfântului Duh" },
+      { name: "Adormirea Maicii Domnului", start: new Date("Aug 15, 2025 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Adormirea Maicii Domnului" },
+      { name: "Sfântul Andrei", start: new Date("Nov 30, 2025 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "La mulți ani România" }
       { name: "Crăciun", start: new Date("Dec 25, 2025 00:00:00").getTime(), duration: 7 * 24 * 60 * 60 * 1000, message: "Sărbătoarea Nașterii" },
       { name: "Bobotează", start: new Date("Jan 6, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Botezul Domnului" },
-      { name: "Adormirea Maicii Domnului", start: new Date("Aug 15, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Adormirea Maicii Domnului" },
-      { name: "Înălțarea Domnului", start: new Date("May 29, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Înălțarea Domnului" },
-      { name: "Rusalii", start: new Date("Jun 7, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Rusalii: Pogorârea Sfântului Duh" },
-      { name: "Sfântul Andrei", start: new Date("Nov 30, 2026 00:00:00").getTime(), duration: 1 * 24 * 60 * 60 * 1000, message: "Sărbătoare în cinstea Sfântului Andrei" }
     ];
     
     function updateEventTimer() {
@@ -951,7 +952,7 @@
       // Informații firmei
       doc.setFontSize(12);
       doc.text("Candele & Tradiții SRL", 20, 15);
-      doc.text("Str. Exemplu nr.1, București, România", 20, 22);
+      doc.text("Str.Mihai Eminescu nr.9, Iași, România", 20, 22);
       doc.text("CUI: RO123456", 20, 29);
       doc.text("Telefon: 0123456789", 20, 36);
       
