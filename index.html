@@ -5,16 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Magazinul de Candele & Tradiții</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function(){
-      emailjs.init("p2O-tLOxlx3BmOLQf");
-    })();
-  </script>
+  <!-- EmailJS a fost eliminat -->
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
-    /* Variabile CSS – culori roșii inspirate de tradiție */
+    /* Variabile CSS */
     :root {
       --primary-gradient: linear-gradient(90deg, #b71c1c, #d32f2f);
       --primary-color: #b71c1c;
@@ -23,12 +18,13 @@
       --button-bg: #e53935;
       --button-hover: #c62828;
       --error-color: #b71c1c;
+      --light-bg: #fdf8f6;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Merriweather', serif;
       line-height: 1.6;
-      background: #fffaf3;
+      background: var(--light-bg);
       color: #333;
       scroll-behavior: smooth;
       padding-bottom: 60px;
@@ -120,9 +116,7 @@
       display: none;
     }
     .fixed-cart:hover { background: var(--button-hover); }
-    #pages {
-      padding-top: 140px;
-    }
+    #pages { padding-top: 140px; }
     #pages section {
       max-width: 1200px;
       margin: 40px auto;
@@ -153,8 +147,7 @@
     .slides img.active { opacity: 1; }
     .slider .overlay {
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 450px;
       background: rgba(0,0,0,0.4);
@@ -187,12 +180,12 @@
       height: 12px;
       border-radius: 50%;
       border: none;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(255,255,255,0.5);
       cursor: pointer;
       transition: background-color 0.3s;
     }
     .slider-indicators button.active {
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255,255,255,0.9);
     }
     #search-container {
       text-align: center;
@@ -300,9 +293,12 @@
       color: var(--error-color);
       margin: 20px;
     }
-    #produse h2 {
+    /* Titluri secțiuni */
+    #produse h2, 
+    #despre-noi h2,
+    #termeni-si-conditii h2 {
       text-align: center;
-      font-size: 28px;
+      font-size: 32px;
       margin-bottom: 20px;
       color: var(--primary-color);
       text-transform: uppercase;
@@ -314,81 +310,28 @@
       margin: 20px auto;
       padding: 25px;
       max-width: 800px;
-      background: #fff7f7;
+      background: #fff;
       border: 2px solid var(--primary-color);
       border-radius: 8px;
       text-align: left;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    .content-text ul {
-      margin: 10px 0 0 20px;
-      list-style-type: disc;
+    /* Stil atrăgător pentru Despre Noi și Termeni & Condiții */
+    #despre-noi {
+      background: url('despre-noi-bg.jpg') no-repeat center center/cover;
+      padding: 40px 20px;
     }
-    .content-text li { margin-bottom: 8px; }
-    .content-text strong { color: var(--primary-color); }
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 10px;
-      border-radius: 4px;
-      background: #fdfdfd;
-    }
-    .cart-item input[type="number"] {
-      width: 70px;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .cart-item button {
-      padding: 6px 12px;
-      background: #c0392b;
+    #despre-noi .content-text {
+      background: rgba(255, 255, 255, 0.9);
       border: none;
-      color: #fff;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background 0.3s;
     }
-    .cart-item button:hover { background: #a93226; }
-    .order-form {
-      margin-top: 20px;
-      background: #f4f4f4;
-      padding: 20px;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    #termeni-si-conditii {
+      background: url('termeni-bg.jpg') no-repeat center center/cover;
+      padding: 40px 20px;
     }
-    .order-form label { display: block; margin-top: 12px; font-weight: bold; }
-    .order-form input[type="text"],
-    .order-form input[type="email"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .order-form button {
-      margin-top: 20px;
-      padding: 12px;
-      background: var(--button-bg);
+    #termeni-si-conditii .content-text {
+      background: rgba(255, 255, 255, 0.9);
       border: none;
-      color: #fff;
-      font-size: 18px;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: background 0.3s;
-    }
-    .order-form button:hover { background: var(--button-hover); }
-    .order-form .reset-btn {
-      background: #c0392b;
-      margin-left: 10px;
-    }
-    .order-form .reset-btn:hover { background: #a93226; }
-    /* Pagina Evenimente */
-    #evenimente .content-text {
-      background: #fffaf0;
-      border-color: #8b0000;
     }
     /* Footer */
     footer {
@@ -434,7 +377,6 @@
       #filter-bar.active, #sort-bar.active { display: block; }
       #filter-toggle, #sort-toggle { display: inline-block; }
       #search-container input { width: 90%; }
-      /* Buton fix de coș afișat pe mobil */
       .fixed-cart { display: flex; }
     }
     .fade-in { animation: fadeIn 1s ease-in-out; }
@@ -472,7 +414,7 @@
       font-size: 24px;
       color: #333;
     }
-    /* Stil pentru zona admin */
+    /* Zona Admin */
     .admin-form {
       max-width: 400px;
       margin: 20px auto;
@@ -565,9 +507,7 @@
       </nav>
     </div>
   </header>
-  <div id="countdown-timer">
-    <span id="timer"></span>
-  </div>
+  <div id="countdown-timer"><span id="timer"></span></div>
   
   <!-- Conținutul paginilor -->
   <div id="pages">
@@ -623,35 +563,32 @@
     
     <!-- Pagina Despre Noi -->
     <section id="despre-noi" class="fade-in">
-      <h2 style="text-align:center; color:var(--primary-color); margin-bottom:20px;">Despre Noi</h2>
+      <h2>Despre Noi</h2>
       <div class="content-text">
-        <p>Bine ați venit în magazinul nostru de obiecte de cult și tradiție, unde credința și istoria se împletesc.</p>
-        <p>Echipa noastră se dedică aducerii celor mai autentice produse, fiecare cu o poveste unică.</p>
-        <p>Oferim:</p>
+        <p><strong>Magazinul de Candele & Tradiții</strong> își propune să aducă un strop de lumină și spiritualitate în viața ta. Cu o istorie îndelungată și o pasiune pentru tradiție, echipa noastră selectează produse autentice și cu semnificație profundă.</p>
+        <p>Printre ofertele noastre se numără:</p>
         <ul>
-          <li><strong>Candele</strong> – create pentru a aduce lumină în viața ta.</li>
-          <li><strong>Tămâie naturală</strong> – esențială pentru momente de meditație.</li>
-          <li><strong>Lumânări</strong> – perfecte pentru slujbe și clipe de reculegere.</li>
-          <li><strong>Accesorii tradiționale</strong> – pentru un ambient autentic.</li>
-          <li><strong>Icoane</strong> – lucrate manual, simbol al credinței.</li>
+          <li>Candele și lumânări lucrate manual, perfecte pentru momente de meditație și rugăciune.</li>
+          <li>Tămâie naturală, esențială în ritualuri și ceremonii.</li>
+          <li>Accesorii tradiționale și icoane ce reflectă credința și cultura noastră.</li>
         </ul>
-        <p><em>"Domnul este lumina mea și mântuirea mea(psalmul 26 1)"</em></p>
+        <p>Prin pasiune, inovație și respect pentru tradiție, ne dorim să oferim clienților noștri o experiență unică.</p>
       </div>
     </section>
     
     <!-- Pagina Termeni & Condiții -->
     <section id="termeni-si-conditii" class="fade-in">
-      <h2 style="text-align:center; color:var(--primary-color); margin-bottom:20px;">Termeni & Condiții</h2>
+      <h2>Termeni & Condiții</h2>
       <div class="content-text">
         <ul>
           <li>Produsele sunt disponibile în limita stocului.</li>
-          <li>Imaginile sunt orientative și pot suferi modificări minore.</li>
-          <li>Comenzile se procesează în 1-2 zile lucrătoare.</li>
+          <li>Imaginile sunt orientative; pot exista mici variații față de produsul livrat.</li>
+          <li>Comenzile se procesează în 1-2 zile lucrătoare după confirmare.</li>
           <li>Livrarea se face prin curier rapid pe teritoriul țării.</li>
-          <li>Returul este posibil în termen de 14 zile, conform legislației.</li>
-          <li>Datele personale sunt protejate conform GDPR.</li>
+          <li>Returul este acceptat în termen de 14 zile, conform legislației.</li>
+          <li>Protecția datelor personale respectă normele GDPR.</li>
         </ul>
-        <p>Prin accesarea site‑ului, sunteți de acord cu termenii de utilizare.</p>
+        <p>Prin accesarea site‑ului, sunteți de acord cu acești termeni. Pentru mai multe informații, nu ezitați să ne contactați.</p>
       </div>
     </section>
     
@@ -661,7 +598,7 @@
       <div id="cart-container"><!-- Produsele vor fi afișate dinamic --></div>
       <h3>Total: <span id="total-amount">0</span> RON</h3>
       <button id="invoice-btn" onclick="generatePDFInvoice()" style="padding:10px 20px; background:var(--button-bg); border:none; color:#fff; border-radius:6px; cursor:pointer;" disabled>
-        Generează Factura PDF & Trimite pe Email
+        Generează Factura PDF
       </button>
       <h2>Finalizare Comandă</h2>
       <form id="order-form" class="order-form" onsubmit="return saveOrder();">
@@ -681,9 +618,9 @@
     
     <!-- Pagina Evenimente -->
     <section id="evenimente" class="fade-in">
-      <h2 style="text-align:center; color:var(--primary-color); margin-bottom:20px;">Evenimente și Calendar Creștin</h2>
+      <h2>Evenimente și Calendar Creștin</h2>
       <div class="content-text">
-        <p>Aici găsiți informații despre principalele sărbători și evenimente:</p>
+        <p>Aici găsiți principalele sărbători și evenimente:</p>
         <ul>
           <li><strong>Paști</strong>: Sărbătoarea Învierii Domnului.</li>
           <li><strong>Crăciun</strong>: Nașterea lui Iisus Hristos.</li>
@@ -717,7 +654,7 @@
       <div id="admin-stock" class="admin-section active">
         <h2>Actualizare Stoc Produse</h2>
         <div id="stock-list">
-          <!-- Lista produselor pentru actualizare va fi generată dinamic -->
+          <!-- Lista produselor pentru actualizare se generează dinamic -->
         </div>
       </div>
       <div id="admin-orders" class="admin-section">
@@ -758,21 +695,19 @@
   </div>
   
   <script>
-    // Date inițiale pentru produse (se va salva și în localStorage)
+    // Date inițiale pentru produse (salvate în localStorage)
     let products = [
       { id: "candela_mare", name: "Candelă Mare", price: 20, stock: 10, category:"candele", description:"Candelă mare din ceară naturală", image:"candela-mare.jpg" },
       { id: "candela_mica", name: "Candelă Mică", price: 10, stock: 15, category:"candele", description:"Candelă mică cu design tradițional", image:"candela-mica.jpg" },
       { id: "lumanare_inviere", name: "Lumânare Înviere", price: 50, stock: 8, category:"lumânări", description:"Lumânare specială pentru slujbe", image:"lumânare.jpg" },
       { id: "tamai_naturala", name: "Tămâie Naturală", price: 20, stock: 12, category:"tămâie", description:"Tămâie de calitate superioară", image:"tămâie.jpg" },
       { id: "pomelnice_anuale", name: "Pomelnice Anuale", price: 100, stock: 5, category:"accesorii", description:"Pomelnice pentru comemorare", image:"pomelnic.jpg" },
-      { id: "ceaslov", name: "Ceaslov", price: 70, stock: 7, category:"accesorii", description:"Accesoriu tradițional pentru biserică", image:"Ceaslov.jpg" },
+      { id: "ceaslov", name: "Ceaslov", price: 70, stock: 7, category:"accesorii", description:"Accesoriu tradițional pentru biserică", image:"ceaslov.jpg" },
       { id: "psaltire", name: "Psaltire", price: 55, stock: 6, category:"accesorii", description:"Psaltire cu fragmente sacre", image:"psaltire.jpg" },
       { id: "mir", name: "Mir", price: 20, stock: 20, category:"accesorii", description:"Mir de cea mai înaltă calitate", image:"mir.jpg" },
       { id: "icoana_mica", name: "Icoană Mică", price: 40, stock: 9, category:"icoane", description:"Icoană mică pictată manual", image:"icoană1.jpg" },
       { id: "icoana_mare", name: "Icoană Mare", price: 100, stock: 4, category:"icoane", description:"Icoană mare, lucrare impresionantă", image:"icoană2.jpg" }
     ];
-    
-    // Inițializare localStorage (dacă nu există deja)
     if(!localStorage.getItem("products")){
       localStorage.setItem("products", JSON.stringify(products));
     } else {
@@ -782,7 +717,7 @@
     // Coșul de cumpărături
     let cart = [];
     
-    // Generare produse în pagina "Produse"
+    // Generare produse pe pagina "Produse"
     function renderProducts() {
       const grid = document.getElementById("product-grid");
       grid.innerHTML = "";
@@ -826,7 +761,7 @@
     const events = [
       { name: "Paști", start: new Date("Apr 20, 2025 00:00:00").getTime(), duration: 3*24*60*60*1000, message: "Hristos a înviat!" },
       { name: "Înălțarea Domnului", start: new Date("May 29, 2025 00:00:00").getTime(), duration: 24*60*60*1000, message: "Hristos s-a înălțat!" },
-      { name: "Rusalii", start: new Date("Jun 8, 2025 00:00:00").getTime(), duration: 24*60*60*1000, message: "Rusalii: Pogorârea Sfântului Duh" },
+      { name: "Rusalii", start: new Date("Jun 8, 2025 00:00:00").getTime(), duration: 24*60*60*1000, message: "Rusalii: Pogorârea Duhului Sfânt" },
       { name: "Adormirea Maicii Domnului", start: new Date("Aug 15, 2025 00:00:00").getTime(), duration: 24*60*60*1000, message: "Adormirea Maicii Domnului" },
       { name: "Crăciun", start: new Date("Dec 25, 2025 00:00:00").getTime(), duration: 7*24*60*60*1000, message: "Sărbătoarea Nașterii" }
     ];
@@ -869,7 +804,7 @@
       document.getElementById("nav-menu").classList.toggle("active");
     }
     
-    // Filtrare, căutare și sortare produse
+    // Funcții de filtrare, căutare și sortare a produselor
     function filterProducts(category) {
       let cards = document.querySelectorAll(".product-card");
       let visibleCount = 0;
@@ -901,7 +836,7 @@
     function sortProducts(criteria) {
       const grid = document.getElementById("product-grid");
       let cards = Array.from(grid.getElementsByClassName("product-card"));
-      cards.sort((a,b) => {
+      cards.sort((a, b) => {
         let nameA = a.querySelector("h3").innerText.toLowerCase();
         let nameB = b.querySelector("h3").innerText.toLowerCase();
         let priceA = parseFloat(a.querySelector("p").innerText.replace(/[^\d\.]/g, ''));
@@ -915,16 +850,14 @@
     function toggleFilter() { document.getElementById("filter-bar").classList.toggle("active"); }
     function toggleSort() { document.getElementById("sort-bar").classList.toggle("active"); }
     
-    // Coș de cumpărături și gestiune stoc
+    // Coș de cumpărături și gestionare stoc
     function addToCart(name, price, prodId, qty) {
       qty = parseInt(qty);
-      // Verificare stoc disponibil
       const prod = products.find(p => p.id === prodId);
-      if(prod.stock < qty) {
+      if(prod.stock < qty){
         alert("Stoc insuficient!");
         return;
       }
-      // Reducere stoc
       prod.stock -= qty;
       localStorage.setItem("products", JSON.stringify(products));
       renderProducts();
@@ -957,6 +890,11 @@
       document.getElementById("cart-count").innerText = cart.reduce((sum, item) => sum + item.qty, 0);
       document.getElementById("order-details").value = JSON.stringify(cart);
       document.getElementById("fixed-cart-count").innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+      // Activează butonul de factură doar când toate câmpurile formularului sunt completate
+      document.getElementById("invoice-btn").disabled = !(document.getElementById("customer-name").value.trim() &&
+                                                           document.getElementById("customer-email").value.trim() &&
+                                                           document.getElementById("customer-phone").value.trim() &&
+                                                           document.getElementById("customer-address").value.trim());
     }
     function updateItem(index, newQty) {
       cart[index].qty = parseInt(newQty);
@@ -1009,29 +947,10 @@
       const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
       doc.setFontSize(14);
       doc.text(`Total: ${total} RON`, 20, yPosition);
-      const pdfDataUri = doc.output('datauristring');
       doc.save(`Factura_${invoiceNumber}.pdf`);
-      sendInvoiceByEmail(pdfDataUri, customerEmail);
-    }
-    function sendInvoiceByEmail(pdfDataUri, customerEmail) {
-      const templateParams = {
-        admin_email: 'irimia.teodor.17@gmail.com',
-        customer_email: customerEmail,
-        subject: 'Factura Nouă - Magazinul de Candele & Tradiții',
-        pdf: pdfDataUri
-      };
-      emailjs.send("service_88fnw6e", "template_35mixki", templateParams)
-        .then(function(response){
-          alert("Factura a fost trimisă pe email!");
-          cart = [];
-          updateCartUI();
-        }, function(error){
-          console.error("Eroare la trimiterea emailului:", error);
-          alert("A apărut o eroare. Încearcă din nou.");
-        });
     }
     
-    // Modal detalii produs
+    // Modal pentru detalii produs
     function openModal(card) {
       const modal = document.getElementById("product-modal");
       const modalBody = document.getElementById("modal-body");
@@ -1057,7 +976,7 @@
       document.querySelector(".back-to-top").style.display = window.pageYOffset > 300 ? "block" : "none";
     });
     
-    // Salvare comandă în localStorage pentru vizualizarea în pagina Admin
+    // Salvare comandă, golire coș și redirecționare către pagina "Acasă"
     function saveOrder() {
       const order = {
         customerName: document.getElementById("customer-name").value,
@@ -1072,14 +991,18 @@
       orders.push(order);
       localStorage.setItem("orders", JSON.stringify(orders));
       alert("Comanda a fost plasată!");
+      // Golire coș
+      cart = [];
+      updateCartUI();
+      // Redirecționare către pagina principală "Acasă"
+      showPage("home");
       return false;
     }
     
-    // Funcții pentru pagina Admin
+    // Funcții pentru zona Admin
     function adminLogin() {
       const user = document.getElementById("admin-user").value;
       const pass = document.getElementById("admin-pass").value;
-      // Valori prestabilite (ex: admin / admin123)
       if(user === "admin" && pass === "admin123"){
         sessionStorage.setItem("isAdmin", "true");
         showPage("admin-panel");
@@ -1148,7 +1071,12 @@
         });
       }
     }
+    
+    // Validare formular pentru activare buton factură
+    const orderFormFields = ["customer-name", "customer-email", "customer-phone", "customer-address"];
+    orderFormFields.forEach(id => {
+      document.getElementById(id).addEventListener("input", updateCartUI);
+    });
   </script>
 </body>
 </html>
-
