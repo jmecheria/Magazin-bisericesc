@@ -82,7 +82,7 @@
       border: none;
       color: #fff;
     }
-    /* Timer – setăm un z-index mai mare și ajustăm fontul pe mobil */
+    /* Timer – cu z-index mai mare și font ajustat pe mobil */
     #countdown-timer {
       position: fixed;
       top: 70px;
@@ -275,12 +275,9 @@
       text-align: center;
       transition: border-color 0.3s;
     }
-    /* Oprirea propagării evenimentului la click pe input */
-    .product-card input[type="number"]:active {
-      cursor: text;
-    }
-    .product-card input[type="number"], .product-card button {
-      /* Prevenim evenimentul de a deschide modalul la interacțiunea cu aceste elemente */
+    /* Prevenim deschiderea modalului atunci când se interacționează cu input-ul sau butonul */
+    .product-card input[type="number"],
+    .product-card button {
       cursor: auto;
     }
     .product-card input[type="number"]:click, .product-card button:click {
@@ -720,7 +717,7 @@
         <input type="text" id="customer-address" name="customer_address" required>
         <input type="hidden" id="order-details" name="order_details" value="">
         <div style="display: flex; justify-content: space-between;">
-          <button type="submit">Plasează Comanda</button>
+          <button type="submit">Plasează Comandă</button>
           <button type="reset" class="reset-btn">Resetare</button>
         </div>
       </form>
@@ -962,7 +959,6 @@
     function toggleSort() { document.getElementById("sort-bar").classList.toggle("active"); }
     
     // Coș de cumpărături și gestionare stoc
-    // La adăugare, se va stoca și id-ul produsului
     function addToCart(name, price, prodId, qty) {
       qty = parseInt(qty);
       const prod = products.find(p => p.id === prodId);
@@ -982,7 +978,6 @@
       }
       updateCartUI();
     }
-    // Actualizează coșul și afișează produsele cu design similar formularului
     function updateCartUI() {
       const container = document.getElementById("cart-container");
       container.innerHTML = "";
@@ -1008,18 +1003,14 @@
                                                            document.getElementById("customer-phone").value.trim() &&
                                                            document.getElementById("customer-address").value.trim());
     }
-    // Actualizează cantitatea unui produs în coș și ajustează stocul în consecință
     function updateItem(index, newQty) {
       newQty = parseInt(newQty);
       let item = cart[index];
-      // Găsim produsul corespunzător
       let prod = products.find(p => p.id === item.id);
       let oldQty = item.qty;
       if(newQty < oldQty){
-        // Dacă se reduce cantitatea, adăugăm diferența în stoc
         prod.stock += (oldQty - newQty);
       } else if(newQty > oldQty){
-        // Dacă se mărește, verificăm stocul disponibil
         if(prod.stock < (newQty - oldQty)){
           alert("Stoc insuficient pentru actualizare!");
           return;
@@ -1031,17 +1022,17 @@
       renderProducts();
       updateCartUI();
     }
-    // Elimină un produs din coș și adaugă cantitatea respectivă în stoc
     function removeItem(index) {
       let item = cart[index];
       let prod = products.find(p => p.id === item.id);
-      // Restabilim stocul
       prod.stock += item.qty;
       localStorage.setItem("products", JSON.stringify(products));
       renderProducts();
       cart.splice(index, 1);
       updateCartUI();
     }
+    
+    // Funcția de generare a PDF-ului – design de factură reală
     function generatePDFInvoice() {
       if(cart.length===0){
         alert("Coșul este gol!");
@@ -1056,35 +1047,76 @@
         return;
       }
       const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
+      const doc = new jsPDF('p', 'mm', 'a4');
+      
+      // Header companie
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(20);
+      doc.text("Candele & Tradiții SRL", 10, 20);
+      doc.setFont("helvetica", "normal");
       doc.setFontSize(12);
-      doc.text("Candele & Tradiții SRL", 20, 15);
-      doc.text("Str. Exemplu nr.1, București", 20, 22);
-      doc.text("CUI: RO123456", 20, 29);
-      doc.text("Telefon: 0123456789", 20, 36);
-      doc.setFontSize(18);
-      doc.text("Factura Comandă", 20, 50);
+      doc.text("Str. Exemplu nr.1, București", 10, 28);
+      doc.text("CUI: RO123456", 10, 36);
+      doc.text("Telefon: 0123456789", 10, 44);
+      
+      // Titlu factură și info
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(16);
+      doc.text("FACTURĂ FISCALĂ", 105, 20, {align: "center"});
+      
       const invoiceNumber = Math.floor(Math.random()*1000000);
       const invoiceDate = new Date().toLocaleDateString();
       doc.setFontSize(12);
-      doc.text(`Factura Nr: ${invoiceNumber}`, 20, 60);
-      doc.text(`Data: ${invoiceDate}`, 100, 60);
-      let yPosition = 70;
-      doc.text(`Client: ${customerName}`, 20, yPosition); yPosition += 10;
-      doc.text(`Telefon: ${customerPhone}`, 20, yPosition); yPosition += 10;
-      doc.text(`Adresă: ${customerAddress}`, 20, yPosition); yPosition += 20;
-      doc.setFontSize(14);
-      doc.text("Produse comandate:", 20, yPosition); yPosition += 10;
-      doc.setFontSize(12);
+      doc.text(`Factura Nr: ${invoiceNumber}`, 105, 28, {align:"center"});
+      doc.text(`Data emiterii: ${invoiceDate}`, 105, 36, {align:"center"});
+      
+      // Casetă info client
+      doc.setDrawColor(0);
+      doc.setFillColor(240,240,240);
+      doc.rect(10, 50, 190, 20, 'F');
+      doc.setFont("helvetica", "bold");
+      doc.text("Date Client:", 12, 57);
+      doc.setFont("helvetica", "normal");
+      doc.text(`Nume: ${customerName}`, 12, 64);
+      doc.text(`Email: ${customerEmail}`, 12, 71);
+      doc.text(`Telefon: ${customerPhone}`, 12, 78);
+      doc.text(`Adresă: ${customerAddress}`, 12, 85);
+      
+      // Header tabel produse
+      let startY = 100;
+      doc.setFont("helvetica", "bold");
+      doc.text("Produs", 10, startY);
+      doc.text("Cantitate", 80, startY, {align:"center"});
+      doc.text("Preț Unitar", 110, startY, {align:"center"});
+      doc.text("Subtotal", 150, startY, {align:"center"});
+      doc.line(10, startY+2, 200, startY+2);
+      
+      // Conținut tabel
+      doc.setFont("helvetica", "normal");
+      let positionY = startY + 10;
       cart.forEach(item => {
         const itemTotal = item.price * item.qty;
-        doc.text(`Produs: ${item.name}`, 20, yPosition); yPosition += 7;
-        doc.text(`Cantitate: ${item.qty} x ${item.price} RON | Subtotal: ${itemTotal} RON`, 20, yPosition); yPosition += 10;
+        doc.text(item.name, 10, positionY);
+        doc.text(String(item.qty), 80, positionY, {align:"center"});
+        doc.text(String(item.price) + " RON", 110, positionY, {align:"center"});
+        doc.text(String(itemTotal) + " RON", 150, positionY, {align:"center"});
+        positionY += 10;
+        if(positionY > 250) {
+          doc.addPage();
+          positionY = 20;
+        }
       });
-      yPosition += 10;
+      
+      // Total
       const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      doc.setFontSize(14);
-      doc.text(`Total: ${total} RON`, 20, yPosition);
+      doc.setFont("helvetica", "bold");
+      doc.text(`Total: ${total} RON`, 150, positionY + 10, {align:"center"});
+      
+      // Notă finală
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      doc.text("Mulțumim pentru încredere!", 10, 290);
+      
       doc.save(`Factura_${invoiceNumber}.pdf`);
     }
     
@@ -1129,10 +1161,8 @@
       orders.push(order);
       localStorage.setItem("orders", JSON.stringify(orders));
       alert("Comanda a fost plasată!");
-      // Nu se șterg comenzile, doar se golește coșul
       cart = [];
       updateCartUI();
-      // Redirecționare către pagina "Acasă"
       showPage("home");
       return false;
     }
@@ -1210,11 +1240,10 @@
       }
     }
     
-    // Validare formular pentru activarea butonului factură
     const orderFormFields = ["customer-name", "customer-email", "customer-phone", "customer-address"];
     orderFormFields.forEach(id => {
       document.getElementById(id).addEventListener("input", updateCartUI);
     });
   </script>
 </body>
-                                                                                   </html>
+  </html>
