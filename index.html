@@ -82,6 +82,7 @@
       border: none;
       color: #fff;
     }
+    /* Timer – setăm un z-index mai mare și ajustăm fontul pe mobil */
     #countdown-timer {
       position: fixed;
       top: 70px;
@@ -93,7 +94,7 @@
       text-align: center;
       font-size: 22px;
       font-weight: bold;
-      z-index: 1050;
+      z-index: 1200;
       border-bottom: 2px solid var(--primary-color);
     }
     /* Buton fix de coș pentru mobil */
@@ -274,8 +275,16 @@
       text-align: center;
       transition: border-color 0.3s;
     }
-    .product-card input[type="number"]:focus {
-      border-color: var(--button-bg);
+    /* Oprirea propagării evenimentului la click pe input */
+    .product-card input[type="number"]:active {
+      cursor: text;
+    }
+    .product-card input[type="number"], .product-card button {
+      /* Prevenim evenimentul de a deschide modalul la interacțiunea cu aceste elemente */
+      cursor: auto;
+    }
+    .product-card input[type="number"]:click, .product-card button:click {
+      event.stopPropagation();
     }
     .product-card button {
       padding: 10px 16px;
@@ -378,6 +387,8 @@
       #filter-toggle, #sort-toggle { display: inline-block; }
       #search-container input { width: 90%; }
       .fixed-cart { display: flex; }
+      /* Ajustăm dimensiunea timerului pe mobil */
+      #countdown-timer { font-size: 16px; }
     }
     .fade-in { animation: fadeIn 1s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -532,6 +543,49 @@
     .order-form .reset-btn:hover {
       background: #a93226;
     }
+    /* Stilul coșului de cumpărături (similar formularului) */
+    #cart-container {
+      margin: 30px auto;
+      max-width: 500px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border: 1px solid #ddd;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #ccc;
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    .cart-item span {
+      font-size: 16px;
+    }
+    .cart-item input[type="number"] {
+      width: 60px;
+      padding: 5px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 5px;
+    }
+    .cart-item button {
+      padding: 5px 10px;
+      background: #c0392b;
+      border: none;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .cart-item button:hover {
+      background: #a93226;
+    }
   </style>
 </head>
 <body>
@@ -566,7 +620,7 @@
     <section id="home" class="active fade-in">
       <div class="slider">
         <div class="slides">
-          <img src="logo.jpg" alt="Slider 1" class="active">
+          <img src="icoana1.jpg" alt="Slider 1" class="active">
           <img src="lumânare.jpg" alt="Slider 2">
           <img src="candela-mare.jpg" alt="Slider 3">
         </div>
@@ -643,14 +697,16 @@
       </div>
     </section>
     
-    <!-- Pagina Coș -->
+    <!-- Pagina Coș (stilizat similar formularului de comandă) -->
     <section id="cos" class="fade-in">
       <h2>Coșul de Cumpărături</h2>
-      <div id="cart-container"><!-- Produsele vor fi afișate dinamic --></div>
+      <div id="cart-container">
+        <!-- Produsele din coș vor fi afișate aici -->
+      </div>
       <h3>Total: <span id="total-amount">0</span> RON</h3>
-      <button id="invoice-btn" onclick="generatePDFInvoice()" style="padding:10px 20px; background:var(--button-bg); border:none; color:#fff; border-radius:6px; cursor:pointer;" disabled>
-        Generează Factura PDF
-      </button>
+      <button id="invoice-btn" onclick="generatePDFInvoice()"
+              style="padding:10px 20px; background:var(--button-bg); border:none; color:#fff; border-radius:6px; cursor:pointer;"
+              disabled>Generează Factura PDF</button>
       <h2>Finalizare Comandă</h2>
       <form id="order-form" class="order-form" onsubmit="return saveOrder();">
         <h2>Completează Datele pentru Comandă</h2>
@@ -768,7 +824,7 @@
       products = JSON.parse(localStorage.getItem("products"));
     }
     
-    // Coșul de cumpărături
+    // Coșul de cumpărături (stocăm și id-ul produsului pentru a putea restabili stocul)
     let cart = [];
     
     // Generare produse pe pagina "Produse"
@@ -785,9 +841,10 @@
           <h3>${prod.name}</h3>
           <p>Preț: ${prod.price} RON</p>
           <p style="font-size:14px; color:green;">Stoc: ${prod.stock}</p>
-          <input type="number" id="qty-${prod.id}" min="1" value="1">
+          <input type="number" id="qty-${prod.id}" min="1" value="1" onclick="event.stopPropagation()">
           <button onclick="event.stopPropagation(); addToCart('${prod.name}', ${prod.price}, '${prod.id}', document.getElementById('qty-${prod.id}').value)">Adaugă în Coș</button>
         `;
+        // Doar la clic pe fundalul cardului se va deschide modalul pentru descriere
         card.onclick = () => openModal(card);
         grid.appendChild(card);
       });
@@ -905,6 +962,7 @@
     function toggleSort() { document.getElementById("sort-bar").classList.toggle("active"); }
     
     // Coș de cumpărături și gestionare stoc
+    // La adăugare, se va stoca și id-ul produsului
     function addToCart(name, price, prodId, qty) {
       qty = parseInt(qty);
       const prod = products.find(p => p.id === prodId);
@@ -916,14 +974,15 @@
       localStorage.setItem("products", JSON.stringify(products));
       renderProducts();
       
-      const existing = cart.find(item => item.name === name);
+      const existing = cart.find(item => item.id === prodId);
       if(existing){
         existing.qty += qty;
       } else {
-        cart.push({ name, price, qty });
+        cart.push({ id: prodId, name, price, qty });
       }
       updateCartUI();
     }
+    // Actualizează coșul și afișează produsele cu design similar formularului
     function updateCartUI() {
       const container = document.getElementById("cart-container");
       container.innerHTML = "";
@@ -949,11 +1008,37 @@
                                                            document.getElementById("customer-phone").value.trim() &&
                                                            document.getElementById("customer-address").value.trim());
     }
+    // Actualizează cantitatea unui produs în coș și ajustează stocul în consecință
     function updateItem(index, newQty) {
-      cart[index].qty = parseInt(newQty);
+      newQty = parseInt(newQty);
+      let item = cart[index];
+      // Găsim produsul corespunzător
+      let prod = products.find(p => p.id === item.id);
+      let oldQty = item.qty;
+      if(newQty < oldQty){
+        // Dacă se reduce cantitatea, adăugăm diferența în stoc
+        prod.stock += (oldQty - newQty);
+      } else if(newQty > oldQty){
+        // Dacă se mărește, verificăm stocul disponibil
+        if(prod.stock < (newQty - oldQty)){
+          alert("Stoc insuficient pentru actualizare!");
+          return;
+        }
+        prod.stock -= (newQty - oldQty);
+      }
+      item.qty = newQty;
+      localStorage.setItem("products", JSON.stringify(products));
+      renderProducts();
       updateCartUI();
     }
+    // Elimină un produs din coș și adaugă cantitatea respectivă în stoc
     function removeItem(index) {
+      let item = cart[index];
+      let prod = products.find(p => p.id === item.id);
+      // Restabilim stocul
+      prod.stock += item.qty;
+      localStorage.setItem("products", JSON.stringify(products));
+      renderProducts();
       cart.splice(index, 1);
       updateCartUI();
     }
@@ -974,7 +1059,7 @@
       const doc = new jsPDF();
       doc.setFontSize(12);
       doc.text("Candele & Tradiții SRL", 20, 15);
-      doc.text("Str. Mihai Eminescu nr.1, Poieni,Iași", 20, 22);
+      doc.text("Str. Exemplu nr.1, București", 20, 22);
       doc.text("CUI: RO123456", 20, 29);
       doc.text("Telefon: 0123456789", 20, 36);
       doc.setFontSize(18);
@@ -1044,10 +1129,10 @@
       orders.push(order);
       localStorage.setItem("orders", JSON.stringify(orders));
       alert("Comanda a fost plasată!");
-      // Golire coș
+      // Nu se șterg comenzile, doar se golește coșul
       cart = [];
       updateCartUI();
-      // Redirecționare către pagina principală "Acasă"
+      // Redirecționare către pagina "Acasă"
       showPage("home");
       return false;
     }
@@ -1056,7 +1141,7 @@
     function adminLogin() {
       const user = document.getElementById("admin-user").value;
       const pass = document.getElementById("admin-pass").value;
-      if(user === "admin" && pass === "mamaestetare"){
+      if(user === "admin" && pass === "admin123"){
         sessionStorage.setItem("isAdmin", "true");
         showPage("admin-panel");
         loadAdminStock();
@@ -1125,12 +1210,11 @@
       }
     }
     
-    // Validare formular pentru activare buton factură
+    // Validare formular pentru activarea butonului factură
     const orderFormFields = ["customer-name", "customer-email", "customer-phone", "customer-address"];
     orderFormFields.forEach(id => {
       document.getElementById(id).addEventListener("input", updateCartUI);
     });
   </script>
 </body>
-</html>
-
+                                                                                   </html>
