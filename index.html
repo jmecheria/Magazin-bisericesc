@@ -16,9 +16,9 @@
       background-color: #fff;
       text-align: center;
     }
-    /* Pentru formularele din secțiunea de admin, textul să fie aliniat la stânga */
+    /* Pentru formularele din secțiunea de admin, aliniere la stânga */
     .section-container .text-start { text-align: left !important; }
-    /* Stil pentru tabele: bordură vizibilă și celule aliniate */
+    /* Stil pentru tabele */
     table.table {
       border: 1px solid #a30000;
       border-collapse: collapse;
@@ -36,7 +36,6 @@
       padding: 10px 20px;
     }
     header img.logo { height: 50px; }
-    /* Logo ANPC ajustat la 150x50 */
     footer img { height: 50px; }
     nav ul {
       list-style: none;
@@ -78,7 +77,7 @@
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    /* Titlurile secțiunilor centrate */
+    /* Titlurile secțiunilor */
     .section-container h2 {
       border-bottom: 2px solid #a30000;
       color: #a30000;
@@ -124,7 +123,7 @@
       text-align: center;
       height: 38px;
     }
-    /* Stil pentru butonul "Adaugă în Coș" */
+    /* Butonul "Adaugă în Coș" */
     .add-cart-btn {
       border: 1px solid #a30000;
       background-color: #a30000;
@@ -217,6 +216,13 @@
       border: 1px solid #000;
     }
     .invoice table th, .invoice table td { padding: 5px; text-align: center; }
+    /* Regulile pentru carousel-ul din "Despre noi" */
+    #aboutCarousel .carousel-item img {
+      width: 600px;
+      height: 400px;
+      object-fit: cover;
+      margin: 0 auto;
+    }
     /* Responsive */
     @media (max-width: 768px) {
       nav ul { justify-content: center; }
@@ -295,7 +301,7 @@
         <p class="attractive-text">
           Magazinul nostru Bisericesc a fost fondat din pasiune și dorința de a păstra tradițiile spirituale. Ne dedicăm cu grijă selecționării produselor care aduc lumină și inspirație în viața credincioșilor. Fiecare obiect este realizat manual sau ales cu atenție pentru a reflecta valorile autentice ale credinței. Experiența noastră îmbină tehnologia modernă cu tradiția, oferind o selecție variată și de calitate. Vă invităm să explorați universul nostru și să descoperiți povestea fiecărui produs.
         </p>
-        <!-- Carousel pentru secțiunea "Despre noi" -->
+        <!-- Carousel pentru secțiunea "Despre noi" cu imagini de dimensiuni fixe -->
         <div id="aboutCarousel" class="carousel slide mt-3" data-bs-ride="carousel" data-bs-touch="true">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -354,7 +360,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>1</td><td>M	Sf. Cuv. Maria Egipteanca; Sf. Cuv. Macarie Mărt.; Sf. Mc. Gherontie; Sf. Varsanufie de la Optina (Post)</td></tr>
+           <tr><td>1</td><td>M	Sf. Cuv. Maria Egipteanca; Sf. Cuv. Macarie Mărt.; Sf. Mc. Gherontie; Sf. Varsanufie de la Optina (Post)</td></tr>
             <tr><td>2</td><td>M  Sf. Cuv. Tit, făcătorul de minuni; Sf. Mc. Amfian și Edesie (Denia Canonului cel Mare) (Post)</td></tr>
             <tr><td>3</td><td>J  Sf. Cuv. Nichita Mărt. și Ilirie (Dezlegare la ulei și vin)</td></tr>
             <tr><td>4</td><td>V  Sf. Cuv. Iosif Imnograful, Gheorghe din Maleon și Zosima (Denia Acatistului Bunei Vestiri) (Post)</td></tr>
@@ -377,16 +383,17 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
             <tr><td>19</td><td>S	Sf. și Marea Sâmbătă; Sf. Cuv. Ioan de la Lavra Veche; Sf. Sfințit Mc. Pafnutie (Dezlegare la ulei și vin)</td></tr>
             <tr><td>20</td><td>	D	
 (†) Învierea Domnului (Sfintele Paști); Ap. Fapte I, 1-8; Ev. Ioan I, 1-17</td></tr>
-            <tr><td>21</td><td>Intrarea în Post</td></tr>
-            <tr><td>22</td><td>Intrarea în Post</td></tr>
-            <tr><td>23</td><td>Intrarea în Post</td></tr>
-            <tr><td>24</td><td>Intrarea în Post</td></tr>
-            <tr><td>25</td><td>Intrarea în Post</td></tr>
-            <tr><td>26</td><td>Intrarea în Post</td></tr>
-            <tr><td>27</td><td>Intrarea în Post</td></tr>
-            <tr><td>28</td><td>Intrarea în Post</td></tr>
-            <tr><td>29</td><td>Intrarea în Post</td></tr>
-            <tr><td>30</td><td>-</td></tr>
+            <tr><td>21</td><td>	L	(†) A doua zi de Paști (Mărturia lui Ioan Botezătorul); †) Cinstirea Sf. Ic. a M. D. „Axion Estin” de la M. Protaton - Athos; Sf. Sfințit Mc. Ianuarie, ep. de Benevent; Sf. Mc. Teodor din Perga; Sf. Mc. Alexandra, împ.</td></tr>
+            <tr><td>22</td><td>	M	(†) A treia zi de Paști (Drumul spre Emaus); Sf. Ier. Teodor Sicheotul, ep. Anastasiopolei</td></tr>
+            <tr><td>23</td><td>	M	†) Sf. M. Mc. Gheorghe, Purtătorul de biruință; Sf. Mc. Valerie (Harți)</td></tr>
+            <tr><td>24</td><td>	J	†) Sf. Ier. Mărt. Ilie Iorest, Sava Brancovici și Simion Ștefan, mitr. Transilvaniei; Sf. Ier. Iosif Mărt. din Maramureș; Sf. Mc. Pasicrat și Valentin; Sf. Cuv. Elisabeta</td></tr>
+            <tr><td>25</td><td>	V	†) Izvorul Tămăduirii; †) Cinstirea Sf. Ic. a M. D. „Siriaca” de la M. Ghighiu; Sf. Ap. și Ev. Marcu; †) Sf. Cuv. Vasile de la Poiana Mărului (Harți)</td></tr>
+            <tr><td>26</td><td>	S	Sf. Sfințit Mc. Vasilevs, ep. Amasiei; Sf. Cuv. Glafira; † Sf. Mc. Chiril, Chindeu și Tasie din Axiopolis (Cernavodă)</td></tr>
+            <tr><td>27</td><td>	D	Sf. Sfințit Mc. Simeon, ruda Domnului, ep. Ierusalimului
+Duminica a II-a după Paști (a Sf. Ap. Toma); Ap. Fapte V, 12-20; Ev. Ioan XX, 19-31; glas 1, voscr. 1</td></tr>
+            <tr><td>28</td><td>	L	Sf. Ap. Iason și Sosipatru; Sf. Mc. Maxim, Cvintilian și Dadas din Ozovia</td></tr>
+            <tr><td>29</td><td>	M	Sf. 9 Mc. din Cizic; Sf. Cuv. Memnon, făcătorul de minuni</td></tr>
+            <tr><td>30</td><td>	M	Sf. Ap. Iacob al lui Zevedeu, fratele Sf. Ap. și Ev. Ioan; Sf. Ier. Donat, ep. Evriei (Dezlegare la pește)</td></tr>
           </tbody>
         </table>
       </div>
@@ -450,9 +457,7 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
     <input type="hidden" name="orderDetails" id="orderDetailsInput">
   </form>
   
-  <!-- JAVASCRIPT -->
   <script>
-    // Funcție de tranziție între pagini (fade)
     function navigateTo(pageId) {
       const current = document.querySelector('.active-page');
       if (current) {
@@ -469,17 +474,22 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
         target.classList.add('active-page');
         target.style.opacity = 1;
       }
-      if (pageId === 'admin') loadAdmin();
-      if (pageId === 'produse') fetchProductsFromBackend();
+      if (pageId === 'admin') {
+        loadAdmin();
+      }
+      if (pageId === 'produse') {
+        fetchProductsFromBackend();
+      }
     }
     
-    // Buton Back to Top
     window.onscroll = function() { scrollFunction(); };
     function scrollFunction() {
       const btn = document.getElementById("backToTop");
       if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
         btn.style.display = "block";
-      } else { btn.style.display = "none"; }
+      } else {
+        btn.style.display = "none";
+      }
     }
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -487,7 +497,6 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
     
     document.getElementById('year').textContent = new Date().getFullYear();
     
-    // Timer până la Paști (ex: 20 aprilie 2025)
     function startTimer() {
       let easterDate = new Date("2025-04-20T00:00:00").getTime();
       let timerElem = document.getElementById("timer");
@@ -501,15 +510,14 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
         if (distance > 0) { 
           timerElem.textContent = "Timp până la Paști: " + days + "z " + hours + "h " + minutes + "m " + seconds + "s"; 
         } else { 
-          timerElem.textContent = "Sărbătoarea a început! Următoarea se anunță în curând."; 
+          timerElem.textContent = "Hristos a înviat! Următoarea sărbătoare se anunță în curând.";
         }
       }, 1000);
     }
     startTimer();
     
-    /* ---- Funcționalități Produse & Stocuri ---- */
     const products = [
-      {id: 1, name: "Candelă mare TIP IV", price: 19.99, image: "1.jpg", description: "Lumânare din ceară naturală cu o lungă durata de viață.7 zile", stock: 50, labels: ["Popular"]},
+       {id: 1, name: "Candelă mare TIP IV", price: 19.99, image: "1.jpg", description: "Lumânare din ceară naturală cu o lungă durata de viață.7 zile", stock: 50, labels: ["Popular"]},
       {id: 2, name: "Candelă mare TIP III", price: 12.99, image: "2.jpg", description: "Lumânare din ceară naturală cu o lungă durata de viață.100h", stock: 40, labels: ["Recomandat"]},
       {id: 3, name: "Candelă mare TIP II", price: 9.99, image: "3.jpg", description: "Lumânare din ceară naturală cu o lungă durata de viață.60h", stock: 30, labels: ["Best Seller"]},
       {id: 4, name: "Candelă mare TIP I", price: 6.99, image: "4.jpg", description: "Lumânare din ceară naturală cu o lungă durata de viață.16h", stock: 60, labels: ["Pentru zile negre"]},
@@ -678,8 +686,14 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
     function placeOrder() {
       const name = document.getElementById('customer-name').value.trim();
       const contact = document.getElementById('customer-contact').value.trim();
-      if (name === "" || contact === "") { alert("Completează datele de contact!"); return; }
-      if (cart.length === 0) { alert("Coșul este gol!"); return; }
+      if (name === "" || contact === "") {
+        alert("Completează datele de contact!");
+        return;
+      }
+      if (cart.length === 0) {
+        alert("Coșul este gol!");
+        return;
+      }
       let orderTotal = cart.reduce((sum, item) => {
         const prod = products.find(p => p.id === item.id);
         return sum + (prod.price * item.quantity);
@@ -690,23 +704,32 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
         items: [...cart],
         total: orderTotal
       };
-      let orders = JSON.parse(localStorage.getItem("globalOrders") || "[]");
-      orders.push(order);
-      localStorage.setItem("globalOrders", JSON.stringify(orders));
-      alert("Comanda a fost plasată. Mulțumim, " + name + "!");
       
-      // Notificare e-mail prin FormSubmit
-      var orderSummary = "Comandă ID: " + order.id + "\nClient: " + order.customer.name + "\nContact: " + order.customer.contact + "\nTotal: " + order.total.toFixed(2) + " Lei";
-      document.getElementById("orderDetailsInput").value = orderSummary;
-      document.getElementById("notifyForm").submit();
-      
-      renderOrderDetails(order);
-      cart = [];
-      updateCartCount();
-      document.getElementById('customer-name').value = "";
-      document.getElementById('customer-contact').value = "";
-      renderProducts();
-      navigateTo('order-details');
+      // Trimitem comanda către backend (înlocuiește URL-ul cu cel corect)
+      fetch('https://jmecheria.github.io/Magazin-candele/#/backend.php?action=placeOrder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(order)
+      })
+      .then(response => response.json())
+      .then(result => {
+        if (result.success) {
+          alert("Comanda a fost plasată. Mulțumim, " + name + "!");
+          renderOrderDetails(order);
+          cart = [];
+          updateCartCount();
+          document.getElementById('customer-name').value = "";
+          document.getElementById('customer-contact').value = "";
+          renderProducts();
+          navigateTo('order-details');
+        } else {
+          alert("A apărut o eroare la plasarea comenzii!");
+        }
+      })
+      .catch(error => {
+        console.error("Eroare la plasarea comenzii:", error);
+        alert("A apărut o eroare la plasarea comenzii!");
+      });
     }
     
     function renderOrderDetails(order) {
@@ -731,7 +754,7 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
         let total = prod.price * item.quantity;
         grandTotal += total;
         let labelsHtml = "";
-        if(prod.labels && prod.labels.length) {
+        if (prod.labels && prod.labels.length) {
           labelsHtml = prod.labels.map(l => `<span class="badge bg-secondary me-1">${l}</span>`).join("");
         }
         html += `<tr>
@@ -747,19 +770,32 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
       container.innerHTML = html;
     }
     
-    /* ---- Funcționalități Admin ---- */
+    // Funcția pentru slider-ul din pagina de start
+    function renderSlider() {
+      const sliderTrack = document.getElementById("slider-track");
+      if (!sliderTrack) return;
+      sliderTrack.innerHTML = "";
+      products.slice(0, 5).forEach(prod => {
+        const img = document.createElement("img");
+        img.src = prod.image;
+        img.alt = prod.name;
+        sliderTrack.appendChild(img);
+      });
+    }
+    
+    // Funcție de încărcare a secțiunii Admin
     let adminLogged = false;
     function loadAdmin() {
       const adminDiv = document.getElementById('admin-content');
       if (!adminLogged) {
         adminDiv.innerHTML = `
-          <div class="section-container">
+          <div class="section-container text-start">
             <h2>Login Admin</h2>
-            <div class="mb-3 text-start">
+            <div class="mb-3">
               <label>Utilizator:</label>
               <input type="text" id="admin-user" class="form-control">
             </div>
-            <div class="mb-3 text-start">
+            <div class="mb-3">
               <label>Parolă:</label>
               <input type="password" id="admin-pass" class="form-control">
             </div>
@@ -787,18 +823,17 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
     function adminLogin() {
       const user = document.getElementById('admin-user').value.trim();
       const pass = document.getElementById('admin-pass').value.trim();
-      if (user === "admin" && pass === "parola123") { 
-        adminLogged = true; 
-        loadAdmin(); 
-      }
-      else { 
-        alert("Autentificare eșuată!"); 
+      if (user === "admin" && pass === "parola123") {
+        adminLogged = true;
+        loadAdmin();
+      } else {
+        alert("Autentificare eșuată!");
       }
     }
     
-    function adminLogout() { 
-      adminLogged = false; 
-      loadAdmin(); 
+    function adminLogout() {
+      adminLogged = false;
+      loadAdmin();
     }
     
     function updateAllStocks() {
@@ -836,109 +871,112 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
     }
     
     function renderAdminOrders() {
-      const orders = JSON.parse(localStorage.getItem("globalOrders") || "[]");
-      const container = document.getElementById('admin-orders-container');
-      if (orders.length === 0) { container.innerHTML = "<p>Nu există comenzi.</p>"; return; }
-      let html = `<table class="table">
-                    <thead>
-                      <tr>
-                        <th>ID Comandă</th>
-                        <th>Client</th>
-                        <th>Detalii Produse</th>
-                        <th>Total</th>
-                        <th>Acțiuni</th>
-                      </tr>
-                    </thead>
-                    <tbody>`;
-      orders.forEach((order, idx) => {
-        let details = "";
-        order.items.forEach(item => {
-          const prod = products.find(p => p.id === item.id);
-          let labelsHtml = "";
-          if(prod.labels && prod.labels.length) {
-            labelsHtml = prod.labels.map(l => `<span class="badge bg-secondary me-1">${l}</span>`).join("");
+      fetch('https://yourdomain.com/backend.php?action=getOrders')
+        .then(response => response.json())
+        .then(orders => {
+          const container = document.getElementById('admin-orders-container');
+          if (orders.length === 0) {
+            container.innerHTML = "<p>Nu există comenzi.</p>";
+            return;
           }
-          details += prod.name + " " + labelsHtml + " x " + item.quantity + "<br>";
-        });
-        html += `<tr>
-                   <td>${order.id}</td>
-                   <td>${order.customer.name}<br>${order.customer.contact}</td>
-                   <td>${details}</td>
-                   <td>${order.total.toFixed(2)} Lei</td>
-                   <td>
-                     <button class="btn btn-success btn-sm" onclick="finishOrder(${idx})">Terminată</button>
-                     <button class="btn btn-info btn-sm" onclick="printInvoice(${idx})">Tipărește Factura</button>
-                   </td>
-                 </tr>`;
-      });
-      html += `</tbody></table>`;
-      container.innerHTML = html;
+          let html = `<table class="table">
+                        <thead>
+                          <tr>
+                            <th>ID Comandă</th>
+                            <th>Client</th>
+                            <th>Detalii Produse</th>
+                            <th>Total</th>
+                            <th>Acțiuni</th>
+                          </tr>
+                        </thead>
+                        <tbody>`;
+          orders.forEach((order, idx) => {
+            let details = "";
+            order.items.forEach(item => {
+              details += `Produs ID: ${item.id} x ${item.quantity}<br>`;
+            });
+            html += `<tr>
+                       <td>${order.id}</td>
+                       <td>${order.customer.name}<br>${order.customer.contact}</td>
+                       <td>${details}</td>
+                       <td>${order.total.toFixed(2)} Lei</td>
+                       <td>
+                         <button class="btn btn-success btn-sm" onclick="finishOrder(${idx})">Terminată</button>
+                         <button class="btn btn-info btn-sm" onclick="printInvoice(${idx})">Tipărește Factura</button>
+                       </td>
+                     </tr>`;
+          });
+          html += `</tbody></table>`;
+          container.innerHTML = html;
+        })
+        .catch(err => console.error("Eroare la încărcarea comenzilor:", err));
     }
     
     function finishOrder(index) {
-      let orders = JSON.parse(localStorage.getItem("globalOrders") || "[]");
-      orders.splice(index, 1);
-      localStorage.setItem("globalOrders", JSON.stringify(orders));
-      alert("Comanda a fost finalizată.");
-      renderAdminOrders();
+      // Pentru simplitate, aici e doar interfața; pentru backend real ar trebui să actualizezi fișierul orders.json
+      alert("Funcționalitatea de finalizare comandă nu este implementată complet în această versiune de demo.");
     }
     
     function printInvoice(index) {
-      let orders = JSON.parse(localStorage.getItem("globalOrders") || "[]");
-      if (orders.length <= index) return;
-      const order = orders[index];
-      let invoiceWindow = window.open("", "PrintInvoice", "width=800,height=600");
-      let htmlContent = `
-        <html>
-        <head>
-          <title>Factura - Comanda ${order.id}</title>
-          <style>
-            body { font-family: "Times New Roman", Times, serif; padding: 20px; }
-            h2, p, table { margin: 0 0 10px; padding: 0; }
-            table { width: 100%; border-collapse: collapse; }
-            table, th, td { border: 1px solid #000; }
-            th, td { padding: 5px; text-align: center; }
-          </style>
-        </head>
-        <body>
-          <h2>Factura - Comanda ${order.id}</h2>
-          <p><strong>Client:</strong> ${order.customer.name}</p>
-          <p><strong>Contact:</strong> ${order.customer.contact}</p>
-          <p><strong>Furnizor:</strong> Magazin Bisericesc, Str. Exemplu 123, Oraș, Telefon: 0123 456 789</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Produs</th>
-                <th>Etichete</th>
-                <th>Cantitate</th>
-                <th>Preț</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>`;
-      order.items.forEach(item => {
-        const prod = products.find(p => p.id === item.id);
-        const total = prod.price * item.quantity;
-        let labelsHtml = "";
-        if(prod.labels && prod.labels.length) {
-          labelsHtml = prod.labels.map(l => `<span class="badge bg-secondary me-1">${l}</span>`).join("");
-        }
-        htmlContent += `<tr>
-                          <td>${prod.name}</td>
-                          <td>${labelsHtml}</td>
-                          <td>${item.quantity}</td>
-                          <td>${prod.price.toFixed(2)}</td>
-                          <td>${total.toFixed(2)}</td>
-                        </tr>`;
-      });
-      htmlContent += `</tbody></table>
-          <p><strong>Total Comandă:</strong> ${order.total.toFixed(2)} Lei</p>
-        </body>
-        </html>`;
-      invoiceWindow.document.write(htmlContent);
-      invoiceWindow.document.close();
-      invoiceWindow.focus();
-      invoiceWindow.print();
+      fetch('https://yourdomain.com/backend.php?action=getOrders')
+        .then(response => response.json())
+        .then(orders => {
+          if (orders.length <= index) return;
+          const order = orders[index];
+          let invoiceWindow = window.open("", "PrintInvoice", "width=800,height=600");
+          let htmlContent = `
+            <html>
+            <head>
+              <title>Factura - Comanda ${order.id}</title>
+              <style>
+                body { font-family: "Times New Roman", Times, serif; padding: 20px; }
+                h2, p, table { margin: 0 0 10px; padding: 0; text-align: center; }
+                table { width: 100%; border-collapse: collapse; }
+                table, th, td { border: 1px solid #000; }
+                th, td { padding: 5px; text-align: center; }
+              </style>
+            </head>
+            <body>
+              <h2>Factura - Comanda ${order.id}</h2>
+              <p><strong>Client:</strong> ${order.customer.name}</p>
+              <p><strong>Contact:</strong> ${order.customer.contact}</p>
+              <p><strong>Furnizor:</strong> Magazin Bisericesc, Str. Poieni 123, Oraș Iași, Telefon: 0123 456 789</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Produs</th>
+                    <th>Etichete</th>
+                    <th>Cantitate</th>
+                    <th>Preț</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>`;
+          order.items.forEach(item => {
+            const prod = products.find(p => p.id === item.id);
+            const total = prod.price * item.quantity;
+            let labelsHtml = "";
+            if(prod.labels && prod.labels.length) {
+              labelsHtml = prod.labels.map(l => `<span class="badge bg-secondary me-1">${l}</span>`).join("");
+            }
+            htmlContent += `<tr>
+                              <td>${prod.name}</td>
+                              <td>${labelsHtml}</td>
+                              <td>${item.quantity}</td>
+                              <td>${prod.price.toFixed(2)}</td>
+                              <td>${total.toFixed(2)}</td>
+                            </tr>`;
+          });
+          htmlContent += `</tbody></table>
+              <p><strong>Total Comandă:</strong> ${order.total.toFixed(2)} Lei</p>
+            </body>
+            </html>`;
+          invoiceWindow.document.write(htmlContent);
+          invoiceWindow.document.close();
+          invoiceWindow.focus();
+          invoiceWindow.print();
+        })
+        .catch(err => console.error("Eroare la printare:", err));
     }
     
     function renderOrderDetails(order) {
@@ -979,7 +1017,6 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
       container.innerHTML = html;
     }
     
-    // Slider pe pagina de start: folosește primele 5 imagini din lista de produse
     function renderSlider() {
       const sliderTrack = document.getElementById("slider-track");
       if (!sliderTrack) return;
@@ -997,11 +1034,13 @@ Duminica a V-a din Post (a Sf. Cuv. Maria Egipteanca; Prevestirea Patimilor; Cer
       renderSlider();
     });
   </script>
+  
   <!-- Formular pentru notificare e-mail (FormSubmit) -->
   <form id="notifyForm" action="https://formsubmit.co/irimia.teodor.17@gmail.com" method="POST" target="_blank" style="display: none;">
     <input type="hidden" name="subject" value="Notificare Comandă - Magazin Bisericesc">
     <input type="hidden" name="orderDetails" id="orderDetailsInput">
   </form>
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
